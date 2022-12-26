@@ -331,37 +331,37 @@ export function stringIsNull(str) {
  * @param node
  */
 export function getAutoScrollContainer(node: HTMLElement) {
-  let element: Nullable<HTMLElement> = node
+  let element: Nullable<HTMLElement> = node;
   while (element != null) {
     if (element.classList.contains('scrollbar__view')) {
       // 判断是否有滚动条
       if (element.clientHeight < element.scrollHeight) {
         // 有滚动条时，挂载到父级，解决滚动问题
-        return node.parentElement
+        return node.parentElement;
       } else {
         // 无滚动条时，挂载到body上，解决下拉框遮盖问题
-        return document.body
+        return document.body;
       }
     } else {
-      element = element.parentElement
+      element = element.parentElement;
     }
   }
   // 不在弹窗内，走默认逻辑
-  return node.parentElement
+  return node.parentElement;
 }
 
 /**
  * 判断子菜单是否全部隐藏
  * @param menuTreeItem
  */
-export  function checkChildrenHidden(menuTreeItem){
+export function checkChildrenHidden(menuTreeItem) {
   //是否是聚合路由
-  let alwaysShow=menuTreeItem.alwaysShow;
-  if(alwaysShow){
+  let alwaysShow = menuTreeItem.alwaysShow;
+  if (alwaysShow) {
     return false;
   }
-  if(!menuTreeItem.children){
-    return false
+  if (!menuTreeItem.children) {
+    return false;
   }
   return menuTreeItem.children?.find((item) => item.hideMenu == false) != null;
 }

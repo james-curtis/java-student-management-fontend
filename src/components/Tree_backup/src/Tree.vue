@@ -62,7 +62,7 @@
       });
 
       const getBindValues = computed(() => {
-        let propsData = {
+        const propsData = {
           blockNode: true,
           ...attrs,
           ...props,
@@ -121,10 +121,10 @@
 
       async function handleRightClick({ event, node }: Recordable) {
         const { rightMenuList: menuList = [], beforeRightClick } = props;
-        let contextMenuOptions: CreateContextOptions = { event, items: [] };
+        const contextMenuOptions: CreateContextOptions = { event, items: [] };
 
         if (beforeRightClick && isFunction(beforeRightClick)) {
-          let result = await beforeRightClick(node, event);
+          const result = await beforeRightClick(node, event);
           if (Array.isArray(result)) {
             contextMenuOptions.items = result;
           } else {
@@ -401,7 +401,7 @@
   });
 </script>
 <style lang="less">
-  @prefix-cls: ~'@{namespace}-basic-tree';
+  @prefix-cls: ~'@{namespaces}-basic-tree';
 
   .@{prefix-cls} {
     background-color: @component-background;

@@ -67,7 +67,7 @@
 
       // updateBy:sunjianlei---updateDate:2021-09-08---根据主题的不同，动态计算tabs高度
       const getTabsThemeHeight = computed(() => {
-        let tabsTheme = unref(getTabsTheme);
+        const tabsTheme = unref(getTabsTheme);
         if (tabsTheme === TabsThemeEnum.CARD) {
           return TABS_HEIGHT_CARD;
         } else if (tabsTheme === TabsThemeEnum.SMOOTH) {
@@ -109,7 +109,7 @@
   });
 </script>
 <style lang="less" scoped>
-  @prefix-cls: ~'@{namespace}-layout-multiple-header';
+  @prefix-cls: ~'@{namespaces}-layout-multiple-header';
 
   .@{prefix-cls} {
     transition: width 0.2s;

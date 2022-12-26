@@ -74,7 +74,6 @@
       function onSearch(value: string) {
         keyword.value = value;
       }
-      
 
       return {
         schemas,

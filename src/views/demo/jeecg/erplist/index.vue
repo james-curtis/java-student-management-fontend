@@ -9,14 +9,14 @@
           <template #overlay>
             <a-menu>
               <a-menu-item key="1" @click="batchHandleDelete">
-                <Icon icon="ant-design:delete-outlined"></Icon>
+                <Icon icon="ant-design:delete-outlined" />
                 删除
               </a-menu-item>
             </a-menu>
           </template>
           <a-button
             >批量操作
-            <Icon icon="mdi:chevron-down"></Icon>
+            <Icon icon="mdi:chevron-down" />
           </a-button>
         </a-dropdown>
       </template>
@@ -36,7 +36,7 @@
     </a-tabs>
   </div>
   <!-- 表单区域 -->
-  <JeecgOrderModal @register="registerModal" @success="handleSuccess"></JeecgOrderModal>
+  <JeecgOrderModal @register="registerModal" @success="handleSuccess" />
 </template>
 
 <script lang="ts" name="tab-list" setup>
@@ -58,8 +58,8 @@
   const { tableContext } = useListPage({
     tableProps: {
       api: list,
-      tableSetting:{
-        cacheKey:'erp_main'
+      tableSetting: {
+        cacheKey: 'erp_main',
       },
       columns: columns,
       canResize: false,

@@ -18,12 +18,12 @@
             <template v-for="(item, index) in queryInfo">
               <template v-if="item.hidden === '1'">
                 <a-col :md="8" :sm="24" :key="'query' + index" v-show="toggleSearchStatus">
-                  <SearchFormItem :formElRef="formRef" :queryParam="queryParam" :item="item" :dictOptions="dictOptions"></SearchFormItem>
+                  <SearchFormItem :formElRef="formRef" :queryParam="queryParam" :item="item" :dictOptions="dictOptions" />
                 </a-col>
               </template>
               <template v-else>
                 <a-col :md="8" :sm="24" :key="'query' + index">
-                  <SearchFormItem :formElRef="formRef" :queryParam="queryParam" :item="item" :dictOptions="dictOptions"></SearchFormItem>
+                  <SearchFormItem :formElRef="formRef" :queryParam="queryParam" :item="item" :dictOptions="dictOptions" />
                 </a-col>
               </template>
             </template>

@@ -58,7 +58,7 @@
 </template>
 
 <style lang="less">
-  @prefix-cls: ~'@{namespace}-setting-drawer-fearure';
+  @prefix-cls: ~'@{namespaces}-setting-drawer-fearure';
 
   .@{prefix-cls} {
     position: absolute;

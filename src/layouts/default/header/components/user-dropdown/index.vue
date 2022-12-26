@@ -86,7 +86,7 @@
       });
 
       const getAvatarUrl = computed(() => {
-        let { avatar } = getUserInfo.value;
+        const { avatar } = getUserInfo.value;
         if (avatar == headerImg) {
           return avatar;
         } else {
@@ -177,7 +177,7 @@
   });
 </script>
 <style lang="less">
-  @prefix-cls: ~'@{namespace}-header-user-dropdown';
+  @prefix-cls: ~'@{namespaces}-header-user-dropdown';
 
   .@{prefix-cls} {
     height: @header-height;

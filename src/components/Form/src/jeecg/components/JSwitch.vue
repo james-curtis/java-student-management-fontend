@@ -53,14 +53,14 @@
   );
 
   const selectOptions = computed(() => {
-    let options: any[] = [];
+    const options: any[] = [];
     options.push({ value: props.options[0], label: props.labelOptions[0] });
     options.push({ value: props.options[1], label: props.labelOptions[1] });
     return options;
   });
 
   function onSwitchChange(checked) {
-    let flag = checked === false ? props.options[1] : props.options[0];
+    const flag = checked === false ? props.options[1] : props.options[0];
     emitValue(flag);
   }
 
@@ -76,7 +76,7 @@
 
 <style lang="less">
   //noinspection LessUnresolvedVariable
-  @prefix-cls: ~'@{namespace}-j-switch';
+  @prefix-cls: ~'@{namespaces}-j-switch';
 
   .@{prefix-cls} {
   }

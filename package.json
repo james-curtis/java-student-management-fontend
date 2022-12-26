@@ -1,11 +1,6 @@
 {
   "name": "jeecgboot-vue3",
   "version": "3.4.4",
-  "author": {
-    "name": "jeecg",
-    "email": "jeecgos@163.com",
-    "url": "https://github.com/jeecgboot/jeecgboot-vue3"
-  },
   "scripts": {
     "bootstrap": "pnpm install",
     "serve": "npm run dev",
@@ -20,30 +15,37 @@
     "preview": "npm run build && vite preview",
     "preview:dist": "vite preview",
     "log": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "lint:eslint": "eslint --cache --max-warnings 0  \"{src,mock}/**/*.{vue,ts,tsx}\" --fix",
-    "lint:prettier": "prettier --write  \"src/**/*.{js,json,tsx,css,less,scss,vue,html,md}\"",
-    "lint:stylelint": "stylelint --cache --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
-    "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.js",
-    "lint:pretty": "pretty-quick --staged",
+    "lint:eslint-check-quiet": "pnpm lint:eslint-check --quiet",
+    "lint:eslint-check": "eslint \"{src,build,mock,tests,types}/**/*.{vue,ts,js,jsx,tsx}\"",
+    "lint:eslint": "pnpm lint:eslint-check --fix",
+    "lint:eslint-fix-layout": "pnpm lint:eslint --fix-type layout",
+    "lint:prettier": "prettier --write  \"{src,build,mock,tests,types}/**/*.{js,tsx,css,less,scss,vue,html}\"",
+    "lint:prettier-check": "prettier --check \"{src,build,mock,tests,types}/**/*.{js,tsx,css,less,scss,vue,html}\"",
+    "lint:stylelint": "stylelint --fix \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
+    "lint:stylelint-check": "stylelint \"**/*.{vue,less,postcss,css,scss}\" --cache --cache-location node_modules/.cache/stylelint/",
+    "lint:lint-staged": "lint-staged -c ./lint-staged.config.js",
+    "lint:pretty": "pretty-quick --staged --pattern \"{src,build,mock,tests,types}/**/*.{js,tsx,css,less,scss,vue,html}\"",
+    "lint:pretty-check": "pretty-quick --check --staged --pattern \"{src,build,mock,tests,types}/**/*.{js,tsx,css,less,scss,vue,html}\"",
     "test:unit": "jest",
     "test:unit-coverage": "jest --coverage",
     "test:gzip": "http-server dist --cors --gzip -c-1",
     "test:br": "http-server dist --cors --brotli -c-1",
     "reinstall": "rimraf pnpm-lock.yaml && yarn.lock && rimraf package.lock.json && rimraf node_modules && npm run bootstrap",
     "prepare": "husky install",
-    "gen:icon": "esno ./build/generate/icon/index.ts"
+    "gen:icon": "esno ./build/generate/icon/index.ts",
+    "preinstall": "npx --yes only-allow pnpm"
   },
   "dependencies": {
-    "@jeecg/online": "3.4.3-GA",
-    "@iconify/iconify": "^2.2.1",
     "@ant-design/colors": "^6.0.0",
     "@ant-design/icons-vue": "^6.1.0",
+    "@iconify/iconify": "^2.2.1",
+    "@jeecg/online": "3.4.3-GA",
     "@logicflow/core": "^1.1.13",
     "@logicflow/extension": "^1.1.13",
-    "@vue/shared": "^3.2.33",
     "@vue/runtime-core": "^3.2.33",
-    "@vueuse/shared": "^8.3.0",
+    "@vue/shared": "^3.2.33",
     "@vueuse/core": "^8.3.0",
+    "@vueuse/shared": "^8.3.0",
     "@zxcvbn-ts/core": "^2.0.1",
     "ant-design-vue": "^3.2.12",
     "axios": "^0.26.1",
@@ -67,9 +69,9 @@
     "path-to-regexp": "^6.2.0",
     "pinia": "2.0.12",
     "print-js": "^1.6.0",
-    "qs": "^6.10.3",
     "qrcode": "^1.5.0",
     "qrcodejs2": "0.0.2",
+    "qs": "^6.10.3",
     "resize-observer-polyfill": "^1.5.1",
     "showdown": "^2.1.0",
     "sortablejs": "^1.15.0",
@@ -80,6 +82,7 @@
     "vue-cropperjs": "^5.0.0",
     "vue-i18n": "^9.1.9",
     "vue-infinite-scroll": "^2.0.2",
+    "vue-json-pretty": "^2.0.6",
     "vue-print-nb-jeecg": "^1.0.10",
     "vue-router": "^4.0.14",
     "vue-types": "^4.1.1",
@@ -87,7 +90,6 @@
     "vxe-table": "4.1.0",
     "vxe-table-plugin-antd": "3.0.5",
     "xe-utils": "^3.3.1",
-    "vue-json-pretty": "^2.0.6",
     "xss": "^1.0.13"
   },
   "devDependencies": {
@@ -95,6 +97,7 @@
     "@commitlint/config-conventional": "^16.2.1",
     "@iconify/json": "^2.1.30",
     "@purge-icons/generated": "^0.8.1",
+    "@rys-fe/vite-plugin-theme": "^0.8.6",
     "@types/codemirror": "^5.60.5",
     "@types/crypto-js": "^4.1.1",
     "@types/fs-extra": "^9.0.13",
@@ -141,18 +144,23 @@
     "npm-run-all": "^4.1.5",
     "picocolors": "^1.0.0",
     "postcss": "^8.4.12",
-    "postcss-html": "^1.4.1",
+    "postcss-html": "^1.5.0",
     "postcss-less": "^6.0.0",
     "prettier": "^2.6.2",
     "pretty-quick": "^3.1.1",
     "rimraf": "^3.0.2",
     "rollup": "^2.70.2",
     "rollup-plugin-visualizer": "^5.6.0",
-    "stylelint": "^14.7.1",
+    "stylelint": "^14.16.0",
+    "stylelint-config-html": "^1.1.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-recommended": "^7.0.0",
+    "stylelint-config-recommended-less": "^1.0.4",
+    "stylelint-config-recommended-scss": "^8.0.0",
     "stylelint-config-recommended-vue": "^1.4.0",
     "stylelint-config-standard": "^25.0.0",
+    "stylelint-config-standard-scss": "^6.1.0",
+    "stylelint-less": "^1.0.6",
     "stylelint-order": "^5.0.0",
     "ts-jest": "^27.0.7",
     "ts-node": "^10.7.0",
@@ -169,7 +177,6 @@
     "vite-plugin-pwa": "^0.12.3",
     "vite-plugin-style-import": "^2.0.0",
     "vite-plugin-svg-icons": "^2.0.1",
-    "@rys-fe/vite-plugin-theme": "^0.8.6",
     "vite-plugin-vue-setup-extend": "^0.4.0",
     "vite-plugin-windicss": "^1.8.7",
     "vue-eslint-parser": "^8.3.0",
@@ -179,23 +186,7 @@
     "bin-wrapper": "npm:bin-wrapper-china",
     "rollup": "^2.72.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jeecgboot/jeecgboot-vue3.git"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jeecgboot/jeecgboot-vue3/issues"
-  },
-  "homepage": "https://github.com/jeecgboot/jeecgboot-vue3",
   "engines": {
     "node": "^12 || >=14"
-  },
-  "vite": {
-    "optimizeDeps": {
-      "include": [
-
-      ]
-    }
   }
 }

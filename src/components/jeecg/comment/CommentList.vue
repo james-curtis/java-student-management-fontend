@@ -15,7 +15,7 @@
                 <template v-if="item.toUserId">
                   <span>回复</span>
                   <span>{{ item.toUserId_dictText }}</span>
-                  <Tooltip class="comment-last-content" @visibleChange="(v)=>visibleChange(v, item)">
+                  <Tooltip class="comment-last-content" @visibleChange="(v) => visibleChange(v, item)">
                     <template #title>
                       <div v-html="getHtml(item.commentId_dictText)"></div>
                     </template>
@@ -42,17 +42,21 @@
             </template>
 
             <template #content>
-              <div v-html="getHtml(item.commentContent)" style="font-size: 15px">
-              </div>
+              <div v-html="getHtml(item.commentContent)" style="font-size: 15px"> </div>
 
               <div v-if="item.fileList && item.fileList.length > 0">
                 <!-- 历史文件 -->
-                <history-file-list :dataList="item.fileList" isComment></history-file-list>
+                <history-file-list :dataList="item.fileList" isComment />
               </div>
             </template>
           </a-comment>
           <div v-if="item.commentStatus" class="inner-comment">
-            <my-comment inner @cancel="item.commentStatus = false" @comment="(content, fileList) => replyComment(item, content, fileList)" :inputFocus="focusStatus"></my-comment>
+            <my-comment
+              inner
+              @cancel="item.commentStatus = false"
+              @comment="(content, fileList) => replyComment(item, content, fileList)"
+              :inputFocus="focusStatus"
+            />
           </div>
         </a-list-item>
       </template>
@@ -64,7 +68,7 @@
           <a-avatar class="tx" :src="getMyAvatar()" :alt="getMyname()">{{ getMyname() }}</a-avatar>
         </template>
         <template #content>
-          <my-comment ref="bottomCommentRef" @comment="sendComment" :inputFocus="focusStatus"></my-comment>
+          <my-comment ref="bottomCommentRef" @comment="sendComment" :inputFocus="focusStatus" />
         </template>
       </a-comment>
     </div>
@@ -75,7 +79,7 @@
   /**
    * 评论列表
    */
-  import { defineComponent, ref, onMounted, watch, watchEffect ,inject } from 'vue';
+  import { defineComponent, ref, onMounted, watch, watchEffect, inject } from 'vue';
   import { propTypes } from '/@/utils/propTypes';
   // import dayjs from 'dayjs';
   // import relativeTime from 'dayjs/plugin/relativeTime';
@@ -83,7 +87,7 @@
   // dayjs.locale('zh');
   // dayjs.extend(relativeTime);
   // dayjs.extend(customParseFormat);
-  
+
   import { MessageOutlined } from '@ant-design/icons-vue';
   import { Comment, Tooltip } from 'ant-design-vue';
   import { useUserStore } from '/@/store/modules/user';
@@ -107,14 +111,14 @@
     props: {
       tableName: propTypes.string.def(''),
       dataId: propTypes.string.def(''),
-      datetime:  propTypes.number.def(1)
+      datetime: propTypes.number.def(1),
     },
     setup(props) {
       const { createMessage } = useMessage();
       const dataList = ref([]);
       const { userInfo } = useUserStore();
-      const dayjs = inject('$dayjs')
-      
+      const dayjs = inject('$dayjs');
+
       /**
        * 获取当前用户名称
        */
@@ -124,21 +128,21 @@
         }
         return '';
       }
-      
-      function getMyAvatar(){
+
+      function getMyAvatar() {
         return userInfo.avatar;
       }
-      
+
       // 获取头像
       function getAvatar(item) {
         if (item.fromUserAvatar) {
-          return getFileAccessHttpUrl(item.fromUserAvatar)
+          return getFileAccessHttpUrl(item.fromUserAvatar);
         }
         return '';
       }
 
       // 头像没有获取 用户名前两位
-      function getAvatarText(item){
+      function getAvatarText(item) {
         if (item.fromUserId_dictText) {
           return item.fromUserId_dictText.substr(0, 2);
         }
@@ -164,7 +168,7 @@
       const allHeight = ref(300);
       onMounted(() => {
         commentHeight.value = window.innerHeight - 57 - 46 - 70 - 160;
-        allHeight.value = window.innerHeight - 57 - 46 - 53 -20;
+        allHeight.value = window.innerHeight - 57 - 46 - 53 - 20;
       });
 
       /**
@@ -196,24 +200,24 @@
           fromUserId: userInfo.id,
           toUserId: item.fromUserId,
           commentId: item.id,
-          commentContent: content
-        }
-        await saveCommentAndFiles(obj, fileList)
+          commentContent: content,
+        };
+        await saveCommentAndFiles(obj, fileList);
         await loadData();
       }
-      
+
       //评论
       async function sendComment(content, fileList) {
         let obj = {
           fromUserId: userInfo.id,
-          commentContent: content
-        }
-        await saveCommentAndFiles(obj, fileList)
+          commentContent: content,
+        };
+        await saveCommentAndFiles(obj, fileList);
         await loadData();
         focusStatus.value = false;
-        setTimeout(()=>{
+        setTimeout(() => {
           focusStatus.value = true;
-        },100)
+        }, 100);
       }
 
       //删除
@@ -240,33 +244,32 @@
 
       // 表单改变 -重新加载评论列表
       watchEffect(() => {
-        if(props.datetime){
+        if (props.datetime) {
           if (props.tableName && props.dataId) {
             loadData();
           }
         }
       });
 
-      const storageEmojiIndex = inject('$globalEmojiIndex')
+      const storageEmojiIndex = inject('$globalEmojiIndex');
       const { getHtml } = useEmojiHtml(storageEmojiIndex);
-      const bottomCommentRef = ref()
-      function handleClickItem(){
-        bottomCommentRef.value.changeActive()
+      const bottomCommentRef = ref();
+      function handleClickItem() {
+        bottomCommentRef.value.changeActive();
       }
-
 
       /**
        * 根据id查询评论信息
        */
-      async function visibleChange(v, item){
-        if(v==true){
-          if(!item.commentId_dictText){
+      async function visibleChange(v, item) {
+        if (v == true) {
+          if (!item.commentId_dictText) {
             const data = await queryById(item.commentId);
-            if(data.success == true){
-              item.commentId_dictText = data.result.commentContent
-            }else{
-              console.error(data.message)
-              item.commentId_dictText='该评论已被删除';
+            if (data.success == true) {
+              item.commentId_dictText = data.result.commentContent;
+            } else {
+              console.error(data.message);
+              item.commentId_dictText = '该评论已被删除';
             }
           }
         }
@@ -291,7 +294,7 @@
         getHtml,
         handleClickItem,
         bottomCommentRef,
-        visibleChange
+        visibleChange,
       };
     },
   });
@@ -315,17 +318,17 @@
     }
     .comment-last-content {
       margin-left: 5px;
-      &:hover{
+      &:hover {
         color: #1890ff;
       }
     }
   }
-  .ant-list-items{
-    .ant-list-item:last-child{
+  .ant-list-items {
+    .ant-list-item:last-child {
       margin-bottom: 46px;
     }
   }
-  .tx{
+  .tx {
     margin-top: 4px;
   }
 </style>

@@ -54,7 +54,7 @@
   }
 </script>
 <style lang="less" scoped>
-  @prefix-cls: ~'@{namespace}-app-logo';
+  @prefix-cls: ~'@{namespaces}-app-logo';
 
   .@{prefix-cls} {
     display: flex;

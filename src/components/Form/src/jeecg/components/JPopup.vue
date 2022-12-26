@@ -4,7 +4,7 @@
     <!--输入框-->
     <a-input @click="handleOpen" v-model:value="showText" :placeholder="placeholder" readOnly v-bind="attrs">
       <template #prefix>
-        <Icon icon="ant-design:cluster-outlined"></Icon>
+        <Icon icon="ant-design:cluster-outlined" />
       </template>
       <!-- update-begin-author:taoyan date:2022-5-31 for: VUEN-1157 popup 选中后，有两个清除图标；后边这个清除，只是把输入框中数据清除，实际值并没有清除 -->
       <!-- <template #suffix>
@@ -22,7 +22,7 @@
       :param="param"
       @ok="callBack"
       :getContainer="getContainer"
-    ></JPopupOnlReportModal>
+    />
   </div>
 </template>
 <script lang="ts">

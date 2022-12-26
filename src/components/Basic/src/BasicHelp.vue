@@ -90,7 +90,7 @@
   });
 </script>
 <style lang="less">
-  @prefix-cls: ~'@{namespace}-basic-help';
+  @prefix-cls: ~'@{namespaces}-basic-help';
 
   .@{prefix-cls} {
     display: inline-block;

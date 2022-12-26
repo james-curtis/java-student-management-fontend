@@ -49,7 +49,7 @@
             :loading="table1.loading"
             :columns="table1.columns"
             :dataSource="table1.dataSource"
-          ></JVxeTable>
+          />
         </a-tab-pane>
 
         <a-tab-pane tab="机票信息" key="tableRef2" forceRender>
@@ -66,7 +66,7 @@
             :loading="table2.loading"
             :columns="table2.columns"
             :dataSource="table2.dataSource"
-          ></JVxeTable>
+          />
         </a-tab-pane>
       </a-tabs>
     </a-form>

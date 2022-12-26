@@ -1,5 +1,5 @@
 <template>
-  <BasicForm @register="registerForm"></BasicForm>
+  <BasicForm @register="registerForm" />
 </template>
 
 <script>

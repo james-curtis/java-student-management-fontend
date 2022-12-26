@@ -158,7 +158,7 @@
   });
 </script>
 <style lang="less">
-  @prefix-cls: ~'@{namespace}-page-wrapper';
+  @prefix-cls: ~'@{namespaces}-page-wrapper';
 
   .@{prefix-cls} {
     position: relative;

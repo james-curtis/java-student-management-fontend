@@ -393,7 +393,7 @@
   });
 </script>
 <style lang="less">
-  @prefix-cls: ~'@{namespace}-editable-cell';
+  @prefix-cls: ~'@{namespaces}-editable-cell';
 
   .edit-cell-align-left {
     text-align: left;

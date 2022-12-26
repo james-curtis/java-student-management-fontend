@@ -54,7 +54,7 @@
   });
 </script>
 <style lang="less" scoped>
-  @prefix-cls: ~'@{namespace}-setting-select-item';
+  @prefix-cls: ~'@{namespaces}-setting-select-item';
 
   .@{prefix-cls} {
     display: flex;

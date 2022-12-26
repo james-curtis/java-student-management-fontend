@@ -2,13 +2,13 @@
   <div class="comment-tabs-warp" v-if="showStatus">
     <a-tabs @change="handleChange" :animated="false">
       <a-tab-pane tab="评论" key="comment" class="comment-list-tab">
-        <comment-list :tableName="tableName" :dataId="dataId" :datetime="datetime1"></comment-list>
+        <comment-list :tableName="tableName" :dataId="dataId" :datetime="datetime1" />
       </a-tab-pane>
       <a-tab-pane tab="文件" key="file">
-        <comment-files :tableName="tableName" :dataId="dataId" :datetime="datetime2"></comment-files>
+        <comment-files :tableName="tableName" :dataId="dataId" :datetime="datetime2" />
       </a-tab-pane>
       <a-tab-pane tab="日志" key="log">
-        <data-log-list :tableName="tableName" :dataId="dataId" :datetime="datetime3"></data-log-list>
+        <data-log-list :tableName="tableName" :dataId="dataId" :datetime="datetime3" />
       </a-tab-pane>
     </a-tabs>
   </div>
@@ -72,7 +72,7 @@
         datetime1,
         datetime2,
         datetime3,
-        reload
+        reload,
       };
     },
   };
@@ -87,7 +87,7 @@
     }
   }
   //antd3升级后，表单右侧讨论样式调整
-  :deep(.ant-tabs-top  .ant-tabs-nav, .ant-tabs-bottom  .ant-tabs-nav, .ant-tabs-top  div  .ant-tabs-nav, .ant-tabs-bottom  div  .ant-tabs-nav) {
+  :deep(.ant-tabs-top .ant-tabs-nav, .ant-tabs-bottom .ant-tabs-nav, .ant-tabs-top div .ant-tabs-nav, .ant-tabs-bottom div .ant-tabs-nav) {
     margin: 0 16px 0;
   }
 </style>

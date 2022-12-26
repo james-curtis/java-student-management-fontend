@@ -9,14 +9,14 @@
         <template #overlay>
           <a-menu>
             <a-menu-item key="1" @click="batchDel">
-              <Icon icon="ant-design:delete-outlined"></Icon>
+              <Icon icon="ant-design:delete-outlined" />
               删除
             </a-menu-item>
           </a-menu>
         </template>
         <a-button
           >批量操作
-          <Icon icon="mdi:chevron-down"></Icon>
+          <Icon icon="mdi:chevron-down" />
         </a-button>
       </a-dropdown>
     </div>
@@ -79,7 +79,7 @@
         </template>
       </a-table>
     </div>
-    <OneNativeModal ref="oneProtogenesisModal" @ok="handleSuccess"></OneNativeModal>
+    <OneNativeModal ref="oneProtogenesisModal" @ok="handleSuccess" />
   </a-card>
 </template>
 

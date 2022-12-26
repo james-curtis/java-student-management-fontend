@@ -21,7 +21,7 @@
       const { prefixCls } = useCellDesign('user-select');
 
       const selectedValue = computed(() => {
-        let val: any = innerValue.value;
+        const val: any = innerValue.value;
         if (val == null) {
           return val;
         }
@@ -90,7 +90,7 @@
 
 <style lang="less">
   // noinspection LessUnresolvedVariable
-  @prefix-cls: ~'@{namespace}-vxe-cell-user-select';
+  @prefix-cls: ~'@{namespaces}-vxe-cell-user-select';
 
   .@{prefix-cls} {
     // 限制tag最大长度为100px，防止选中文字过多的选项时换行

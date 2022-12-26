@@ -267,21 +267,19 @@
         //update-begin-author:taoyan date:2022-9-7 for: VUEN-2061【样式】online表单超出4个 .. 省略显示
         //label宽度支持自定义
         const { label, helpMessage, helpComponentProps, subLabel, labelLength } = props.schema;
-        let showLabel:string = (label+'')
-        if(labelLength && showLabel.length>4){
+        let showLabel: string = label + '';
+        if (labelLength && showLabel.length > 4) {
           showLabel = showLabel.substr(0, labelLength);
         }
-        const titleObj = {title: label}
+        const titleObj = { title: label };
         const renderLabel = subLabel ? (
           <span>
             {label} <span class="text-secondary">{subLabel}</span>
           </span>
+        ) : labelLength ? (
+          <label {...titleObj}>{showLabel}</label>
         ) : (
-          labelLength ? (
-            <label {...titleObj}>{showLabel}</label>
-          ) : (
-            label
-          ) 
+          label
         );
         //update-end-author:taoyan date:2022-9-7 for: VUEN-2061【样式】online表单超出4个 .. 省略显示
         const getHelpMessage = isFunction(helpMessage) ? helpMessage(unref(getValues)) : helpMessage;

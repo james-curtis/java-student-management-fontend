@@ -40,7 +40,7 @@
   ]);
 </script>
 <style lang="less" scoped>
-  @prefix-cls: ~'@{namespace}-basic-title';
+  @prefix-cls: ~'@{namespaces}-basic-title';
 
   .@{prefix-cls} {
     position: relative;

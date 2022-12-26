@@ -98,7 +98,7 @@
       // 获取系统消息
       async function loadData() {
         try {
-          let { anntMsgList, sysMsgList, anntMsgTotal, sysMsgTotal } = await listCementByUser({
+          const { anntMsgList, sysMsgList, anntMsgTotal, sysMsgTotal } = await listCementByUser({
             pageSize: 5,
           });
           listData.value[0].list = anntMsgList.map(mapAnnouncement);
@@ -134,22 +134,22 @@
 
       // 初始化 WebSocket
       function initWebSocket() {
-        let userId = unref(userStore.getUserInfo).id;
-        let token = getToken();
+        const userId = unref(userStore.getUserInfo).id;
+        const token = getToken();
         // WebSocket与普通的请求所用协议有所不同，ws等同于http，wss等同于https
-        let url = glob.domainUrl?.replace('https://', 'wss://').replace('http://', 'ws://') + '/websocket/' + userId;
+        const url = glob.domainUrl?.replace('https://', 'wss://').replace('http://', 'ws://') + '/websocket/' + userId;
         connectWebSocket(url);
         onWebSocket(onWebSocketMessage);
       }
 
       function onWebSocketMessage(data) {
-        console.log('---onWebSocketMessage---', data)
+        console.log('---onWebSocketMessage---', data);
         if (data.cmd === 'topic' || data.cmd === 'user') {
           //update-begin-author:taoyan date:2022-7-13 for: VUEN-1674【严重bug】系统通知，为什么必须刷新右上角才提示
           //后台保存数据太慢 前端延迟刷新消息
-          setTimeout(()=>{
+          setTimeout(() => {
             loadData();
-          }, 1000)
+          }, 1000);
           //update-end-author:taoyan date:2022-7-13 for: VUEN-1674【严重bug】系统通知，为什么必须刷新右上角才提示
         }
       }
@@ -176,7 +176,7 @@
 </script>
 <style lang="less" scoped>
   //noinspection LessUnresolvedVariable
-  @prefix-cls: ~'@{namespace}-header-notify';
+  @prefix-cls: ~'@{namespaces}-header-notify';
 
   .@{prefix-cls} {
     padding-top: 2px;

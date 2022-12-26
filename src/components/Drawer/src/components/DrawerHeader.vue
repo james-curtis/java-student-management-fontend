@@ -47,7 +47,7 @@
 </script>
 
 <style lang="less">
-  @prefix-cls: ~'@{namespace}-basic-drawer-header';
+  @prefix-cls: ~'@{namespaces}-basic-drawer-header';
   @footer-height: 60px;
   .@{prefix-cls} {
     display: flex;

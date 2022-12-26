@@ -1,7 +1,20 @@
 <template>
-  <div :class="{'comment-active': commentActive}" style="border: 1px solid #eee; margin: 0; position: relative" @click="handleClickBlank">
-    <textarea ref="commentRef" v-model="myComment" @input="handleCommentChange" @blur="handleBlur" class="comment-content" :rows="3" placeholder="请输入你的评论，可以@成员" />
-    <div class="comment-content comment-html-shower" :class="{'no-content':noConent, 'top-div': showHtml, 'bottom-div': showHtml == false }" v-html="commentHtml" @click="handleClickHtmlShower"></div>
+  <div :class="{ 'comment-active': commentActive }" style="border: 1px solid #eee; margin: 0; position: relative" @click="handleClickBlank">
+    <textarea
+      ref="commentRef"
+      v-model="myComment"
+      @input="handleCommentChange"
+      @blur="handleBlur"
+      class="comment-content"
+      :rows="3"
+      placeholder="请输入你的评论，可以@成员"
+    ></textarea>
+    <div
+      class="comment-content comment-html-shower"
+      :class="{ 'no-content': noConent, 'top-div': showHtml, 'bottom-div': showHtml == false }"
+      v-html="commentHtml"
+      @click="handleClickHtmlShower"
+    ></div>
     <div class="comment-buttons" v-if="commentActive">
       <div style="cursor: pointer">
         <Tooltip title="选择@用户">
@@ -22,30 +35,30 @@
         <a-button type="primary" @click="sendComment" :loading="buttonLoading" :disabled="disabledButton">发 送</a-button>
       </div>
     </div>
-    <upload-chunk ref="uploadRef" :visible="uploadVisible" @select="selectFirstFile"></upload-chunk>
+    <upload-chunk ref="uploadRef" :visible="uploadVisible" @select="selectFirstFile" />
   </div>
-  <UserSelectModal labelKey="realname" rowKey="username" @register="registerModal" @getSelectResult="setValue" isRadioSelection></UserSelectModal>
+  <UserSelectModal labelKey="realname" rowKey="username" @register="registerModal" @getSelectResult="setValue" isRadioSelection />
   <a-modal v-model:visible="visibleEmoji" :footer="null" wrapClassName="emoji-modal" :closable="false" :width="490">
     <template #title>
       <span></span>
     </template>
     <Picker
-      :pickerStyles="pickerStyles" 
-      :i18n="optionsName" 
+      :pickerStyles="pickerStyles"
+      :i18n="optionsName"
       :data="emojiIndex"
       emoji="grinning"
-      :showPreview="false" 
-      :infiniteScroll="false" 
-      :showSearch="false" 
-      :showSkinTones="false" 
-      set="apple" 
-      @select="showEmoji">
-    </Picker>
+      :showPreview="false"
+      :infiniteScroll="false"
+      :showSearch="false"
+      :showSkinTones="false"
+      set="apple"
+      @select="showEmoji"
+    />
   </a-modal>
 </template>
 
 <script lang="ts">
-  import {ref, watch, computed, inject} from 'vue';
+  import { ref, watch, computed, inject } from 'vue';
   import { propTypes } from '/@/utils/propTypes';
   import { UserAddOutlined, PaperClipOutlined, SmileOutlined } from '@ant-design/icons-vue';
   import { Tooltip } from 'ant-design-vue';
@@ -185,7 +198,7 @@
         myComment.value = temp;
         emojiButton.value.click();
       }
-      
+
       const visibleEmoji = ref(false);
       function showEmoji(e) {
         let temp = myComment.value || '';
@@ -199,7 +212,7 @@
       }
 
       const pickerStyles = {
-        width: '490px'
+        width: '490px',
         /* height: '350px',
         top: '0px',
         left: '-75px',
@@ -219,8 +232,8 @@
         e.stopPropagation();
         visibleEmoji.value = !visibleEmoji.value;
       }
-      
-      const emojiIndex = inject('$globalEmojiIndex')
+
+      const emojiIndex = inject('$globalEmojiIndex');
       const { getHtml } = useEmojiHtml(emojiIndex);
 
       const commentHtml = computed(() => {
@@ -243,27 +256,27 @@
       function handleBlur() {
         showHtml.value = true;
       }
-      
+
       const commentActive = ref(false);
-      const noConent = computed(()=>{
-        if(myComment.value.length>0){
+      const noConent = computed(() => {
+        if (myComment.value.length > 0) {
           return false;
         }
         return true;
       });
-      function changeActive(){
-        if(myComment.value.length==0){
-          commentActive.value = false
+      function changeActive() {
+        if (myComment.value.length == 0) {
+          commentActive.value = false;
           uploadVisible.value = false;
         }
       }
-      
-      function selectFirstFile(fileName){
-        if(myComment.value.length==0){
+
+      function selectFirstFile(fileName) {
+        if (myComment.value.length == 0) {
           myComment.value = fileName;
         }
       }
-      
+
       return {
         myComment,
         sendComment,
@@ -293,7 +306,7 @@
         commentActive,
         noConent,
         changeActive,
-        selectFirstFile
+        selectFirstFile,
       };
     },
   };
@@ -350,33 +363,33 @@
     }
   }
 
-  .emoji-modal  {
-   > .ant-modal{
+  .emoji-modal {
+    > .ant-modal {
       right: 25% !important;
       margin-right: 16px !important;
     }
-    .ant-modal-header{
+    .ant-modal-header {
       padding: 0 !important;
     }
-    .emoji-mart-bar{
+    .emoji-mart-bar {
       display: none;
     }
-    h3.emoji-mart-category-label{
-    /*  display: none;*/
+    h3.emoji-mart-category-label {
+      /*  display: none;*/
       border-bottom: 1px solid #eee;
     }
   }
-  
-  .comment-active{
+
+  .comment-active {
     border-color: #1e88e5 !important;
     box-shadow: 0 1px 1px 0 #90caf9, 0 1px 6px 0 #90caf9;
   }
-  .no-content{
-    color: #a1a1a1
+  .no-content {
+    color: #a1a1a1;
   }
-  
+
   /**聊天表情本地化*/
   .emoji-type-image.emoji-set-apple {
-    background-image: url("./image/emoji.png");
+    background-image: url('./image/emoji.png');
   }
 </style>

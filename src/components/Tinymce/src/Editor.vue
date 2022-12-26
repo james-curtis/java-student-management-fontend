@@ -159,7 +159,7 @@
           skin: skinName.value,
           skin_url: publicPath + 'resource/tinymce/skins/ui/' + skinName.value,
           images_upload_handler: (blobInfo, success) => {
-            let params = {
+            const params = {
               file: blobInfo.blob(),
               filename: blobInfo.filename(),
               data: { biz: 'jeditor', jeditor: '1' },
@@ -170,7 +170,7 @@
                   const img = 'data:image/jpeg;base64,' + blobInfo.base64();
                   success(img);
                 } else {
-                  let img = getFileAccessHttpUrl(res.message);
+                  const img = getFileAccessHttpUrl(res.message);
                   success(img);
                 }
               }
@@ -346,7 +346,7 @@
 <style lang="less" scoped></style>
 
 <style lang="less">
-  @prefix-cls: ~'@{namespace}-tinymce-container';
+  @prefix-cls: ~'@{namespaces}-tinymce-container';
 
   .@{prefix-cls} {
     position: relative;

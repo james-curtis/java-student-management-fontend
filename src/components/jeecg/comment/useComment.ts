@@ -44,7 +44,7 @@ export const list = (params) => defHttp.get({ url: Api.list, params });
  */
 export const queryById = (id) => {
   let params = { id: id };
-  return defHttp.get({ url: Api.queryById, params },{ isTransformResponse: false });
+  return defHttp.get({ url: Api.queryById, params }, { isTransformResponse: false });
 };
 
 /**
@@ -73,8 +73,7 @@ export const saveOne = (params) => {
  * 数据日志列表接口
  * @param params
  */
-export const getLogList = (params) => defHttp.get({ url: Api.logList, params }, {isTransformResponse: false});
-
+export const getLogList = (params) => defHttp.get({ url: Api.logList, params }, { isTransformResponse: false });
 
 /**
  * 文件上传接口
@@ -103,19 +102,19 @@ export function useCommentWithFile(props) {
    * 保存评论
    */
   async function saveComment(obj) {
-    const {fromUserId, toUserId, commentId, commentContent} = obj;
+    const { fromUserId, toUserId, commentId, commentContent } = obj;
     let commentData = {
       tableName: props.tableName,
       tableDataId: props.dataId,
       fromUserId,
       commentContent,
       toUserId: '',
-      commentId: ''
+      commentId: '',
     };
-    if(toUserId){
+    if (toUserId) {
       commentData.toUserId = toUserId;
     }
-    if(commentId){
+    if (commentId) {
       commentData.commentId = commentId;
     }
     uploadData.commentId = '';
@@ -172,10 +171,10 @@ export function useCommentWithFile(props) {
 export function uploadMu(fileList) {
   const formData = new FormData();
   // let arr = []
-  for(let file of fileList){
+  for (let file of fileList) {
     formData.append('files[]', file.originFileObj);
   }
-  console.log(formData)
+  console.log(formData);
   let url = `${baseUploadUrl}/sys/comment/addFile2`;
   uploadMyFile(url, formData).then((res: any) => {
     console.log('uploadMyFile', res);
@@ -195,17 +194,17 @@ export function useFileList() {
     docx: word,
     doc: word,
   };
-   function getBackground(item) {
+  function getBackground(item) {
     console.log('获取文件背景图', item);
     if (isImage(item)) {
-      return 'none'
+      return 'none';
     } else {
       const name = item.name;
-      if(!name){
+      if (!name) {
         return 'none';
       }
       const suffix = name.substring(name.lastIndexOf('.') + 1);
-      console.log('suffix', suffix)
+      console.log('suffix', suffix);
       let bg = typeMap[suffix];
       if (!bg) {
         bg = other;
@@ -214,28 +213,28 @@ export function useFileList() {
     }
   }
 
-  function getBase64(file, id){
+  function getBase64(file, id) {
     return new Promise((resolve, reject) => {
       //声明js的文件流
       let reader = new FileReader();
-      if(file){
+      if (file) {
         //通过文件流将文件转换成Base64字符串
         reader.readAsDataURL(file);
         //转换成功后
         reader.onload = function () {
           let base = reader.result;
-          console.log('base', base)
+          console.log('base', base);
           imageSrcMap[id] = base;
-          console.log('imageSrcMap', imageSrcMap)
-          resolve(base)
-        }
-      }else{
+          console.log('imageSrcMap', imageSrcMap);
+          resolve(base);
+        };
+      } else {
         reject();
       }
-    })
+    });
   }
-  function handleImageSrc(file){
-    if(isImage(file)){
+  function handleImageSrc(file) {
+    if (isImage(file)) {
       let id = file.uid;
       getBase64(file, id);
     }
@@ -262,7 +261,7 @@ export function useFileList() {
     handleImageSrc(file);
     selectFileList.value = [...selectFileList.value, file];
     console.log('selectFileList', unref(selectFileList));
-    return false
+    return false;
   }
 
   function handleRemove(file) {
@@ -272,42 +271,42 @@ export function useFileList() {
     selectFileList.value = newFileList;
   }
 
-  function isImage(item){
-    const type = item.type||'';
+  function isImage(item) {
+    const type = item.type || '';
     if (type.indexOf('image') >= 0) {
       return true;
     }
     return false;
   }
 
-  function getImageSrc(file){
-    if(isImage(file)){
+  function getImageSrc(file) {
+    if (isImage(file)) {
       let id = file.uid;
-      if(id){
-        if(imageSrcMap[id]){
+      if (id) {
+        if (imageSrcMap[id]) {
           return imageSrcMap[id];
         }
-      }else if(file.url){
+      } else if (file.url) {
         //数据库中地址
         let url = getFileAccessHttpUrl(file.url);
         return url;
       }
     }
-    return ''
+    return '';
   }
 
   /**
    * 显示图片
    * @param item
    */
-  function getImageAsBackground(item){
+  function getImageAsBackground(item) {
     let url = getImageSrc(item);
-    if(url){
+    if (url) {
       return {
-        "backgroundImage": "url('"+url+"')"
-      }
+        backgroundImage: "url('" + url + "')",
+      };
     }
-    return {}
+    return {};
   }
 
   /**
@@ -315,21 +314,21 @@ export function useFileList() {
    * @param text
    */
   async function viewImage(file) {
-    if(isImage(file)){
-      let text = getImageSrc(file)
+    if (isImage(file)) {
+      let text = getImageSrc(file);
       if (text) {
         let imgList = [text];
         createImgPreview({ imageList: imgList });
       }
-    }else{
-      if(file.url){
+    } else {
+      if (file.url) {
         //数据库中地址
         let url = getFileAccessHttpUrl(file.url);
         await initViewDomain();
         //本地测试需要将文件地址的localhost/127.0.0.1替换成IP, 或是直接修改全局domain
         //url = url.replace('localhost', '192.168.1.100')
         //如果集成的KkFileview-v3.3.0+ 需要对url再做一层base64编码 encodeURIComponent(encryptByBase64(url))
-        window.open(onlinePreviewDomain+'?officePreviewType=pdf&url='+encodeURIComponent(url));
+        window.open(onlinePreviewDomain + '?officePreviewType=pdf&url=' + encodeURIComponent(url));
       }
     }
   }
@@ -337,12 +336,12 @@ export function useFileList() {
   /**
    * 初始化domain
    */
-  async function initViewDomain(){
-    if(!onlinePreviewDomain){
+  async function initViewDomain() {
+    if (!onlinePreviewDomain) {
       onlinePreviewDomain = await getViewFileDomain();
     }
-    if(!onlinePreviewDomain.startsWith('http')){
-      onlinePreviewDomain = 'http://'+ onlinePreviewDomain;
+    if (!onlinePreviewDomain.startsWith('http')) {
+      onlinePreviewDomain = 'http://' + onlinePreviewDomain;
     }
   }
 
@@ -356,52 +355,52 @@ export function useFileList() {
     isImage,
     getImageSrc,
     getImageAsBackground,
-    viewImage
+    viewImage,
   };
 }
 
 /**
  * 用于emoji渲染
  */
-export function useEmojiHtml(globalEmojiIndex){
-  const COLONS_REGEX = new RegExp('([^:]+)?(:[a-zA-Z0-9-_+]+:(:skin-tone-[2-6]:)?)','g');
+export function useEmojiHtml(globalEmojiIndex) {
+  const COLONS_REGEX = new RegExp('([^:]+)?(:[a-zA-Z0-9-_+]+:(:skin-tone-[2-6]:)?)', 'g');
 
   function getHtml(text) {
-    if(!text){
-      return ''
+    if (!text) {
+      return '';
     }
     return text.replace(COLONS_REGEX, function (match, p1, p2) {
-      const before = p1 || ''
+      const before = p1 || '';
       if (endsWith(before, 'alt="') || endsWith(before, 'data-text="')) {
-        return match
+        return match;
       }
-      let emoji = globalEmojiIndex.findEmoji(p2)
+      let emoji = globalEmojiIndex.findEmoji(p2);
       if (!emoji) {
-        return match
+        return match;
       }
-      return before + emoji2Html(emoji)
-    })
+      return before + emoji2Html(emoji);
+    });
     return text;
   }
 
-  function endsWith(str, temp){
-    return str.endsWith(temp)
+  function endsWith(str, temp) {
+    return str.endsWith(temp);
   }
 
   function emoji2Html(emoji) {
-    let style = `position: absolute;top: -3px;left: 3px;width: 18px; height: 18px;background-position: ${emoji.getPosition()}`
-    return `<span style="width: 24px" class="emoji-mart-emoji"><span class="my-emoji-icon emoji-set-apple emoji-type-image" style="${style}"> </span> </span>`
+    let style = `position: absolute;top: -3px;left: 3px;width: 18px; height: 18px;background-position: ${emoji.getPosition()}`;
+    return `<span style="width: 24px" class="emoji-mart-emoji"><span class="my-emoji-icon emoji-set-apple emoji-type-image" style="${style}"> </span> </span>`;
   }
-  
+
   return {
     globalEmojiIndex,
-    getHtml
-  }
+    getHtml,
+  };
 }
 
 /**
  * 获取modal窗体高度
  */
-export function getModalHeight(){
+export function getModalHeight() {
   return window.innerHeight;
 }

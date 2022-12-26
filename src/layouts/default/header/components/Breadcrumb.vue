@@ -150,7 +150,7 @@
   });
 </script>
 <style lang="less">
-  @prefix-cls: ~'@{namespace}-layout-breadcrumb';
+  @prefix-cls: ~'@{namespaces}-layout-breadcrumb';
 
   .@{prefix-cls} {
     display: flex;

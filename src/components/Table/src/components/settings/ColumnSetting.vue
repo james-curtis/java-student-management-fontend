@@ -123,9 +123,6 @@
 
   export default defineComponent({
     name: 'ColumnSetting',
-    props: {
-      isMobile: Boolean,
-    },
     components: {
       SettingOutlined,
       Popover,
@@ -137,6 +134,9 @@
       Divider,
       Icon,
     },
+    props: {
+      isMobile: Boolean,
+    },
     emits: ['columns-change'],
 
     setup(props, { emit, attrs }) {
@@ -144,7 +144,7 @@
       const table = useTableContext();
       const popoverVisible = ref(true);
       // update-begin--author:sunjianlei---date:20221101---for: 修复第一次进入时列表配置不能拖拽
-      nextTick(() => popoverVisible.value = false);
+      nextTick(() => (popoverVisible.value = false));
       // update-end--author:sunjianlei---date:20221101---for: 修复第一次进入时列表配置不能拖拽
       const defaultRowSelection = omit(table.getRowSelection(), 'selectedRowKeys');
       let inited = false;
@@ -172,7 +172,7 @@
       });
 
       const getBindProps = computed(() => {
-        let obj = {};
+        const obj = {};
         if (props.isMobile) {
           obj['visible'] = false;
         }
@@ -415,7 +415,7 @@
   });
 </script>
 <style lang="less">
-  @prefix-cls: ~'@{namespace}-basic-column-setting';
+  @prefix-cls: ~'@{namespaces}-basic-column-setting';
 
   .table-column-drag-icon {
     margin: 0 5px;

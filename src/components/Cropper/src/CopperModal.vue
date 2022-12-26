@@ -177,7 +177,7 @@
 </script>
 
 <style lang="less">
-  @prefix-cls: ~'@{namespace}-cropper-am';
+  @prefix-cls: ~'@{namespaces}-cropper-am';
 
   .@{prefix-cls} {
     display: flex;

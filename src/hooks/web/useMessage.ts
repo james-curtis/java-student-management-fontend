@@ -38,13 +38,13 @@ interface ConfirmOptions {
 function getIcon(iconType: string) {
   try {
     if (iconType === 'warning') {
-      return  h(InfoCircleFilled,{"class":"modal-icon-warning"})
+      return h(InfoCircleFilled, { class: 'modal-icon-warning' });
     } else if (iconType === 'success') {
-      return h(CheckCircleFilled,{"class": "modal-icon-success"});
+      return h(CheckCircleFilled, { class: 'modal-icon-success' });
     } else if (iconType === 'info') {
-      return h(InfoCircleFilled,{"class": "modal-icon-info"});
+      return h(InfoCircleFilled, { class: 'modal-icon-info' });
     } else {
-      return h(CloseCircleFilled,{"class":"modal-icon-error"});
+      return h(CloseCircleFilled, { class: 'modal-icon-error' });
     }
   } catch (e) {
     console.log(e);
@@ -54,7 +54,7 @@ function getIcon(iconType: string) {
 function renderContent({ content }: Pick<ModalOptionsEx, 'content'>) {
   try {
     if (isString(content)) {
-      return h('div', h('div', {'innerHTML':content as string}));
+      return h('div', h('div', { innerHTML: content as string }));
     } else {
       return content;
     }

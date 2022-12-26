@@ -4,7 +4,7 @@
       <a-row>
         <a-col :span="24">
           <a-form-item label="文本" :labelCol="labelCol" :wrapperCol="wrapperCol" v-bind="validateInfos.name">
-            <a-input v-model:value="formState.name" placeholder="请输入文本"></a-input>
+            <a-input v-model:value="formState.name" placeholder="请输入文本" />
           </a-form-item>
         </a-col>
         <a-col :span="24">
@@ -29,7 +29,7 @@
         </a-col>
         <a-col :span="24">
           <a-form-item label="开关" :labelCol="labelCol" :wrapperCol="wrapperCol" v-bind="validateInfos.kaiguan">
-            <JSwitch v-model:value="formState.kaiguan" :options="['1', '0']"></JSwitch>
+            <JSwitch v-model:value="formState.kaiguan" :options="['1', '0']" />
           </a-form-item>
         </a-col>
         <a-col :span="24">
@@ -49,12 +49,12 @@
         </a-col>
         <a-col :span="24">
           <a-form-item label="文件" :labelCol="labelCol" :wrapperCol="wrapperCol" v-bind="validateInfos.wenjian">
-            <JUpload v-model:value="formState.wenjian"></JUpload>
+            <JUpload v-model:value="formState.wenjian" />
           </a-form-item>
         </a-col>
         <a-col :span="24">
           <a-form-item label="图片" :labelCol="labelCol" :wrapperCol="wrapperCol" v-bind="validateInfos.tupian">
-            <JImageUpload :fileMax="2" v-model:value="formState.tupian"></JImageUpload>
+            <JImageUpload :fileMax="2" v-model:value="formState.tupian" />
           </a-form-item>
         </a-col>
         <a-col :span="24">
@@ -113,7 +113,7 @@
         </a-col>
         <a-col :span="24">
           <a-form-item label="markdown" :labelCol="labelCol" :wrapperCol="wrapperCol" v-bind="validateInfos.markdownString">
-            <JMarkdownEditor v-model:value="formState.markdownString"></JMarkdownEditor>
+            <JMarkdownEditor v-model:value="formState.markdownString" />
           </a-form-item>
         </a-col>
         <a-col :span="24">
@@ -130,11 +130,7 @@
 
         <a-col :span="24">
           <a-form-item label="JInputPop" :labelCol="labelCol" :wrapperCol="wrapperCol" v-bind="validateInfos.ldzje">
-            <JInputPop
-              v-model:value="formState.ldzje"
-              placeholder="请输入JInputPop"
-              @change="(value) => handleFormChange('ldzje', value)"
-            ></JInputPop>
+            <JInputPop v-model:value="formState.ldzje" placeholder="请输入JInputPop" @change="(value) => handleFormChange('ldzje', value)" />
           </a-form-item>
         </a-col>
         <a-col :span="24">
@@ -144,31 +140,27 @@
               placeholder="请选择JSelectInput"
               :options="ldzjsOptions"
               @change="(value) => handleFormChange('ldzjs', value)"
-            ></JSelectInput>
+            />
           </a-form-item>
         </a-col>
         <a-col :span="24">
           <a-form-item label="下拉多选" :labelCol="labelCol" :wrapperCol="wrapperCol" v-bind="validateInfos.zddtjxl">
-            <JSelectMultiple v-model:value="formState.zddtjxl" placeholder="请选择下拉多选" dictCode="sex"></JSelectMultiple>
+            <JSelectMultiple v-model:value="formState.zddtjxl" placeholder="请选择下拉多选" dictCode="sex" />
           </a-form-item>
         </a-col>
         <a-col :span="24">
           <a-form-item label="用户" :labelCol="labelCol" :wrapperCol="wrapperCol" v-bind="validateInfos.yongHu">
-            <JSelectUser v-model:value="formState.yongHu" placeholder="请选择用户"></JSelectUser>
+            <JSelectUser v-model:value="formState.yongHu" placeholder="请选择用户" />
           </a-form-item>
         </a-col>
         <a-col :span="24">
           <a-form-item label="职务" :labelCol="labelCol" :wrapperCol="wrapperCol" v-bind="validateInfos.zhiWu">
-            <JSelectPosition
-              v-model:value="formState.zhiWu"
-              placeholder="请选择职务"
-              @change="(value) => handleFormChange('zhiWu', value)"
-            ></JSelectPosition>
+            <JSelectPosition v-model:value="formState.zhiWu" placeholder="请选择职务" @change="(value) => handleFormChange('zhiWu', value)" />
           </a-form-item>
         </a-col>
         <a-col :span="24">
           <a-form-item label="角色" :labelCol="labelCol" :wrapperCol="wrapperCol" v-bind="validateInfos.jueSe">
-            <JSelectRole v-model:value="formState.jueSe" placeholder="请选择角色" @change="(value) => handleFormChange('jueSe', value)"></JSelectRole>
+            <JSelectRole v-model:value="formState.jueSe" placeholder="请选择角色" @change="(value) => handleFormChange('jueSe', value)" />
           </a-form-item>
         </a-col>
         <a-col :span="24">
@@ -180,8 +172,7 @@
               dict="sys_category,name,id"
               pidValue="0"
               loadTriggleChange
-            >
-            </JTreeSelect>
+            />
           </a-form-item>
         </a-col>
 
@@ -192,30 +183,22 @@
         </a-col>
         <a-col :span="24">
           <a-form-item label="输入2到10位的字母" :labelCol="labelCol" :wrapperCol="wrapperCol" v-bind="validateInfos.ywzz">
-            <a-input v-model:value="formState.ywzz" placeholder="请输入2到10位的字母"></a-input>
+            <a-input v-model:value="formState.ywzz" placeholder="请输入2到10位的字母" />
           </a-form-item>
         </a-col>
         <a-col :span="24">
           <a-form-item label="JTreeDict" :labelCol="labelCol" :wrapperCol="wrapperCol" v-bind="validateInfos.zdbxl">
-            <JTreeDict
-              v-model:value="formState.zdbxl"
-              placeholder="请选择JTreeDict"
-              @change="(value) => handleFormChange('zdbxl', value)"
-            ></JTreeDict>
+            <JTreeDict v-model:value="formState.zdbxl" placeholder="请选择JTreeDict" @change="(value) => handleFormChange('zdbxl', value)" />
           </a-form-item>
         </a-col>
         <a-col :span="24">
           <a-form-item label="JCodeEditor" :labelCol="labelCol" :wrapperCol="wrapperCol" v-bind="validateInfos.zdmrz">
-            <JCodeEditor
-              v-model:value="formState.zdmrz"
-              placeholder="请输入JCodeEditor"
-              @change="(value) => handleFormChange('zdmrz', value)"
-            ></JCodeEditor>
+            <JCodeEditor v-model:value="formState.zdmrz" placeholder="请输入JCodeEditor" @change="(value) => handleFormChange('zdmrz', value)" />
           </a-form-item>
         </a-col>
         <a-col :span="24">
           <a-form-item label="参数" :labelCol="labelCol" :wrapperCol="wrapperCol" v-bind="validateInfos.jsonParam">
-            <JAddInput v-model:value="formState.jsonParam" placeholder="参数"></JAddInput>
+            <JAddInput v-model:value="formState.jsonParam" placeholder="参数" />
           </a-form-item>
         </a-col>
       </a-row>

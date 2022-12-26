@@ -41,7 +41,7 @@
   });
 </script>
 <style lang="less" scoped>
-  @prefix-cls: ~'@{namespace}-darg-bar';
+  @prefix-cls: ~'@{namespaces}-darg-bar';
 
   .@{prefix-cls} {
     position: absolute;

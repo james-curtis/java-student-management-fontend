@@ -9,7 +9,7 @@
     @cancel="handleCancel"
     cancelText="关闭"
   >
-    <OneNativeForm ref="realForm" @ok="submitCallback" :disabled="disableSubmit"></OneNativeForm>
+    <OneNativeForm ref="realForm" @ok="submitCallback" :disabled="disableSubmit" />
   </BasicModal>
 </template>
 
@@ -17,7 +17,7 @@
   import { ref, nextTick, defineExpose } from 'vue';
   import OneNativeForm from './OneNativeForm.vue';
   import { BasicModal } from '/@/components/Modal';
-  
+
   const title = ref<string>('');
   const width = ref<number>(800);
   const visible = ref<boolean>(false);
@@ -61,5 +61,4 @@
   });
 </script>
 
-<style lang="less" scoped>
-</style>
+<style lang="less" scoped></style>

@@ -1,10 +1,17 @@
 <template>
-  <a-input :disabled="disabled" :style="{ width }" readOnly :placeholder="t('component.icon.placeholder')" :class="prefixCls" v-model:value="currentSelect">
+  <a-input
+    :disabled="disabled"
+    :style="{ width }"
+    readOnly
+    :placeholder="t('component.icon.placeholder')"
+    :class="prefixCls"
+    v-model:value="currentSelect"
+  >
     <template #addonAfter>
       <a-popover placement="bottomLeft" trigger="click" v-model="visible" :overlayClassName="`${prefixCls}-popover`">
         <template #title>
           <div class="flex justify-between">
-            <a-input :placeholder="t('component.icon.search')"  @change="debounceHandleSearchChange" allowClear />
+            <a-input :placeholder="t('component.icon.search')" @change="debounceHandleSearchChange" allowClear />
           </div>
         </template>
 
@@ -146,7 +153,7 @@
   }
 </script>
 <style lang="less">
-  @prefix-cls: ~'@{namespace}-icon-picker';
+  @prefix-cls: ~'@{namespaces}-icon-picker';
 
   .@{prefix-cls} {
     .ant-input-group-addon {

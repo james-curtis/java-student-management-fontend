@@ -17,7 +17,14 @@
     <!-- antd v3 升级兼容，阻止数据的收集，防止控制台报错 -->
     <!-- https://antdv.com/docs/vue/migration-v3-cn -->
     <a-form-item-rest>
-      <Table ref="tableElRef" v-bind="getBindValues" :rowClassName="getRowClassName" v-show="getEmptyDataIsShowTable" @resizeColumn="handleResizeColumn" @change="handleTableChange">
+      <Table
+        ref="tableElRef"
+        v-bind="getBindValues"
+        :rowClassName="getRowClassName"
+        v-show="getEmptyDataIsShowTable"
+        @resizeColumn="handleResizeColumn"
+        @change="handleTableChange"
+      >
         <template #[item]="data" v-for="item in Object.keys($slots)" :key="item">
           <slot :name="item" v-bind="data || {}"></slot>
         </template>
@@ -304,7 +311,7 @@
 <style lang="less">
   @border-color: #cecece4d;
 
-  @prefix-cls: ~'@{namespace}-basic-table';
+  @prefix-cls: ~'@{namespaces}-basic-table';
 
   [data-theme='dark'] {
     .ant-table-tbody > tr:hover.ant-table-row-selected > td,

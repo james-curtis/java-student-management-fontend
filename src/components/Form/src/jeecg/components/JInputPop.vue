@@ -96,7 +96,7 @@
 
 <style lang="less">
   //noinspection LessUnresolvedVariable
-  @prefix-cls: ~'@{namespace}-j-input-popup';
+  @prefix-cls: ~'@{namespaces}-j-input-popup';
 
   .@{prefix-cls} {
     &-popover {

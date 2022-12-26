@@ -51,7 +51,7 @@
   }
 </script>
 <style lang="less" scoped>
-  @prefix-cls: ~'@{namespace}-iframe-page';
+  @prefix-cls: ~'@{namespaces}-iframe-page';
 
   .@{prefix-cls} {
     .ant-spin-nested-loading {

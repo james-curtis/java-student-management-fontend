@@ -10,8 +10,7 @@
     style="width: 100%"
     v-bind="attrs"
     @change="onChange"
-  >
-  </TreeSelect>
+  />
 </template>
 
 <script lang="ts" setup>
@@ -57,8 +56,8 @@
     if (!props.value || props.value == '0') {
       treeValue.value = null;
     } else {
-      let params = { field: props.field, val: props.value };
-      let result = await defHttp.get({ url: Api.view, params });
+      const params = { field: props.field, val: props.value };
+      const result = await defHttp.get({ url: Api.view, params });
       treeValue.value = {
         value: props.value,
         label: result.name,
@@ -67,11 +66,11 @@
   }
 
   async function loadRoot() {
-    let params = {
+    const params = {
       async: props.async,
       pcode: props.parentCode,
     };
-    let result = await defHttp.get({ url: Api.root, params });
+    const result = await defHttp.get({ url: Api.root, params });
     treeData.value = [...result];
     handleTreeNodeValue(result);
   }
@@ -80,9 +79,9 @@
     if (!props.async || treeNode.dataRef.children) {
       return Promise.resolve();
     }
-    let pid = treeNode.dataRef.key;
-    let params = { pid: pid };
-    let result = await defHttp.get({ url: Api.children, params });
+    const pid = treeNode.dataRef.key;
+    const params = { pid: pid };
+    const result = await defHttp.get({ url: Api.children, params });
     handleTreeNodeValue(result);
     addChildren(pid, result, treeData.value);
     treeData.value = [...treeData.value];
@@ -91,7 +90,7 @@
 
   function addChildren(pid, children, treeArray) {
     if (treeArray && treeArray.length > 0) {
-      for (let item of treeArray) {
+      for (const item of treeArray) {
         if (item.key == pid) {
           if (!children || children.length == 0) {
             item.leaf = true;
@@ -107,8 +106,8 @@
   }
 
   function handleTreeNodeValue(result) {
-    let storeField = props.field == 'code' ? 'code' : 'key';
-    for (let i of result) {
+    const storeField = props.field == 'code' ? 'code' : 'key';
+    for (const i of result) {
       i.value = i[storeField];
       i.isLeaf = i.leaf;
       if (i.children && i.children.length > 0) {
@@ -134,7 +133,7 @@
 
 <style lang="less">
   //noinspection LessUnresolvedVariable
-  @prefix-cls: ~'@{namespace}-j-tree-dict';
+  @prefix-cls: ~'@{namespaces}-j-tree-dict';
 
   .@{prefix-cls} {
   }

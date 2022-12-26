@@ -10,7 +10,7 @@
             v-bind="getAttr(item.event)"
             @click="handleClickMenu(item)"
             :disabled="item.disabled"
-            :class="[{ 'is-pop-confirm': item.popConfirm }, (item.class ?? [])]"
+            :class="[{ 'is-pop-confirm': item.popConfirm }, item.class ?? []]"
           >
             <a-popconfirm v-if="popconfirm && item.popConfirm" v-bind="getPopConfirmAttrs(item.popConfirm)">
               <template #icon v-if="item.popConfirm.icon">
@@ -94,7 +94,7 @@
 </script>
 
 <style lang="less">
-  @prefix-cls: ~'@{namespace}-basic-dropdown';
+  @prefix-cls: ~'@{namespaces}-basic-dropdown';
 
   .@{prefix-cls} {
     // update-begin--author:sunjianlei---date:20220322---for: 【VUEN-180】更多下拉菜单，只有点到字上才有效，点到空白处什么都不会发生，体验不好

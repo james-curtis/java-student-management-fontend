@@ -2,7 +2,7 @@
 @import 'easing';
 @import 'breakpoint';
 
-@namespace: jeecg;
+@namespaces: jeecg;
 
 // tabs
 // updateBy:sunjianlei---updateDate:2021-09-03---修改tab切换栏样式：更改高度
@@ -36,7 +36,7 @@
 @page-footer-z-index: 99;
 
 .bem(@n; @content) {
-  @{namespace}-@{n} {
+  @{namespaces}-@{n} {
     @content();
   }
 }

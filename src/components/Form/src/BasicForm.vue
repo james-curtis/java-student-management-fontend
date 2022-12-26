@@ -81,7 +81,7 @@
 
       // Get the basic configuration of the form
       const getProps = computed((): FormProps => {
-        let mergeProps = { ...props, ...unref(propsRef) } as FormProps;
+        const mergeProps = { ...props, ...unref(propsRef) } as FormProps;
         //update-begin-author:sunjianlei date:20220923 for: 如果用户设置了labelWidth，则使labelCol失效，解决labelWidth设置无效的问题
         if (mergeProps.labelWidth) {
           mergeProps.labelCol = undefined;
@@ -288,7 +288,7 @@
   });
 </script>
 <style lang="less">
-  @prefix-cls: ~'@{namespace}-basic-form';
+  @prefix-cls: ~'@{namespaces}-basic-form';
 
   .@{prefix-cls} {
     .ant-form-item {
@@ -323,7 +323,7 @@
       }
     }
     /*【美化表单】form的字体改小一号*/
-    .ant-form-item-label > label{
+    .ant-form-item-label > label {
       font-size: 13px;
     }
     .ant-form-item .ant-select {
@@ -339,7 +339,7 @@
       font-size: 13px;
     }
     /*【美化表单】form的字体改小一号*/
-    
+
     .ant-form-explain {
       font-size: 14px;
     }

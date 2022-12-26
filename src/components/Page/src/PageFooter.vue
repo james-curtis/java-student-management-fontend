@@ -25,7 +25,7 @@
   });
 </script>
 <style lang="less" scoped>
-  @prefix-cls: ~'@{namespace}-page-footer';
+  @prefix-cls: ~'@{namespaces}-page-footer';
 
   .@{prefix-cls} {
     position: fixed;

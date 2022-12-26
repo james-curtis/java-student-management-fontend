@@ -46,7 +46,7 @@
   });
 </script>
 <style lang="less" scoped>
-  @prefix-cls: ~'@{namespace}-svg-icon';
+  @prefix-cls: ~'@{namespaces}-svg-icon';
 
   .@{prefix-cls} {
     display: inline-block;

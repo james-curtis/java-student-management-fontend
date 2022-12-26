@@ -79,7 +79,7 @@
           }
         } else if (status === 'done') {
           //update-begin-author:taoyan date:2022-5-13 for: 富文本上传图片不支持
-          let realUrl = getFileAccessHttpUrl(file.response.message);
+          const realUrl = getFileAccessHttpUrl(file.response.message);
           emit('done', name, realUrl);
           //update-end-author:taoyan date:2022-5-13 for: 富文本上传图片不支持
           uploading = false;
@@ -102,7 +102,7 @@
   });
 </script>
 <style lang="less" scoped>
-  @prefix-cls: ~'@{namespace}-tinymce-img-upload';
+  @prefix-cls: ~'@{namespaces}-tinymce-img-upload';
 
   .@{prefix-cls} {
     position: absolute;

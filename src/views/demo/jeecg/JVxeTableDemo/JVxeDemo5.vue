@@ -16,7 +16,7 @@
       >
     </div>
 
-    <JVxeTable ref="tableRef" stripe toolbar rowNumber rowSelection keyboardEdit :columns="columns" :dataSource="dataSource"> </JVxeTable>
+    <JVxeTable ref="tableRef" stripe toolbar rowNumber rowSelection keyboardEdit :columns="columns" :dataSource="dataSource" />
   </div>
 </template>
 <script lang="ts">

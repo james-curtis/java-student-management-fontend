@@ -1,7 +1,20 @@
 module.exports = {
   root: true,
   plugins: ['stylelint-order'],
-  extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
+  extends: [
+    'stylelint-config-standard',
+    'stylelint-config-prettier',
+    'stylelint-config-html/vue',
+    'stylelint-config-recommended-vue/scss',
+    'stylelint-config-recommended-less',
+    'stylelint-config-recommended-scss',
+  ],
+  overrides: [
+    {
+      files: ['**/*.vue'],
+      customSyntax: 'postcss-html',
+    },
+  ],
   rules: {
     'selector-pseudo-class-no-unknown': [
       true,
@@ -18,18 +31,7 @@ module.exports = {
     'at-rule-no-unknown': [
       true,
       {
-        ignoreAtRules: [
-          'tailwind',
-          'apply',
-          'variants',
-          'responsive',
-          'screen',
-          'function',
-          'if',
-          'each',
-          'include',
-          'mixin',
-        ],
+        ignoreAtRules: ['tailwind', 'apply', 'variants', 'responsive', 'screen', 'function', 'if', 'each', 'include', 'mixin'],
       },
     ],
     'no-empty-source': null,

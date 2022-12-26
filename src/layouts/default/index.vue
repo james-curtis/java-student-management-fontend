@@ -51,7 +51,7 @@
       const lockEvents = useLockPage();
 
       const layoutClass = computed(() => {
-        let cls: string[] = ['ant-layout'];
+        const cls: string[] = ['ant-layout'];
         if (unref(getIsMixSidebar) || unref(getShowMenu)) {
           cls.push('ant-layout-has-sider');
         }
@@ -71,7 +71,7 @@
   });
 </script>
 <style lang="less">
-  @prefix-cls: ~'@{namespace}-default-layout';
+  @prefix-cls: ~'@{namespaces}-default-layout';
 
   .@{prefix-cls} {
     display: flex;

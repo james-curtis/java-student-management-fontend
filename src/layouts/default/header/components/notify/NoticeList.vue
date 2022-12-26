@@ -109,7 +109,7 @@
       const getData = computed(() => {
         const { pageSize, list } = props;
         if (pageSize === false) return [];
-        let size = isNumber(pageSize) ? pageSize : 5;
+        const size = isNumber(pageSize) ? pageSize : 5;
         return list.slice(size * (unref(current) - 1), size * unref(current));
       });
       watch(
@@ -153,7 +153,7 @@
   });
 </script>
 <style lang="less" scoped>
-  @prefix-cls: ~'@{namespace}-header-notify-list';
+  @prefix-cls: ~'@{namespaces}-header-notify-list';
 
   .@{prefix-cls} {
     width: 340px;

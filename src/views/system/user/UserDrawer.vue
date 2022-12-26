@@ -128,7 +128,7 @@
       //关闭弹窗
       closeDrawer();
       //刷新列表
-      emit('success',{isUpdateVal ,values});
+      emit('success', { isUpdateVal, values });
     } finally {
       setDrawerProps({ confirmLoading: false });
     }

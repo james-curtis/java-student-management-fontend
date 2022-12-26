@@ -54,7 +54,7 @@
   });
 </script>
 <style lang="less">
-  @prefix-cls: ~'@{namespace}-setting-theme-picker';
+  @prefix-cls: ~'@{namespaces}-setting-theme-picker';
 
   .@{prefix-cls} {
     display: flex;

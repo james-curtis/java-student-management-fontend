@@ -126,7 +126,7 @@
   });
 </script>
 <style lang="less">
-  @prefix-cls: ~'@{namespace}-app-exception-page';
+  @prefix-cls: ~'@{namespaces}-app-exception-page';
 
   .@{prefix-cls} {
     display: flex;

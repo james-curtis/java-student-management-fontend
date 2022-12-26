@@ -129,7 +129,7 @@
       return;
     }
     for (const uploadItem of uploadItems) {
-      let hasActions = uploadItem.getAttribute('data-has-actions') === 'true';
+      const hasActions = uploadItem.getAttribute('data-has-actions') === 'true';
       if (!hasActions) {
         uploadItem.addEventListener('mouseover', onAddActionsButton);
       }
@@ -177,9 +177,9 @@
       fileList.value = [];
       return;
     }
-    let list: any[] = [];
+    const list: any[] = [];
     for (const item of paths.split(',')) {
-      let url = getFileAccessHttpUrl(item);
+      const url = getFileAccessHttpUrl(item);
       list.push({
         uid: uidGenerator(),
         name: getFileName(item),
@@ -197,9 +197,9 @@
       fileList.value = [];
       return;
     }
-    let list: any[] = [];
+    const list: any[] = [];
     for (const item of array) {
-      let url = getFileAccessHttpUrl(item.filePath);
+      const url = getFileAccessHttpUrl(item.filePath);
       list.push({
         uid: uidGenerator(),
         name: item.fileName,
@@ -252,9 +252,9 @@
     let fileListTemp = info.fileList;
     // 限制最大上传数
     if (props.maxCount > 0) {
-      let count = fileListTemp.length;
+      const count = fileListTemp.length;
       if (count >= props.maxCount) {
-        let diffNum = props.maxCount - fileListTemp.length;
+        const diffNum = props.maxCount - fileListTemp.length;
         if (diffNum >= 0) {
           fileListTemp = fileListTemp.slice(-props.maxCount);
         } else {
@@ -266,7 +266,7 @@
       if (info.file.response.success) {
         fileListTemp = fileListTemp.map((file) => {
           if (file.response) {
-            let reUrl = file.response.message;
+            const reUrl = file.response.message;
             file.url = getFileAccessHttpUrl(reUrl);
           }
           return file;
@@ -282,10 +282,10 @@
         handlePathChange();
       } else {
         //returnUrl为false时返回文件名称、文件路径及文件大小
-        let newFileList: any[] = [];
+        const newFileList: any[] = [];
         for (const item of fileListTemp) {
           if (item.status === 'done') {
-            let fileJson = {
+            const fileJson = {
               fileName: item.name,
               filePath: item.response.message,
               fileSize: item.size,
@@ -301,12 +301,12 @@
   }
 
   function handlePathChange() {
-    let uploadFiles = fileList.value;
+    const uploadFiles = fileList.value;
     let path = '';
     if (!uploadFiles || uploadFiles.length == 0) {
       path = '';
     }
-    let pathList: string[] = [];
+    const pathList: string[] = [];
     for (const item of uploadFiles) {
       if (item.status === 'done') {
         pathList.push(item.response.message);
@@ -340,7 +340,7 @@
 
   function getFileName(path) {
     if (path.lastIndexOf('\\') >= 0) {
-      let reg = new RegExp('\\\\', 'g');
+      const reg = new RegExp('\\\\', 'g');
       path = path.replace(reg, '/');
     }
     return path.substring(path.lastIndexOf('/') + 1);
@@ -353,7 +353,7 @@
 
 <style lang="less">
   //noinspection LessUnresolvedVariable
-  @prefix-cls: ~'@{namespace}-j-upload';
+  @prefix-cls: ~'@{namespaces}-j-upload';
 
   .@{prefix-cls} {
     &-container {

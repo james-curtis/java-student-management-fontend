@@ -13,8 +13,7 @@
     v-bind="attrs"
     @change="onChange"
     @search="onSearch"
-  >
-  </a-tree-select>
+  />
 </template>
 <script lang="ts" setup>
   /*
@@ -97,9 +96,9 @@
    */
   async function loadItemByCode() {
     if (!props.value || props.value == '0') {
-      if(props.multiple){
+      if (props.multiple) {
         treeValue.value = [];
-      }else{
+      } else {
         treeValue.value = null;
       }
     } else {

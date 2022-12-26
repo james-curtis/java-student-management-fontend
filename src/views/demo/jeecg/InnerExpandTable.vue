@@ -5,15 +5,14 @@
         <a-button type="primary" @click="handleAdd" preIcon="ant-design:plus-outlined"> 新增</a-button>
       </template>
       <template #expandedRowRender>
-        <BasicTable bordered size="middle" rowKey="id" :canResize="false" :columns="innerColumns" :dataSource="innerData" :pagination="false">
-        </BasicTable>
+        <BasicTable bordered size="middle" rowKey="id" :canResize="false" :columns="innerColumns" :dataSource="innerData" :pagination="false" />
       </template>
       <!--操作栏-->
       <template #action="{ record }">
         <TableAction :actions="getTableAction(record)" />
       </template>
     </BasicTable>
-    <JVxeTableModal @register="registerModal" @success="reload()"></JVxeTableModal>
+    <JVxeTableModal @register="registerModal" @success="reload()" />
   </a-card>
 </template>
 

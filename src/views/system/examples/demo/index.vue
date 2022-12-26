@@ -6,14 +6,14 @@
         <a-row :gutter="24">
           <a-col :lg="8">
             <a-form-item label="用户名">
-              <a-input placeholder="请输入名称模糊查询" v-model:value="queryParam.name"></a-input>
+              <a-input placeholder="请输入名称模糊查询" v-model:value="queryParam.name" />
             </a-form-item>
           </a-col>
           <a-col :lg="8">
             <a-form-item label="年龄">
-              <a-input placeholder="最小年龄" type="ge" v-model:value="queryParam.age_begin" style="width: calc(50% - 15px)"></a-input>
+              <a-input placeholder="最小年龄" type="ge" v-model:value="queryParam.age_begin" style="width: calc(50% - 15px)" />
               <span>~</span>
-              <a-input placeholder="最大年龄" type="le" v-model:value="queryParam.age_end" style="width: calc(50% - 15px)"></a-input>
+              <a-input placeholder="最大年龄" type="le" v-model:value="queryParam.age_end" style="width: calc(50% - 15px)" />
             </a-form-item>
           </a-col>
           <template v-if="toggleSearchStatus">
@@ -43,16 +43,16 @@
     </div>
     <BasicTable @register="registerTable" :rowSelection="rowSelection" :class="{ 'p-4': customSearch }">
       <template #form-age="{ model, field }">
-        <a-input placeholder="最小年龄" type="ge" v-model:value="min" style="width: calc(50% - 15px)" @change="ageChange(model, field)"></a-input>
+        <a-input placeholder="最小年龄" type="ge" v-model:value="min" style="width: calc(50% - 15px)" @change="ageChange(model, field)" />
         <span>~</span>
-        <a-input placeholder="最大年龄" type="le" v-model:value="max" style="width: calc(50% - 15px)" @change="ageChange(model, field)"></a-input>
+        <a-input placeholder="最大年龄" type="le" v-model:value="max" style="width: calc(50% - 15px)" @change="ageChange(model, field)" />
       </template>
       <template #tableTitle>
         <a-button preIcon="ant-design:plus-outlined" type="primary" @click="handleAdd">新增</a-button>
         <a-upload name="file" :showUploadList="false" :customRequest="(file) => handleImportXls(file, getImportUrl, reload)">
           <a-button preIcon="ant-design:import-outlined" type="primary">导入</a-button>
         </a-upload>
-        <a-button preIcon="ant-design:export-outlined" type="primary" @click="handleExportXls('单表示例', getExportUrl,exportParams)">导出</a-button>
+        <a-button preIcon="ant-design:export-outlined" type="primary" @click="handleExportXls('单表示例', getExportUrl, exportParams)">导出</a-button>
         <a-button preIcon="ant-design:plus-outlined" type="primary" @click="openTab">打开Tab页</a-button>
         <a-button preIcon="ant-design:retweet-outlined" type="primary" @click="customSearch = !customSearch">{{
           customSearch ? '表单配置查询' : '自定义查询'
@@ -63,14 +63,14 @@
           <template #overlay>
             <a-menu>
               <a-menu-item key="1" @click="batchHandleDelete">
-                <Icon icon="ant-design:delete-outlined"></Icon>
+                <Icon icon="ant-design:delete-outlined" />
                 删除
               </a-menu-item>
             </a-menu>
           </template>
           <a-button
             >批量操作
-            <Icon style="fontsize: 12px" icon="ant-design:down-outlined"></Icon>
+            <Icon style="fontsize: 12px" icon="ant-design:down-outlined" />
           </a-button>
         </a-dropdown>
       </template>
@@ -78,12 +78,12 @@
         <TableAction :actions="getActions(record)" />
       </template>
     </BasicTable>
-    <DemoModal @register="registerModal" @success="reload" :isDisabled="isDisabled"/>
+    <DemoModal @register="registerModal" @success="reload" :isDisabled="isDisabled" />
     <JImportModal @register="registerModalJimport" :url="getImportUrl" online />
   </div>
 </template>
 <script lang="ts" setup>
-  import { ref, unref, reactive, toRaw, watch,computed } from 'vue';
+  import { ref, unref, reactive, toRaw, watch, computed } from 'vue';
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
   import { useModal } from '/@/components/Modal';
   import DemoModal from './DemoModal.vue';
@@ -96,7 +96,7 @@
   import { useGo } from '/@/hooks/web/usePage';
   import { router } from '/@/router';
   import { filterObj } from '/@/utils/common/compUtils';
-  
+
   const go = useGo();
   const checkedKeys = ref<Array<string | number>>([]);
   const [registerModal, { openModal }] = useModal();
@@ -105,7 +105,7 @@
   const min = ref();
   const max = ref();
   const isDisabled = ref(false);
-  
+
   const [registerTable, { reload, setProps }] = useTable({
     title: '单表示例',
     api: getDemoList,
@@ -156,13 +156,13 @@
     openModalJimport(true);
   }
 
-  const exportParams = computed(()=>{
+  const exportParams = computed(() => {
     let paramsForm = {};
     if (checkedKeys.value && checkedKeys.value.length > 0) {
       paramsForm['selections'] = checkedKeys.value.join(',');
     }
-    return filterObj(paramsForm)
-  })
+    return filterObj(paramsForm);
+  });
   /**
    * 操作列定义
    * @param record
@@ -191,7 +191,7 @@
    * 选择事件
    */
   function onSelectChange(selectedRowKeys: (string | number)[]) {
-    console.log("checkedKeys------>",checkedKeys)
+    console.log('checkedKeys------>', checkedKeys);
     checkedKeys.value = selectedRowKeys;
   }
 
@@ -284,7 +284,6 @@
     reload();
   }
   //自定义查询----end---------
-
 </script>
 <style lang="less" scoped>
   .jeecg-basic-table-form-container {

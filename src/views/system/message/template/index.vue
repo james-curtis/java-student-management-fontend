@@ -10,14 +10,14 @@
           <template #overlay>
             <a-menu>
               <a-menu-item key="1" @click="onDeleteBatch">
-                <Icon icon="ant-design:delete-outlined"></Icon>
+                <Icon icon="ant-design:delete-outlined" />
                 <span>删除</span>
               </a-menu-item>
             </a-menu>
           </template>
           <a-button>
             <span>批量操作</span>
-            <Icon icon="mdi:chevron-down"></Icon>
+            <Icon icon="mdi:chevron-down" />
           </a-button>
         </a-dropdown>
       </template>
@@ -94,7 +94,7 @@
   function onDelete(record) {
     if (record) {
       //update-begin-author:taoyan date:2022-7-14 for: VUEN-1652【bug】应用状态下不允许删除
-      if(record.useStatus == '1'){
+      if (record.useStatus == '1') {
         createMessage.warning('该模板已被应用禁止删除!');
         return;
       }
@@ -125,8 +125,8 @@
     try {
       //update-begin-author:taoyan date:2022-7-14 for: VUEN-1652【bug】应用状态下不允许删除
       let arr = toRaw(selectedRows.value);
-      let temp = arr.filter(item=>item.useStatus=='1')
-      if(temp.length>0){
+      let temp = arr.filter((item) => item.useStatus == '1');
+      if (temp.length > 0) {
         createMessage.warning('选中的模板已被应用禁止删除!');
         return;
       }

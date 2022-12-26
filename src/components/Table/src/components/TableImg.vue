@@ -57,7 +57,7 @@
   });
 </script>
 <style lang="less">
-  @prefix-cls: ~'@{namespace}-basic-table-img';
+  @prefix-cls: ~'@{namespaces}-basic-table-img';
 
   .@{prefix-cls} {
     .ant-image {

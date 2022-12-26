@@ -125,13 +125,13 @@
         if (!cropper.value) {
           return;
         }
-        let imgInfo = cropper.value.getData();
+        const imgInfo = cropper.value.getData();
         const canvas = props.circled ? getRoundedCanvas() : cropper.value.getCroppedCanvas();
         canvas.toBlob((blob) => {
           if (!blob) {
             return;
           }
-          let fileReader: FileReader = new FileReader();
+          const fileReader: FileReader = new FileReader();
           fileReader.readAsDataURL(blob);
           fileReader.onloadend = (e) => {
             emit('cropend', {
@@ -168,7 +168,7 @@
   });
 </script>
 <style lang="less">
-  @prefix-cls: ~'@{namespace}-cropper-image';
+  @prefix-cls: ~'@{namespaces}-cropper-image';
 
   .@{prefix-cls} {
     &--circled {

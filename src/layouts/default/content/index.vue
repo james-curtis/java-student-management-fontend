@@ -45,7 +45,7 @@
   });
 </script>
 <style lang="less">
-  @prefix-cls: ~'@{namespace}-layout-content';
+  @prefix-cls: ~'@{namespaces}-layout-content';
 
   .@{prefix-cls} {
     position: relative;

@@ -1,4 +1,3 @@
-// @ts-check
 const { defineConfig } = require('eslint-define-config');
 module.exports = defineConfig({
   root: true,
@@ -25,7 +24,36 @@ module.exports = defineConfig({
     'plugin:jest/recommended',
   ],
   rules: {
+    'prefer-const': 'warn',
+    '@typescript-eslint/no-namespace': 'warn',
+    'no-var': 'warn',
+    'vue/no-unused-vars': 'warn',
+    '@typescript-eslint/no-array-constructor': 'warn',
+    'prefer-rest-params': 'warn',
+    'vue/no-mutating-props': 'warn',
+    'vue/valid-v-for': 'warn',
+    'vue/no-use-v-if-with-v-for': 'warn',
+    'vue/no-side-effects-in-computed-properties': 'warn',
+    'vue/no-async-in-computed-properties': 'warn',
+    'vue/no-deprecated-slot-scope-attribute': 'warn',
+    '@typescript-eslint/no-inferrable-types': 'warn',
+    'vue/no-reserved-props': 'warn',
+    'vue/no-dupe-keys': 'warn',
+    'vue/valid-v-show': 'warn',
+    'vue/no-deprecated-v-on-native-modifier': 'warn',
+    'vue/require-valid-default-prop': 'warn',
+    '@typescript-eslint/no-unnecessary-type-constraint': 'warn',
+    'vue/no-useless-template-attributes': 'warn',
     'vue/script-setup-uses-vars': 'error',
+    'vue/multi-word-component-names': 'warn',
+    'vue/no-unused-components': 'warn',
+    'vue/require-v-for-key': 'warn',
+    'vue/return-in-computed-property': 'warn',
+    'vue/no-setup-props-destructure': 'warn',
+    'vue/no-ref-as-operand': 'warn',
+    'vue/no-textarea-mustache': 'warn',
+    'vue/no-deprecated-slot-attribute': 'warn',
+    'vue/valid-v-on': 'warn',
     '@typescript-eslint/ban-ts-ignore': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
@@ -39,14 +67,14 @@ module.exports = defineConfig({
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-unused-vars': [
-      'error',
+      'warn',
       {
         argsIgnorePattern: '^_',
         varsIgnorePattern: '^_',
       },
     ],
     'no-unused-vars': [
-      'error',
+      'warn',
       {
         argsIgnorePattern: '^_',
         varsIgnorePattern: '^_',
@@ -63,7 +91,7 @@ module.exports = defineConfig({
     'vue/attribute-hyphenation': 'off',
     'vue/require-default-prop': 'off',
     'vue/html-self-closing': [
-      'error',
+      'warn',
       {
         html: {
           void: 'always',

@@ -21,7 +21,7 @@
             <div class="content">
               <!-- 图片 -->
               <div v-if="isImage(item)" class="content-top" style="height: 100%">
-                <div class="content-image" :style="{'height':'100%', 'backgroundImage': 'url('+getImageSrc(item)+')'}">
+                <div class="content-image" :style="{ height: '100%', backgroundImage: 'url(' + getImageSrc(item) + ')' }">
                   <!--  <img style="height: 100%;" :src="getImageSrc(item)">-->
                 </div>
               </div>
@@ -35,7 +35,7 @@
                 </div>
               </template>
             </div>
-            <div class="layer" :class="{'layer-image':isImage(item)}">
+            <div class="layer" :class="{ 'layer-image': isImage(item) }">
               <div class="next" @click="viewImage(item)">
                 <div class="text">{{ item.name }} </div>
               </div>
@@ -49,7 +49,8 @@
             </div>
           </div>
         </div>
-        <div class="item empty"></div><div class="item empty"></div><div class="item empty"></div> <div class="item empty"></div><div class="item empty"></div><div class="item empty"></div>
+        <div class="item empty"></div><div class="item empty"></div><div class="item empty"></div> <div class="item empty"></div
+        ><div class="item empty"></div><div class="item empty"></div>
       </div>
     </div>
   </div>
@@ -76,8 +77,8 @@
         default: false,
       },
     },
-    emits:['select'],
-    setup(_p, {emit}) {
+    emits: ['select'],
+    setup(_p, { emit }) {
       const { selectFileList, beforeUpload, handleRemove, getBackground, isImage, getImageSrc, viewImage } = useFileList();
 
       function getUploadFileList() {
@@ -85,19 +86,22 @@
         console.log(list);
         return list;
       }
-      
-      function clear(){
+
+      function clear() {
         selectFileList.value = [];
       }
-      
-      watch(()=>selectFileList.value, (arr)=>{
-        if(arr && arr.length>0){
-          let name = arr[0].name;
-          if(name){
-            emit('select', name)
+
+      watch(
+        () => selectFileList.value,
+        (arr) => {
+          if (arr && arr.length > 0) {
+            let name = arr[0].name;
+            if (name) {
+              emit('select', name);
+            }
           }
         }
-      });
+      );
 
       return {
         selectFileList,
@@ -106,9 +110,9 @@
         getBackground,
         getUploadFileList,
         clear,
-        isImage, 
-        getImageSrc, 
-        viewImage
+        isImage,
+        getImageSrc,
+        viewImage,
       };
     },
   };

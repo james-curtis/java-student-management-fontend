@@ -37,7 +37,7 @@
   });
 </script>
 <style lang="less">
-  @prefix-cls: ~'@{namespace}-basic-table-header-cell';
+  @prefix-cls: ~'@{namespaces}-basic-table-header-cell';
 
   .@{prefix-cls} {
     &__help {

@@ -47,7 +47,7 @@
       const { prefixCls } = useCellDesign('depart-select');
 
       const selectedValue = computed(() => {
-        let val: any = innerValue.value;
+        const val: any = innerValue.value;
         if (val == null) {
           return val;
         }
@@ -58,7 +58,7 @@
           return val;
         }
         if (isString(val)) {
-          return (<string>val).split(',');
+          return (val as string).split(',');
         }
         return [val];
       });
@@ -201,7 +201,7 @@
 
 <style lang="less">
   // noinspection LessUnresolvedVariable
-  @prefix-cls: ~'@{namespace}-vxe-cell-depart-select';
+  @prefix-cls: ~'@{namespaces}-vxe-cell-depart-select';
 
   .@{prefix-cls} {
     // 限制tag最大长度为100px，防止选中文字过多的选项时换行

@@ -16,7 +16,7 @@
     >
       <template #title="{ slotTitle, ruleFlag }">
         {{ slotTitle }}
-        <Icon v-if="ruleFlag" icon="ant-design:align-left-outlined" style="margin-left: 5px; color: red"></Icon>
+        <Icon v-if="ruleFlag" icon="ant-design:align-left-outlined" style="margin-left: 5px; color: red" />
       </template>
     </BasicTree>
     <!--右下角按钮-->

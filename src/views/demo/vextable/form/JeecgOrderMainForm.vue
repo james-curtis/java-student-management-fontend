@@ -1,13 +1,23 @@
 <template>
   <div class="jeecg-flow-demo">
-    <BasicForm @register="registerForm"></BasicForm>
+    <BasicForm @register="registerForm" />
     <a-tabs v-model:activeKey="activeKey" @change="handleChangeTabs">
       <a-tab-pane tab="客户信息" key="jeecgOrderCustomerForm" :forceRender="true">
-        <JeecgOrderCustomerForm ref="jeecgOrderCustomerFormRef" :formData="formData"></JeecgOrderCustomerForm>
+        <JeecgOrderCustomerForm ref="jeecgOrderCustomerFormRef" :formData="formData" />
       </a-tab-pane>
 
       <a-tab-pane tab="机票信息" key="jeecgOrderTicket" :forceRender="true">
-        <JVxeTable v-if="ok" ref="jeecgOrderTicketRef" stripe rowSelection keepSource :maxHeight="300" :loading="table2.loading" :columns="table2.columns" :dataSource="table2.dataSource"> </JVxeTable>
+        <JVxeTable
+          v-if="ok"
+          ref="jeecgOrderTicketRef"
+          stripe
+          rowSelection
+          keepSource
+          :maxHeight="300"
+          :loading="table2.loading"
+          :columns="table2.columns"
+          :dataSource="table2.dataSource"
+        />
       </a-tab-pane>
     </a-tabs>
   </div>

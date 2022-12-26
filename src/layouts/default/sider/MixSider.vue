@@ -94,7 +94,7 @@
       clickOutside,
     },
     setup() {
-      let menuModules = ref<Menu[]>([]);
+      const menuModules = ref<Menu[]>([]);
       const activePath = ref('');
       const childrenMenus = ref<Menu[]>([]);
       const openMenu = ref(false);
@@ -312,7 +312,7 @@
   });
 </script>
 <style lang="less">
-  @prefix-cls: ~'@{namespace}-layout-mix-sider';
+  @prefix-cls: ~'@{namespaces}-layout-mix-sider';
   @width: 80px;
   .@{prefix-cls} {
     position: fixed;

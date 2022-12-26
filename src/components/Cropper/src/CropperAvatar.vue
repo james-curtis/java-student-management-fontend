@@ -90,7 +90,7 @@
 </script>
 
 <style lang="less" scoped>
-  @prefix-cls: ~'@{namespace}-cropper-avatar';
+  @prefix-cls: ~'@{namespaces}-cropper-avatar';
 
   .@{prefix-cls} {
     display: inline-block;

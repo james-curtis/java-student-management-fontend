@@ -107,8 +107,8 @@
   }
 </script>
 <style lang="less" scoped>
-  @prefix-cls: ~'@{namespace}-app-search-modal';
-  @footer-prefix-cls: ~'@{namespace}-app-search-footer';
+  @prefix-cls: ~'@{namespaces}-app-search-modal';
+  @footer-prefix-cls: ~'@{namespaces}-app-search-footer';
   .@{prefix-cls} {
     position: fixed;
     top: 0;

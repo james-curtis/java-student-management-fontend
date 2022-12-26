@@ -123,7 +123,7 @@
   }
 </script>
 <style scoped lang="less">
-  @prefix-cls: ~'@{namespace}-row-invalid';
+  @prefix-cls: ~'@{namespaces}-row-invalid';
 
   :deep(.@{prefix-cls}) {
     background: #f4f4f4;

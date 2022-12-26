@@ -7,7 +7,7 @@
     <DynamicNotice ref="dynamicNoticeRef" v-bind="dynamicNoticeProps" />
     <DetailModal @register="registerDetail" />
 
-    <sys-message-modal @register="registerMessageModal" @refresh="reloadCount"></sys-message-modal>
+    <sys-message-modal @register="registerMessageModal" @refresh="reloadCount" />
   </div>
 </template>
 <script lang="ts">
@@ -28,8 +28,8 @@
   import { getToken } from '/@/utils/auth';
   import md5 from 'crypto-js/md5';
 
-  import SysMessageModal from '/@/views/system/message/components/SysMessageModal.vue'
-  
+  import SysMessageModal from '/@/views/system/message/components/SysMessageModal.vue';
+
   export default defineComponent({
     components: {
       Popover,
@@ -59,20 +59,20 @@
       });
 
       const [registerMessageModal, { openModal: openMessageModal }] = useModal();
-      function clickBadge(){
+      function clickBadge() {
         //消息列表弹窗前去除角标
         for (let i = 0; i < listData.value.length; i++) {
           listData.value[i].count = 0;
         }
-        openMessageModal(true, {})
+        openMessageModal(true, {});
       }
 
       const popoverVisible = ref<boolean>(false);
       onMounted(() => {
-       initWebSocket();
+        initWebSocket();
       });
 
-      const messageCount = ref<number>(0)
+      const messageCount = ref<number>(0);
       function mapAnnouncement(item) {
         return {
           ...item,
@@ -85,7 +85,7 @@
       // 获取系统消息
       async function loadData() {
         try {
-          let { anntMsgList, sysMsgList, anntMsgTotal, sysMsgTotal } = await listCementByUser({
+          const { anntMsgList, sysMsgList, anntMsgTotal, sysMsgTotal } = await listCementByUser({
             pageSize: 5,
           });
           listData.value[0].list = anntMsgList.map(mapAnnouncement);
@@ -93,9 +93,9 @@
           listData.value[0].count = anntMsgTotal;
           listData.value[1].count = sysMsgTotal;
           //update-begin-author:taoyan date:2022-8-30 for: 消息数量改变触发chat组件事件
-          let msgCount = anntMsgTotal+sysMsgTotal;
+          const msgCount = anntMsgTotal + sysMsgTotal;
           //update-begin-author:wangshuai date:2022-09-02 for: 消息未读数为0也需要传递，因为聊天需要计算总数
-          messageCount.value = msgCount
+          messageCount.value = msgCount;
           //update-end-author:wangshuai date:2022-09-02 for: 消息未读数为0也需要传递，因为聊天需要计算总数
           //update-end-author:taoyan date:2022-8-30 for: 消息数量改变触发chat组件事件
         } catch (e) {
@@ -127,12 +127,12 @@
 
       // 初始化 WebSocket
       function initWebSocket() {
-        let token = getToken();
+        const token = getToken();
         //将登录token生成一个短的标识
-        let wsClientId = md5(token);
-        let userId = unref(userStore.getUserInfo).id + "_" + wsClientId;
+        const wsClientId = md5(token);
+        const userId = unref(userStore.getUserInfo).id + '_' + wsClientId;
         // WebSocket与普通的请求所用协议有所不同，ws等同于http，wss等同于https
-        let url = glob.domainUrl?.replace('https://', 'wss://').replace('http://', 'ws://') + '/websocket/' + userId;
+        const url = glob.domainUrl?.replace('https://', 'wss://').replace('http://', 'ws://') + '/websocket/' + userId;
         connectWebSocket(url);
         onWebSocket(onWebSocketMessage);
       }
@@ -141,9 +141,9 @@
         if (data.cmd === 'topic' || data.cmd === 'user') {
           //update-begin-author:taoyan date:2022-7-13 for: VUEN-1674【严重bug】系统通知，为什么必须刷新右上角才提示
           //后台保存数据太慢 前端延迟刷新消息
-          setTimeout(()=>{
+          setTimeout(() => {
             loadData();
-          }, 1000)
+          }, 1000);
           //update-end-author:taoyan date:2022-7-13 for: VUEN-1674【严重bug】系统通知，为什么必须刷新右上角才提示
         }
       }
@@ -153,7 +153,7 @@
         popoverVisible.value = false;
         readAllMsg({}, loadData);
       }
-      async function reloadCount(id){
+      async function reloadCount(id) {
         try {
           await editCementSend(id);
           await loadData();
@@ -161,7 +161,6 @@
           console.error(e);
         }
       }
-
 
       return {
         prefixCls,
@@ -182,7 +181,7 @@
 </script>
 <style lang="less">
   //noinspection LessUnresolvedVariable
-  @prefix-cls: ~'@{namespace}-header-notify';
+  @prefix-cls: ~'@{namespaces}-header-notify';
 
   .@{prefix-cls} {
     padding-top: 2px;
@@ -201,7 +200,6 @@
       .ant-list-item {
         padding: 12px 24px;
         transition: background-color 300ms;
-
       }
 
       .bottom-buttons {
@@ -272,5 +270,4 @@
       }
     }
   }
-
 </style>

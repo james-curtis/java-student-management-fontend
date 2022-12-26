@@ -94,7 +94,7 @@
     if (!password.value) {
       return;
     }
-    let pwd = password.value;
+    const pwd = password.value;
     try {
       loading.value = true;
       const res = await lockStore.unLock(pwd);
@@ -114,7 +114,7 @@
   }
 </script>
 <style lang="less" scoped>
-  @prefix-cls: ~'@{namespace}-lock-page';
+  @prefix-cls: ~'@{namespaces}-lock-page';
 
   .@{prefix-cls} {
     z-index: @lock-page-z-index;
