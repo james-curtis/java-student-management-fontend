@@ -36,7 +36,7 @@ function asyncImportRoute(routes: AppRouteRecordRaw[] | undefined) {
     //菜单支持国际化翻译
     if (item?.meta?.title) {
       const { t } = useI18n();
-      if (item.meta.title.includes("t('") && t) {
+      if (item.meta.title.includes("t('") && t !== undefined) {
         item.meta.title = eval(item.meta.title);
         //console.log('译后: ',item.meta.title)
       }
@@ -55,8 +55,8 @@ function asyncImportRoute(routes: AppRouteRecordRaw[] | undefined) {
     }
     // @ts-ignore 添加是否缓存路由配置
     item.meta.ignoreKeepAlive = !item?.meta.keepAlive;
-    let token = getToken();
-    let tenantId = getTenantId();
+    const token = getToken();
+    const tenantId = getTenantId();
     // URL支持{{ window.xxx }}占位符变量
     //update-begin---author:wangshuai ---date:20220711  for：[VUEN-1638]菜单tenantId需要动态生成------------
     item.component = (item.component || '')
@@ -226,9 +226,9 @@ function isMultipleRoute(routeModule: AppRouteModule) {
  * @updateBy:lsq
  * @updateDate:2021-09-08
  */
-export function addSlashToRouteComponent(routeList: AppRouteRecordRaw[]) {
+export function addSlashToRouteComponent<T = AppRouteModule>(routeList: AppRouteRecordRaw[]) {
   routeList.forEach((route) => {
-    let component = route.component as string;
+    const component = route.component as string;
     if (component) {
       const layoutFound = LayoutMap.get(component);
       if (!layoutFound) {
