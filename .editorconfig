@@ -7,6 +7,18 @@ insert_final_newline=true
 indent_style=space
 indent_size=2
 max_line_length = 100
+quote_type = single
+
+# special for webstorm
+ij_coffeescript_use_double_quotes = false
+ij_css_use_double_quotes = false
+ij_javascript_use_double_quotes = false
+ij_less_use_double_quotes = false
+ij_sass_use_double_quotes = false
+ij_scss_use_double_quotes = false
+ij_stylus_use_double_quotes = false
+ij_typescript_use_double_quotes = false
+
 
 [*.{yml,yaml,json}]
 indent_style = space
@@ -14,6 +26,7 @@ indent_size = 2
 
 [*.md]
 trim_trailing_whitespace = false
+insert_final_newline = false
 
 [Makefile]
 indent_style = tab
