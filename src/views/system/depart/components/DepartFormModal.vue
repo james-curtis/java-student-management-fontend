@@ -35,8 +35,8 @@
     await resetFields();
     isUpdate.value = unref(data?.isUpdate);
     // 当前是否为添加子级
-    let isChild = unref(data?.isChild);
-    let categoryOptions = isChild ? orgCategoryOptions.child : orgCategoryOptions.root;
+    const isChild = unref(data?.isChild);
+    const categoryOptions = isChild ? orgCategoryOptions.child : orgCategoryOptions.root;
     // 隐藏不需要展示的字段
     updateSchema([
       {
@@ -78,7 +78,7 @@
   async function handleOk() {
     try {
       setModalProps({ confirmLoading: true });
-      let values = await validate();
+      const values = await validate();
       //提交表单
       await saveOrUpdateDepart(values, isUpdate.value);
       //关闭弹窗

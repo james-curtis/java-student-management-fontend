@@ -67,7 +67,7 @@
       //注册model
       const [regModal, { openModal }] = useModal();
       //表单值
-      let { groupId, code, fieldConfig } = props;
+      const { groupId, code, fieldConfig } = props;
       //唯一分组groupId
       const uniqGroupId = computed(() => (groupId ? `${groupId}_${code}_${fieldConfig[0]['source']}_${fieldConfig[0]['target']}` : ''));
       /**
@@ -108,11 +108,11 @@
        * 传值回调
        */
       function callBack(rows) {
-        let { fieldConfig } = props;
+        const { fieldConfig } = props;
         //匹配popup设置的回调值
-        let values = {};
-        for (let item of fieldConfig) {
-          let val = rows.map((row) => row[item.source]).join(',');
+        const values = {};
+        for (const item of fieldConfig) {
+          const val = rows.map((row) => row[item.source]).join(',');
           item.target.split(',').forEach((target) => {
             values[target] = val;
           });

@@ -81,10 +81,16 @@ export function useBasicFormSchema() {
 // 机构类型选项
 export const orgCategoryOptions = {
   // 一级部门
-  root: [{ value: '1', label: '公司' }],
+  root: [
+    { value: '1', label: '公司' },
+    { value: '4', label: '学校' },
+  ],
   // 子级部门
   child: [
     { value: '2', label: '部门' },
     { value: '3', label: '岗位' },
+    { value: '5', label: '班级' },
+    { value: '6', label: '专业' },
+    { value: '7', label: '学院' },
   ],
 };

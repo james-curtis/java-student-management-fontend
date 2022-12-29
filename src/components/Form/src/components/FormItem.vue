@@ -223,7 +223,9 @@
         const { autoSetPlaceHolder, size } = props.formProps;
         const propsData: Recordable = {
           allowClear: true,
-          getPopupContainer: (trigger: Element) => trigger.parentNode,
+          /* update-begin-author:Curtis date:2022-12-28 22:45:38 for: VUEN-1157 popup 生成代码后的JPopup里面的DataPicker会被父窗口遮挡 */
+          // getPopupContainer: (trigger: Element) => trigger.parentNode,
+          /* update-end-author:Curtis date:2022-12-28 22:45:38 for: VUEN-1157 popup 生成代码后的JPopup里面的DataPicker会被父窗口遮挡 */
           size,
           ...unref(getComponentsProps),
           disabled: unref(getDisable),
