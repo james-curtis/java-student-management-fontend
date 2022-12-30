@@ -27,7 +27,7 @@
 </template>
 <script lang="ts">
   import JPopupOnlReportModal from './modal/JPopupOnlReportModal.vue';
-  import { defineComponent, ref, reactive, onMounted, watchEffect, watch, computed, unref } from 'vue';
+  import { defineComponent, ref, reactive, onMounted, watchEffect, watch, computed, unref, nextTick } from 'vue';
   import { useModal } from '/@/components/Modal';
   import { propTypes } from '/@/utils/propTypes';
   import { useAttrs } from '/@/hooks/core/useAttrs';
@@ -56,6 +56,14 @@
         type: Array,
         default: () => [],
       },
+      // --update-begin----author:Curtis---date:2022-12-31 01:06:39------for: 实现绑定value和显示text分离 ---
+      rowKey: {
+        type: String,
+      },
+      labelKey: {
+        type: String,
+      },
+      // --update-end----author:Curtis---date:2022-12-31 01:06:39------for: 实现绑定value和显示text分离 ---
     },
     emits: ['update:value', 'register'],
     setup(props, { emit, refs }) {
@@ -81,6 +89,7 @@
       });
       /**
        * 监听value数值
+       * 监听清空用
        */
       watch(
         () => props.value,
@@ -104,6 +113,17 @@
         showText.value = '';
       }
 
+      // --update-begin----author:Curtis---date:2022-12-31 01:06:39------for: 实现绑定value和显示text分离 ---
+      function refreshShowText(rows) {
+        if (fieldConfig.length < 1) {
+          return;
+        }
+        debugger;
+        const val = rows.map((row) => row[props.labelKey ?? fieldConfig[0].source]).join(',');
+        showText.value = val && val.length > 0 ? val.split(props.spliter).join(',') : '';
+      }
+      // --update-end----author:Curtis---date:2022-12-31 01:06:39------for: 实现绑定value和显示text分离 ---
+
       /**
        * 传值回调
        */
@@ -121,6 +141,10 @@
         props.formElRef && props.formElRef.setFieldsValue(values);
         //传入赋值方法方式赋值
         props.setFieldsValue && props.setFieldsValue(values);
+        // --update-begin----author:Curtis---date:2022-12-31 01:06:39------for: 实现绑定value和显示text分离 ---
+        // nextTick 覆盖watch修改的值
+        nextTick(() => refreshShowText(rows));
+        // --update-end----author:Curtis---date:2022-12-31 01:06:39------for: 实现绑定value和显示text分离 ---
       }
 
       return {
