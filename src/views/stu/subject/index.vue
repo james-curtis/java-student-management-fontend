@@ -88,7 +88,7 @@
 </template>
 
 <script lang="ts" name="stu-subject" setup>
-  import { ref, reactive, computed, unref } from 'vue';
+  import { ref, reactive, computed, unref, watch } from 'vue';
   import { BasicTable, useTable, TableAction } from '/@/components/Table';
   import { useListPage } from '/@/hooks/system/useListPage';
   import { useModal } from '/@/components/Modal';
@@ -96,6 +96,7 @@
   import { columns, searchFormSchema } from './Subject.data';
   import { list, deleteOne, batchDelete, getImportUrl, getExportUrl } from './Subject.api';
   import { downloadFile } from '/@/utils/common/renderUtils';
+  import { useRoute } from 'vue-router';
 
   const checkedKeys = ref<Array<string | number>>([]);
   //注册model
@@ -225,6 +226,9 @@
     //刷新数据
     reload();
   }
+
+  const route = useRoute();
+  Object.assign(queryParam.value, route.query);
 </script>
 <style lang="less" scoped>
   .jeecg-basic-table-form-container {
