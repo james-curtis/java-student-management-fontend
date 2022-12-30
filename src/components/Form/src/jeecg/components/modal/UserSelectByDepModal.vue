@@ -116,6 +116,11 @@
               field: 'username',
               component: 'Input',
             },
+            {
+              label: '名字',
+              field: 'realname',
+              component: 'Input',
+            },
           ],
           resetFunc: customResetFunc,
         },
