@@ -120,7 +120,9 @@
           resetFunc: customResetFunc,
         },
       };
-      const getBindValue = Object.assign({}, unref(props), unref(attrs), tableProps);
+      /* update-begin-author:Curtis date:2022-12-30 21:08:16 for: 父组件祖父组件的attrs透传进来无法覆盖默认设置 */
+      const getBindValue = Object.assign({}, tableProps, unref(props), unref(attrs));
+      /* update-end-author:Curtis date:2022-12-30 21:08:16 for: 父组件祖父组件的attrs透传进来无法覆盖默认设置 */
       const [{ rowSelection, visibleChange, indexColumnProps, getSelectResult, reset }] = useSelectBiz(getTableList, getBindValue);
       /**
        * 加载树形数据
