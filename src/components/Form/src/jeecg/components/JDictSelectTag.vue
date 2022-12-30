@@ -60,8 +60,8 @@
 
   export default defineComponent({
     name: 'JDictSelectTag',
-    inheritAttrs: false,
     components: { LoadingOutlined },
+    inheritAttrs: false,
     props: {
       value: propTypes.oneOfType([propTypes.string, propTypes.number, propTypes.array]),
       dictCode: propTypes.string,
@@ -70,7 +70,9 @@
       stringToNumber: propTypes.bool,
       getPopupContainer: {
         type: Function,
-        default: (node) => node.parentNode,
+        // update-begin--author:Curtis---date:2022-12-29 18:01:41---for:代码生成原生vue3在弹窗中使用该组件会被父窗口遮挡
+        default: (node) => document.body,
+        // update-end--author:Curtis---date:2022-12-29 18:01:41---for:代码生成原生vue3在弹窗中使用该组件会被父窗口遮挡
       },
       // 是否显示【请选择】选项
       showChooseOption: propTypes.bool.def(true),
@@ -128,7 +130,7 @@
       //update-end-author:taoyan date:20220404 for: 使用useRuleFormItem定义的value，会有一个问题，如果不是操作设置的值而是代码设置的控件值而不能触发change事件
 
       async function initDictData() {
-        let { dictCode, stringToNumber } = props;
+        const { dictCode, stringToNumber } = props;
         //根据字典Code, 初始化字典数组
         const dictData = await initDictOptions(dictCode);
         dictOptions.value = dictData.reduce((prev, next) => {
@@ -170,7 +172,7 @@
       /** 用于搜索下拉框中的内容 */
       function handleFilterOption(input, option) {
         // 在 label 中搜索
-        let labelIf = option.children()[0]?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0;
+        const labelIf = option.children()[0]?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0;
         if (labelIf) {
           return true;
         }
