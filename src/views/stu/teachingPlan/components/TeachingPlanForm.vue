@@ -8,6 +8,11 @@
           </a-form-item>
         </a-col>
         <a-col :span="24">
+          <a-form-item label="及格分数" v-bind="validateInfos.passMark">
+            <a-input-number v-model:value="formData.passMark" placeholder="请输入及格分数" :disabled="disabled" />
+          </a-form-item>
+        </a-col>
+        <a-col :span="24">
           <a-form-item label="科目编号" v-bind="validateInfos.subjectId">
             <j-popup
               placeholder="请选择科目编号"
@@ -74,6 +79,7 @@
         subjectId: '',
         courseOpeningDepart: '',
         offerTerm: '',
+        passMark: 60,
       });
 
       //表单验证
@@ -82,6 +88,7 @@
         subjectId: [{ required: true, message: '请输入科目编号!' }],
         courseOpeningDepart: [{ required: true, message: '请输入开课单位!' }],
         offerTerm: [{ required: true, message: '请输入开课学期!' }],
+        passMark: [{ required: true, message: '请输入及格分数!' }],
       });
       const { resetFields, validate, validateInfos } = useForm(formData, validatorRules, { immediate: true });
       const dbData = {};

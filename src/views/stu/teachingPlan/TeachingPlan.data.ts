@@ -17,6 +17,12 @@ export const columns: BasicColumn[] = [
     dataIndex: 'name',
   },
   {
+    title: '及格分数',
+    align: 'center',
+    dataIndex: 'passMark',
+    width: '5%',
+  },
+  {
     title: '科目编号',
     align: 'center',
     dataIndex: 'subjectId',
