@@ -1,5 +1,5 @@
 import { h } from 'vue';
-import { Avatar, Tag, Tooltip } from 'ant-design-vue';
+import { Avatar, Tag, Tooltip, Image } from 'ant-design-vue';
 import { getFileAccessHttpUrl } from '/@/utils/common/compUtils';
 import { Tinymce } from '/@/components/Tinymce';
 import Icon from '/@/components/Icon';
@@ -7,6 +7,7 @@ import { getDictItemsByCode } from '/@/utils/dict/index';
 import { filterMultiDictText } from '/@/utils/dict/JDictSelectUtil.js';
 import { isEmpty } from '/@/utils/is';
 import { useMessage } from '/@/hooks/web/useMessage';
+
 const { createMessage } = useMessage();
 
 const render = {
@@ -15,7 +16,7 @@ const render = {
    */
   renderAvatar: ({ record }) => {
     if (record.avatar) {
-      let avatarList = record.avatar.split(',');
+      const avatarList = record.avatar.split(',');
       return h(
         'span',
         avatarList.map((item) => {
@@ -45,8 +46,8 @@ const render = {
    */
   renderDict: (v, code, renderTag = false) => {
     let text = '';
-    let array = getDictItemsByCode(code) || [];
-    let obj = array.filter((item) => {
+    const array = getDictItemsByCode(code) || [];
+    const obj = array.filter((item) => {
       return item.value == v;
     });
     if (obj.length > 0) {
@@ -69,7 +70,7 @@ const render = {
         }
       );
     }
-    let avatarList = text.split(',');
+    const avatarList = text.split(',');
     return h(
       'span',
       avatarList.map((item) => {
@@ -82,6 +83,48 @@ const render = {
       })
     );
     //update-end-author:taoyan date:2022-5-24 for:  VUEN-1084 【vue3】online表单测试发现的新问题 41、生成的代码，树默认图大小未改
+  },
+  /**
+   * 头像作为渲染图片
+   * @param isPreview
+   */
+  renderAvatarImage: (isPreview = true) => {
+    return isPreview
+      ? /**
+         * @param text
+         */
+        ({ text }) => {
+          if (!text) {
+            return h(
+              Image,
+              { width: 32, height: 32, wrapperStyle: { marginRight: '5px', verticalAlign: 'middle' } },
+              {
+                placeholder: () => h(Icon, { icon: 'ant-design:file-image-outlined', size: 32 }),
+                previewMask: () => h(Icon, { icon: 'ant-design:eye-outlined' }),
+              }
+            );
+          }
+          const avatarList = text.split(',');
+          return h(
+            'span',
+            avatarList.map((item) => {
+              return h(
+                Image,
+                {
+                  src: getFileAccessHttpUrl(item),
+                  width: 32,
+                  height: 32,
+                  wrapperStyle: { marginRight: '5px', verticalAlign: 'middle' },
+                },
+                {
+                  placeholder: () => h(Icon, { icon: 'ant-design:file-image-outlined', size: 32 }),
+                  previewMask: () => h(Icon, { icon: 'ant-design:eye-outlined' }),
+                }
+              );
+            })
+          );
+        }
+      : render.renderAvatar;
   },
   /**
    * 渲染 Tooltip
@@ -120,7 +163,7 @@ const render = {
   renderDictNative: (v, array, renderTag = false) => {
     let text = '';
     let color = '';
-    let obj = array.filter((item) => {
+    const obj = array.filter((item) => {
       return item.value == v;
     });
     if (obj.length > 0) {
@@ -147,7 +190,7 @@ const render = {
     return text ? filterMultiDictText(arr, text) : '';
   },
   renderCategoryTree: (text, code) => {
-    let array = getDictItemsByCode(code);
+    const array = getDictItemsByCode(code);
     return filterMultiDictText(array, text);
   },
   renderTag(text, color) {

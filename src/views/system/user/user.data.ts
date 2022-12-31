@@ -18,7 +18,7 @@ export const columns: BasicColumn[] = [
     title: '头像',
     dataIndex: 'avatar',
     width: 120,
-    customRender: render.renderAvatar,
+    customRender: render.renderAvatarImage(),
   },
   {
     title: '性别',
