@@ -222,6 +222,7 @@ export interface BasicTableProps<T = any> {
   pagination?: PaginationProps | boolean;
   // loading加载
   loading?: boolean;
+  footerTableProps?: Recordable;
 
   /**
    * The column contains children to display

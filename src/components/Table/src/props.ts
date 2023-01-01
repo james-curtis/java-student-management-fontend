@@ -136,4 +136,8 @@ export const basicProps = {
     type: String as PropType<SizeType>,
     default: DEFAULT_SIZE,
   },
+  footerTableProps: {
+    type: Object,
+    default: () => ({}),
+  },
 };

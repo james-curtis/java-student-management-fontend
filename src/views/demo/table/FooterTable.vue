@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4">
+  <div class="p-4 table-area">
     <BasicTable @register="registerTable" />
   </div>
 </template>
@@ -20,12 +20,10 @@
         }, 0);
         return [
           {
-            _row: '合计',
-            _index: '平均值',
+            _index: '2',
             no: totalNo,
           },
           {
-            _row: '合计',
             _index: '平均值',
             no: totalNo,
           },
@@ -40,6 +38,7 @@
         summaryFunc: handleSummary,
         scroll: { x: 1000 },
         canResize: false,
+        footerTableProps: { rowSelection: { type: 'checkbox' } },
       });
 
       return {
@@ -48,3 +47,11 @@
     },
   });
 </script>
+
+<style lang="less" scoped>
+  @import '/@/assets/less/BasicTable.less';
+
+  .table-area {
+    .footerTableAlign();
+  }
+</style>

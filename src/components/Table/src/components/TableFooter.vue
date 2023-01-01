@@ -9,6 +9,7 @@
     :columns="getColumns"
     tableLayout="fixed"
     :scroll="scroll"
+    v-bind="attrs"
   />
 </template>
 <script lang="ts">
@@ -39,7 +40,7 @@
       },
       rowKey: propTypes.string.def('key'),
     },
-    setup(props) {
+    setup(props, { attrs }) {
       const table = useTableContext();
 
       const getDataSource = computed((): Recordable[] => {
@@ -88,7 +89,7 @@
         }
         return columns;
       });
-      return { getColumns, getDataSource };
+      return { getColumns, getDataSource, attrs };
     },
   });
 </script>

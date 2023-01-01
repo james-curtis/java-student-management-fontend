@@ -28,7 +28,7 @@ export function getBasicColumns(): BasicColumn[] {
       dataIndex: 'no',
       width: 150,
       sorter: true,
-      defaultHidden: true,
+      // defaultHidden: true,
     },
     {
       title: '开始时间',
