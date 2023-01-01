@@ -1,10 +1,13 @@
 import { defHttp } from '/@/utils/http/axios';
 import { message } from 'ant-design-vue';
 import { useGlobSetting } from '/@/hooks/setting';
+
 const globSetting = useGlobSetting();
 const baseUploadUrl = globSetting.uploadUrl;
+
 enum Api {
   positionList = '/sys/position/list',
+  getPositionByCode = '/sys/position/queryByCode',
   userList = '/sys/user/list',
   roleList = '/sys/role/list',
   queryDepartTreeSync = '/sys/sysDepart/queryDepartTreeSync',
@@ -27,6 +30,18 @@ export const uploadUrl = `${baseUploadUrl}/sys/common/upload`;
  */
 export const getPositionList = (params) => {
   return defHttp.get({ url: Api.positionList, params });
+};
+/**
+ * 职务列表
+ * @param code
+ */
+export const getPositionByCode = (code: string) => {
+  return defHttp.get({
+    url: Api.getPositionByCode,
+    params: {
+      code,
+    },
+  });
 };
 
 /**
@@ -109,11 +124,11 @@ export const downloadFile = (url, fileName?, parameter?) => {
       message.warning('文件下载失败');
       return;
     }
-    if (typeof window.navigator.msSaveBlob !== 'undefined') {
-      window.navigator.msSaveBlob(new Blob([data]), fileName);
+    if (typeof (window.navigator as any).msSaveBlob !== 'undefined') {
+      (window.navigator as any).msSaveBlob(new Blob([data]), fileName);
     } else {
-      let url = window.URL.createObjectURL(new Blob([data]));
-      let link = document.createElement('a');
+      const url = window.URL.createObjectURL(new Blob([data]));
+      const link = document.createElement('a');
       link.style.display = 'none';
       link.href = url;
       link.setAttribute('download', fileName);
