@@ -88,7 +88,7 @@ const render = {
    * 头像作为渲染图片
    * @param isPreview
    */
-  renderAvatarImage: (isPreview = true) => {
+  renderAvatarImage: (isPreview = true, size = 32) => {
     return isPreview
       ? /**
          * @param text
@@ -97,9 +97,9 @@ const render = {
           if (!text) {
             return h(
               Image,
-              { width: 32, height: 32, wrapperStyle: { marginRight: '5px', verticalAlign: 'middle' } },
+              { width: size, height: size, wrapperStyle: { marginRight: '5px', verticalAlign: 'middle' } },
               {
-                placeholder: () => h(Icon, { icon: 'ant-design:file-image-outlined', size: 32 }),
+                placeholder: () => h(Icon, { icon: 'ant-design:file-image-outlined', size }),
                 previewMask: () => h(Icon, { icon: 'ant-design:eye-outlined' }),
               }
             );
@@ -112,12 +112,12 @@ const render = {
                 Image,
                 {
                   src: getFileAccessHttpUrl(item),
-                  width: 32,
-                  height: 32,
+                  width: size,
+                  height: size,
                   wrapperStyle: { marginRight: '5px', verticalAlign: 'middle' },
                 },
                 {
-                  placeholder: () => h(Icon, { icon: 'ant-design:file-image-outlined', size: 32 }),
+                  placeholder: () => h(Icon, { icon: 'ant-design:file-image-outlined', size }),
                   previewMask: () => h(Icon, { icon: 'ant-design:eye-outlined' }),
                 }
               );
