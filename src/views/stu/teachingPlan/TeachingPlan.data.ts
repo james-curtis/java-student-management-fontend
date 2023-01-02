@@ -9,7 +9,7 @@ export const columns: BasicColumn[] = [
     title: '课程编号',
     align: 'center',
     dataIndex: 'id',
-    width: '11%',
+    width: 170,
   },
   {
     title: '课程名称',
@@ -20,18 +20,46 @@ export const columns: BasicColumn[] = [
     title: '及格分数',
     align: 'center',
     dataIndex: 'passMark',
-    width: '5%',
+    width: 80,
   },
   {
     title: '科目编号',
     align: 'center',
     dataIndex: 'subjectId',
-    width: '11%',
+    width: 170,
+    defaultHidden: true,
   },
   {
     title: '科目名称',
     align: 'center',
     dataIndex: 'subjectId_dictText',
+  },
+  {
+    title: '修读人数',
+    align: 'center',
+    dataIndex: 'studentCount',
+    width: 80,
+  },
+  {
+    title: '及格人数',
+    align: 'center',
+    dataIndex: 'passCount',
+    width: 80,
+  },
+  {
+    title: '平均成绩',
+    align: 'center',
+    dataIndex: 'scoreAverage',
+    width: 80,
+  },
+  {
+    title: '及格率',
+    align: 'center',
+    dataIndex: 'passRatio',
+    width: 80,
+    customRender: ({ text }) => {
+      return Number(text).toFixed(0) + '%';
+    },
   },
   {
     title: '开课单位',
@@ -43,14 +71,14 @@ export const columns: BasicColumn[] = [
     align: 'center',
     sorter: true,
     dataIndex: 'offerTerm_dictText',
-    width: '10%',
+    width: 150,
   },
   {
     title: '创建日期',
     align: 'center',
     sorter: true,
     dataIndex: 'createTime',
-    width: '10%',
+    width: 150,
   },
 ];
 //查询数据
