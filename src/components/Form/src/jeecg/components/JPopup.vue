@@ -118,7 +118,6 @@
         if (fieldConfig.length < 1) {
           return;
         }
-        debugger;
         const val = rows.map((row) => row[props.labelKey ?? fieldConfig[0].source]).join(',');
         showText.value = val && val.length > 0 ? val.split(props.spliter).join(',') : '';
       }
