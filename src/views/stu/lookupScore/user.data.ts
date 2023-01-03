@@ -7,8 +7,13 @@ import { getPositionByCode } from '/@/api/common/api';
 export const columns: BasicColumn[] = [
   {
     title: '班级排名',
-    width: 40,
+    width: 60,
     dataIndex: 'classRank',
+  },
+  {
+    title: '学号',
+    dataIndex: 'workNo',
+    width: 80,
   },
   {
     title: '姓名',
@@ -31,7 +36,7 @@ export const columns: BasicColumn[] = [
   },
   {
     title: '平均成绩',
-    width: 40,
+    width: 60,
     dataIndex: 'average',
     customRender: ({ text }) => {
       return Number(text).toFixed(2);
@@ -101,6 +106,16 @@ export const searchFormSchema: FormSchema[] = [
         labelKey: 'name',
       };
     },
+  },
+  {
+    label: '学号',
+    field: 'workNo',
+    component: 'Input',
+  },
+  {
+    label: '姓名',
+    field: 'realname',
+    component: 'Input',
   },
 ];
 
