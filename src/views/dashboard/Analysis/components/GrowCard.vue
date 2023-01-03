@@ -14,13 +14,13 @@
         </template>
 
         <div class="py-4 px-4 flex justify-between">
-          <CountTo prefix="$" :startVal="1" :endVal="item.value" class="text-2xl" />
+          <CountTo :startVal="1" :endVal="item.value" class="text-2xl" />
           <Icon :icon="item.icon" :size="40" />
         </div>
 
-        <div class="p-2 px-4 flex justify-between">
-          <span>总{{ item.title }}</span>
-          <CountTo prefix="$" :startVal="1" :endVal="item.total" />
+        <div class="p-2 px-4 flex justify-between" v-if="item?.subtitle">
+          <span>{{ item.subtitle }}</span>
+          <CountTo :startVal="1" :endVal="item.total" />
         </div>
       </Card>
     </template>
@@ -30,8 +30,9 @@
   import { CountTo } from '/@/components/CountTo/index';
   import { Icon } from '/@/components/Icon';
   import { Tag, Card } from 'ant-design-vue';
-  import { growCardList } from '../data';
+  import { useGrowCardList } from '../data';
 
+  const growCardList = await useGrowCardList();
   defineProps({
     loading: {
       type: Boolean,

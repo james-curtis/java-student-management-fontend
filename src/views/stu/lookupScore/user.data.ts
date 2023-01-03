@@ -51,6 +51,9 @@ export const columns: BasicColumn[] = [
     dataIndex: 'passRatio',
     customRender: ({ text, record }) => {
       const item = record as any;
+      if (!item.courseTotalSize) {
+        return '0%';
+      }
       return (Number(item.coursePassTotalSize / item.courseTotalSize) * 100).toFixed(0) + '%';
     },
   },
@@ -202,7 +205,7 @@ export const formSchema: FormSchema[] = [
       return {
         setFieldsValue: setFieldsValue,
         code: 'stu_class_selector',
-        fieldConfig: [{ source: 'id', target: 'selectedclass' }],
+        fieldConfig: [{ source: 'id', target: 'selectedClasses' }],
         multi: false,
         labelKey: 'name',
       };

@@ -6,42 +6,41 @@ export interface GrowCardItem {
   color?: string;
   action?: string;
   footer?: string;
+  subtitle?: string;
 }
 
-export const growCardList: GrowCardItem[] = [
-  {
-    title: '访问数',
-    icon: 'visit-count|svg',
-    value: 2000,
-    total: 120000,
-    color: 'green',
-    action: '月',
-  },
-  {
-    title: '成交额',
-    icon: 'total-sales|svg',
-    value: 20000,
-    total: 500000,
-    color: 'blue',
-    action: '月',
-  },
-  {
-    title: '下载数',
-    icon: 'download-count|svg',
-    value: 8000,
-    total: 120000,
-    color: 'orange',
-    action: '周',
-  },
-  {
-    title: '成交数',
-    icon: 'transaction|svg',
-    value: 5000,
-    total: 50000,
-    color: 'purple',
-    action: '年',
-  },
-];
+export const useGrowCardList = async () => {
+  return [
+    {
+      title: '科目数',
+      icon: 'visit-count|svg',
+      value: 3333,
+      color: 'green',
+      action: 'Subject',
+    },
+    {
+      title: '课程数',
+      icon: 'download-count|svg',
+      value: 4333,
+      color: 'orange',
+      action: 'Course',
+    },
+    {
+      title: '专业个数',
+      icon: 'total-sales|svg',
+      value: 200,
+      color: 'blue',
+      action: 'Depart',
+    },
+    {
+      title: '人员数量',
+      icon: 'transaction|svg',
+      value: 5000,
+      color: 'purple',
+      action: 'Student',
+    },
+  ] as GrowCardItem[];
+};
 
 export const chartCardList: GrowCardItem[] = [
   {
