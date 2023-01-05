@@ -95,7 +95,7 @@
             pca.area = props.value[2] ? props.value[2] : '';
           } else {
             //传参是数值
-            let valueArr = getRealCode(props.value, props.level);
+            const valueArr = getRealCode(props.value, props.level);
             if (valueArr) {
               pca.province = valueArr[0];
               pca.city = props.level >= 2 && valueArr[1] ? valueArr[1] : '';

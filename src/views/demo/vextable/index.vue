@@ -57,7 +57,7 @@
   };
 
   const getDropDownActions = (record) => {
-    let arr = [
+    const arr = [
       {
         label: '删除',
         popConfirm: {
@@ -93,7 +93,7 @@
   //添加事件
   function handleCreate(e) {
     addType.value = e.key;
-    let type = addType.value;
+    const type = addType.value;
     if (type == 1) {
       openOneToOneModal(true, {
         isUpdate: false,
@@ -113,7 +113,7 @@
 
   //编辑事件
   function handleEdit(record: Recordable) {
-    let type = addType.value;
+    const type = addType.value;
     if (type == 1) {
       openOneToOneModal(true, {
         record,

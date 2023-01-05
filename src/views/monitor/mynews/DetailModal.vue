@@ -46,14 +46,14 @@
   }
   //跳转至办理页面
   function jumpToHandlePage() {
-    let temp: any = content.value;
+    const temp: any = content.value;
     if (temp.busId) {
       //这个busId是 任务ID
-      let jsonStr = temp.msgAbstract;
-      let query = {};
+      const jsonStr = temp.msgAbstract;
+      const query = {};
       try {
         if (jsonStr) {
-          let temp = JSON.parse(jsonStr);
+          const temp = JSON.parse(jsonStr);
           if (temp) {
             Object.keys(temp).map((k) => {
               query[k] = temp[k];

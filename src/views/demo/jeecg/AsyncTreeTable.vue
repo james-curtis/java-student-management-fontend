@@ -32,7 +32,7 @@
 
   async function loadData(params) {
     loading.value = true;
-    let result = await defHttp.get({ url, params });
+    const result = await defHttp.get({ url, params });
     loading.value = false;
     return result.map((item) => {
       if (item.hasChildren) {

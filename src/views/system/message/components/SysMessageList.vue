@@ -110,7 +110,7 @@
         useSysMessage();
 
       function reload(params) {
-        let { fromUser, rangeDateKey, rangeDate } = params;
+        const { fromUser, rangeDateKey, rangeDate } = params;
         searchParams.fromUser = fromUser || '';
         searchParams.rangeDateKey = rangeDateKey || '';
         searchParams.rangeDate = rangeDate || [];

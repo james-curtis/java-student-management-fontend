@@ -26,7 +26,7 @@
   import { phoneVerify, getCaptcha } from '/@/api/sys/user';
 
   export default defineComponent({
-    name: 'step1',
+    name: 'Step1',
     components: {
       Button,
       Form,
@@ -63,7 +63,7 @@
           })
         );
         if (resultInfo.success) {
-          let accountInfo = {
+          const accountInfo = {
             username: resultInfo.result.username,
             phone: data.mobile,
             smscode: resultInfo.result.smscode,

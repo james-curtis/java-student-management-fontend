@@ -17,7 +17,7 @@
 
       /** 处理change事件 */
       function handleChange(event) {
-        let { target } = event;
+        const { target } = event;
         let { value, selectionStart } = target;
         let change = true;
         if (props.type === JVxeTypes.inputNumber) {
@@ -40,7 +40,7 @@
 
       /** 处理blur失去焦点事件 */
       function handleBlur(event) {
-        let { target } = event;
+        const { target } = event;
         // 判断输入的值是否匹配数字正则表达式，不匹配就置空
         if (props.type === JVxeTypes.inputNumber) {
           if (!NumberRegExp.test(target.value)) {

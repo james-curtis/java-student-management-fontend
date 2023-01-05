@@ -78,7 +78,7 @@ export const saveDepartPermission = (params) => defHttp.post({ url: Api.saveDepa
  *  查询部门数据权限列表
  */
 export const queryDepartDataRule = (functionId, departId, params?) => {
-  let url = `${Api.dataRule}/${unref(functionId)}/${unref(departId)}`;
+  const url = `${Api.dataRule}/${unref(functionId)}/${unref(departId)}`;
   return defHttp.get({ url, params });
 };
 /**

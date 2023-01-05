@@ -158,10 +158,10 @@
     if ($loading) {
       loading.value = true;
     }
-    let begin = Date.now();
-    let values: any[] = [];
+    const begin = Date.now();
+    const values: any[] = [];
     for (let i = 0; i < pageSize; i++) {
-      let radio = random(0, 2);
+      const radio = random(0, 2);
       values.push({
         id: buildUUID(),
         select_dict_search: ['admin', '', 'jeecg'][random(0, 2)],
@@ -170,8 +170,8 @@
       });
     }
     dataSource.value = values;
-    let end = Date.now();
-    let diff = end - begin;
+    const end = Date.now();
+    const diff = end - begin;
     if ($loading && diff < pageSize) {
       setTimeout(() => (loading.value = false), pageSize - diff);
     }

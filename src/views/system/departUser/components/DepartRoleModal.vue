@@ -37,7 +37,7 @@
     await resetFields();
     isUpdate.value = unref(data?.isUpdate);
     // 无论新增还是编辑，都可以设置表单值
-    let record = unref(data?.record);
+    const record = unref(data?.record);
     if (typeof record === 'object') {
       model.value = record;
       await setFieldsValue({ ...record });
@@ -48,7 +48,7 @@
   async function handleOk() {
     try {
       setModalProps({ confirmLoading: true });
-      let values = await validate();
+      const values = await validate();
       values.departId = unref(props.departId);
       //提交表单
       await saveOrUpdateDepartRole(values, isUpdate.value);

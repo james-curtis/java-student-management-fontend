@@ -277,7 +277,7 @@
   ];
 
   function getTipColor(rd) {
-    let num = rd.restDay;
+    const num = rd.restDay;
     if (num <= 0) {
       return tip_red;
     } else if (num >= 1 && num < 4) {
@@ -297,10 +297,10 @@
 
   function ifNullDataSource(ds, tb) {
     if (!ds || ds.length == 0) {
-      var tmp = document.createElement('img');
+      const tmp = document.createElement('img');
       tmp.src = noDataPng;
       tmp.width = 300;
-      let tbclass = `${tb} .ant-table-placeholder`;
+      const tbclass = `${tb} .ant-table-placeholder`;
       document.querySelector(tbclass).innerHTML = '';
       document.querySelector(tbclass).appendChild(tmp);
     }

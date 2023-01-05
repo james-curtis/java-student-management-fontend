@@ -158,7 +158,7 @@
        */
       watchEffect(() => {
         if (props.sorter) {
-          let arr = props.sorter.split('=');
+          const arr = props.sorter.split('=');
           if (arr.length === 2 && ['asc', 'desc'].includes(arr[1].toLowerCase())) {
             iSorter.value = { column: arr[0], order: arr[1].toLowerCase() };
             // 排序字段受控
@@ -214,7 +214,7 @@
           return false;
         }
         //update-begin-author:taoyan date:2022-5-31 for: VUEN-1155 popup 选择数据时，会选择多条重复数据
-        let rows = getOkSelectRows!();
+        const rows = getOkSelectRows!();
         emit('ok', rows);
         //update-end-author:taoyan date:2022-5-31 for: VUEN-1155 popup 选择数据时，会选择多条重复数据
         handleCancel();

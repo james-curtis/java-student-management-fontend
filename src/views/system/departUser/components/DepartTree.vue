@@ -35,19 +35,19 @@
   const emit = defineEmits(['select']);
   const { createMessage } = useMessage();
 
-  let loading = ref<boolean>(false);
+  const loading = ref<boolean>(false);
   // 部门树列表数据
-  let treeData = ref<any[]>([]);
+  const treeData = ref<any[]>([]);
   // 当前展开的项
-  let expandedKeys = ref<any[]>([]);
+  const expandedKeys = ref<any[]>([]);
   // 当前选中的项
-  let selectedKeys = ref<any[]>([]);
+  const selectedKeys = ref<any[]>([]);
   // 是否自动展开父级
-  let autoExpandParent = ref<boolean>(true);
+  const autoExpandParent = ref<boolean>(true);
   // 用户身份
-  let userIdentity = ref<string>('2');
+  const userIdentity = ref<string>('2');
   // 树组件重新加载
-  let treeReloading = ref<boolean>(false);
+  const treeReloading = ref<boolean>(false);
 
   // 加载部门信息
   function loadDepartTreeData() {
@@ -72,7 +72,7 @@
 
   // 自动展开父节点，只展开一级
   function autoExpandParentNode() {
-    let keys: Array<any> = [];
+    const keys: Array<any> = [];
     treeData.value.forEach((item, index) => {
       if (item.children && item.children.length > 0) {
         keys.push(item.key);

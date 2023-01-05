@@ -35,11 +35,11 @@
       let orderCustomerFormData = {};
       const queryByIdUrl = '/test/jeecgOrderMain/queryOrderCustomerListByMainId';
       async function initFormData(mainId) {
-        let params = { id: mainId };
+        const params = { id: mainId };
         const data = await defHttp.get({ url: queryByIdUrl, params });
         console.log('data', data);
         if (data && data.length > 0) {
-          let temp = data[0];
+          const temp = data[0];
           orderCustomerFormData = { ...temp };
           //设置表单的值
           await setFieldsValue(orderCustomerFormData);
@@ -47,7 +47,7 @@
         }
       }
       async function getFormData() {
-        let subFormData = { ...orderCustomerFormData };
+        const subFormData = { ...orderCustomerFormData };
         if (Object.keys(subFormData).length > 0) {
           return subFormData;
         }

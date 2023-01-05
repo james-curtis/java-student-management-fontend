@@ -47,7 +47,7 @@
       //下拉框选项值
       const selectOptions = ref<SelectValue>([]);
       //下拉框选中值
-      let selectValues = reactive<Recordable>({
+      const selectValues = reactive<Recordable>({
         value: [],
         change: false,
       });
@@ -97,7 +97,7 @@
        * 将字符串值转化为数组
        */
       function initValue() {
-        let value = props.value ? props.value : [];
+        const value = props.value ? props.value : [];
         if (value && typeof value === 'string' && value != 'null' && value != 'undefined') {
           state.value = value.split(',');
           selectValues.value = value.split(',');

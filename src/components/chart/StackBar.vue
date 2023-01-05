@@ -85,13 +85,13 @@
           Object.assign(option, props.option);
         }
         //图例类型
-        let typeArr = Array.from(new Set(props.chartData.map((item) => item.type)));
+        const typeArr = Array.from(new Set(props.chartData.map((item) => item.type)));
         //轴数据
-        let yAxisData = Array.from(new Set(props.chartData.map((item) => item.name)));
-        let seriesData = [];
+        const yAxisData = Array.from(new Set(props.chartData.map((item) => item.name)));
+        const seriesData = [];
         typeArr.forEach((type) => {
-          let obj = { name: type, type: props.type, stack: 'total' };
-          let chartArr = props.chartData.filter((item) => type === item.type);
+          const obj = { name: type, type: props.type, stack: 'total' };
+          const chartArr = props.chartData.filter((item) => type === item.type);
           //data数据
           obj['data'] = chartArr.map((item) => item.value);
           seriesData.push(obj);

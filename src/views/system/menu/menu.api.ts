@@ -52,7 +52,7 @@ export const batchDeleteMenu = (params, handleSuccess) => {
  * @param params
  */
 export const saveOrUpdateMenu = (params, isUpdate) => {
-  let url = isUpdate ? Api.edit : Api.save;
+  const url = isUpdate ? Api.edit : Api.save;
   return defHttp.post({ url: url, params });
 };
 /**
@@ -65,7 +65,7 @@ export const dataRuleList = (params) => defHttp.get({ url: Api.ruleList, params 
  * @param params
  */
 export const saveOrUpdateRule = (params, isUpdate) => {
-  let url = isUpdate ? Api.ruleEdit : Api.ruleSave;
+  const url = isUpdate ? Api.ruleEdit : Api.ruleSave;
   return defHttp.post({ url: url, params });
 };
 

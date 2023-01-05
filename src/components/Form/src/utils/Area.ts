@@ -24,7 +24,7 @@ class Area {
     if (!pcaa) {
       pcaa = REGION_DATA;
     }
-    let arr: PlainPca[] = [];
+    const arr: PlainPca[] = [];
     const province = pcaa['86'];
     Object.keys(province).map((key) => {
       arr.push({ id: key, text: province[key], pid: '86', index: 1 });
@@ -50,7 +50,7 @@ class Area {
     if (!text || text.length == 0) {
       return '';
     }
-    for (let item of this.all) {
+    for (const item of this.all) {
       if (item.text === text) {
         return item.id;
       }
@@ -61,19 +61,19 @@ class Area {
     if (!code || code.length == 0) {
       return '';
     }
-    let arr = [];
+    const arr = [];
     this.getAreaBycode(code, arr, 3);
     return arr.join('/');
   }
 
   getRealCode(code) {
-    let arr = [];
+    const arr = [];
     this.getPcode(code, arr, 3);
     return arr;
   }
 
   getPcode(id, arr, index) {
-    for (let item of this.all) {
+    for (const item of this.all) {
       if (item.id === id && item.index == index) {
         arr.unshift(id);
         if (item.pid != '86') {
@@ -84,7 +84,7 @@ class Area {
   }
 
   getAreaBycode(code, arr, index) {
-    for (let item of this.all) {
+    for (const item of this.all) {
       if (item.id === code && item.index == index) {
         arr.unshift(item.text);
         if (item.pid != '86') {

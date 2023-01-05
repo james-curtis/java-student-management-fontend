@@ -162,7 +162,7 @@
       createMessage.warning('请先选择一个部门');
     } else {
       setLoading(true);
-      let userIds = unref(idList).join(',');
+      const userIds = unref(idList).join(',');
       try {
         await unlinkDepartUserBatch({ depId: departId.value, userIds }, confirm);
         return reload();

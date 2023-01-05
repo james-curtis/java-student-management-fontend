@@ -47,7 +47,7 @@
       const localeStore = useLocaleStore();
       const getTitle = computed(() => {
         const { tabItem: { meta, fullPath } = {} } = props;
-        let title = localeStore.getPathTitle(fullPath);
+        const title = localeStore.getPathTitle(fullPath);
         if (title) {
           return title;
         }

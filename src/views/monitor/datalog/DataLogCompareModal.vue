@@ -77,12 +77,12 @@
       const dataTable = ref('');
       const confirmLoading = ref(false);
       const dataVersionList = ref([]);
-      let params = reactive({ dataId1: '', dataId2: '' });
-      let dataLog = reactive({});
+      const params = reactive({ dataId1: '', dataId2: '' });
+      const dataLog = reactive({});
       const [register, { setModalProps, closeModal }] = useModalInner(async (data) => {
         isUpdate.value = !!data?.isUpdate;
         if (unref(isUpdate)) {
-          let checkedRows = data.selectedRows;
+          const checkedRows = data.selectedRows;
           dataTable.value = checkedRows[0].dataTable;
           dataId.value = checkedRows[0].dataId;
           dataId1.value = checkedRows[0].id;
@@ -130,11 +130,11 @@
           console.info('test', res);
           dataVersion1Num.value = res[0].dataVersion;
           dataVersion2Num.value = res[1].dataVersion;
-          let json1 = JSON.parse(res[0].dataContent);
-          let json2 = JSON.parse(res[1].dataContent);
-          let data = [];
-          for (var item1 in json1) {
-            for (var item2 in json2) {
+          const json1 = JSON.parse(res[0].dataContent);
+          const json2 = JSON.parse(res[1].dataContent);
+          const data = [];
+          for (const item1 in json1) {
+            for (const item2 in json2) {
               if (item1 == item2) {
                 data.push({
                   code: item1,
@@ -165,7 +165,7 @@
         initTableData();
       }
       function setDataCss(record) {
-        let className = 'trcolor';
+        const className = 'trcolor';
         const dataVersion1 = record.dataVersion1;
         const dataVersion2 = record.dataVersion2;
         if (dataVersion1 != dataVersion2) {
@@ -175,7 +175,7 @@
       async function initDataVersionList() {
         queryDataVerList({ dataTable: dataTable.value, dataId: dataId.value }).then((res) => {
           dataVersionList.value = res.map((value, key, arr) => {
-            let item = {};
+            const item = {};
             item['text'] = value['dataVersion'];
             item['value'] = value['id'];
             return item;

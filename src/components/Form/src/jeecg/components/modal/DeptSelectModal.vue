@@ -63,7 +63,7 @@
       const treeRef = ref<Nullable<TreeActionType>>(null);
 
       //update-begin-author:taoyan date:2022-10-28 for: 部门选择警告类型不匹配
-      let propValue = props.value === '' ? [] : props.value;
+      const propValue = props.value === '' ? [] : props.value;
       const getBindValue = Object.assign({}, unref(props), unref(attrs), { value: propValue });
       //update-end-author:taoyan date:2022-10-28 for: 部门选择警告类型不匹配
 
@@ -91,7 +91,7 @@
 
       /** 获取查询数据方法 */
       function getQueryUrl() {
-        let queryFn = props.sync ? queryDepartTreeSync : queryTreeList;
+        const queryFn = props.sync ? queryDepartTreeSync : queryTreeList;
         //update-begin-author:taoyan date:2022-7-4 for: issues/I5F3P4 online配置部门选择后编辑，查看数据应该显示部门名称，不是部门代码
         return (params) => queryFn(Object.assign({}, params, { primaryKey: props.rowKey }));
         //update-end-author:taoyan date:2022-7-4 for: issues/I5F3P4 online配置部门选择后编辑，查看数据应该显示部门名称，不是部门代码

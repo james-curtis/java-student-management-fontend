@@ -79,10 +79,10 @@
       const uploadUrl = `${window._CONFIG['domianURL']}/sys/common/upload`;
       const token = getToken();
       function formatResult(files, responseText): string {
-        let data: any = JSON.parse(responseText);
+        const data: any = JSON.parse(responseText);
         // {"success":true,"message":"markdown/aa_1653391146501.png","code":0,"result":null,"timestamp":1653391146501}'
-        let filename = files[0].name as string;
-        let result = {
+        const filename = files[0].name as string;
+        const result = {
           msg: '',
           code: 0,
           data: {

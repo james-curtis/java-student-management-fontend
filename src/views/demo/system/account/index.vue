@@ -52,7 +52,7 @@
   import { useGo } from '/@/hooks/web/usePage';
 
   export default defineComponent({
-    name: 'system-account',
+    name: 'SystemAccount',
     components: { BasicTable, PageWrapper, DeptTree, AccountModal, TableAction },
     setup() {
       const go = useGo();

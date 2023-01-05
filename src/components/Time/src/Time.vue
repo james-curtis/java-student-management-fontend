@@ -76,7 +76,7 @@
         }
 
         let resStr = '';
-        let dirStr = isBefore ? t('component.time.before') : t('component.time.after');
+        const dirStr = isBefore ? t('component.time.before') : t('component.time.after');
 
         if (diff < ONE_SECONDS) {
           resStr = t('component.time.just');

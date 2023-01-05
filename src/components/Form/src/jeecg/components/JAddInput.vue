@@ -37,7 +37,7 @@
       const dynamicInput: UnwrapRef<{ params: Params[] }> = reactive({ params: [] });
       //删除Input
       const remove = (item: Params) => {
-        let index = dynamicInput.params.indexOf(item);
+        const index = dynamicInput.params.indexOf(item);
         if (index !== -1) {
           dynamicInput.params.splice(index, 1);
         }
@@ -64,7 +64,7 @@
         console.log('props.value', props.value);
         dynamicInput.params = [];
         if (props.value && props.value.indexOf('{') == 0) {
-          let jsonObj = JSON.parse(props.value);
+          const jsonObj = JSON.parse(props.value);
           Object.keys(jsonObj).forEach((key) => {
             dynamicInput.params.push({ label: key, value: jsonObj[key] });
           });
@@ -74,7 +74,7 @@
        * 数值改变
        */
       function emitChange() {
-        let obj = {};
+        const obj = {};
         if (dynamicInput.params.length > 0) {
           dynamicInput.params.forEach((item) => {
             obj[item['label']] = item['value'];

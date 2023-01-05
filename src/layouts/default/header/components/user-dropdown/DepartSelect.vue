@@ -125,7 +125,7 @@
     if (!result.list || result.list.length == 0) {
       return;
     }
-    let currentDepart = result.list.filter((item) => item.orgCode == result.orgCode);
+    const currentDepart = result.list.filter((item) => item.orgCode == result.orgCode);
     departList.value = result.list;
     departSelected.value = currentDepart && currentDepart.length > 0 ? result.orgCode : '';
     currentDepartName.value = currentDepart && currentDepart.length > 0 ? currentDepart[0].departName : '';
@@ -139,8 +139,8 @@
     if (!result.list || result.list.length == 0) {
       return;
     }
-    let tenantId = userStore.getTenant;
-    let currentTenant = result.list.filter((item) => item.id == tenantId);
+    const tenantId = userStore.getTenant;
+    const currentTenant = result.list.filter((item) => item.id == tenantId);
     currentTenantName.value = currentTenant && currentTenant.length > 0 ? currentTenant[0].name : '';
     tenantList.value = result.list;
     tenantSelected.value = tenantId;

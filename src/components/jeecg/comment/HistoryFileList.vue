@@ -52,6 +52,14 @@
 
   export default {
     name: 'HistoryFileList',
+    components: {
+      UploadOutlined,
+      FolderOutlined,
+      DownloadOutlined,
+      PaperClipOutlined,
+      DeleteOutlined,
+      Tooltip,
+    },
     props: {
       dataList: {
         type: Array,
@@ -61,14 +69,6 @@
         type: Boolean,
         default: false,
       },
-    },
-    components: {
-      UploadOutlined,
-      FolderOutlined,
-      DownloadOutlined,
-      PaperClipOutlined,
-      DeleteOutlined,
-      Tooltip,
     },
     setup() {
       const { getBackground, getFileSize, downLoad, isImage, getImageAsBackground, viewImage } = useFileList();

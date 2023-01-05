@@ -28,7 +28,7 @@
       const { innerValue, cellProps, originColumn, handleChangeCommon } = useJVxeComponent(props);
       const innerTimeValue = ref<any>(null);
       const format = computed(() => {
-        let format = originColumn.value.format;
+        const format = originColumn.value.format;
         return format ? format : 'HH:mm:ss';
       });
       const openPicker = ref(true);

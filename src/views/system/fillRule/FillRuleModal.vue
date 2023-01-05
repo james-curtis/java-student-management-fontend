@@ -42,10 +42,10 @@
   //表单提交事件
   async function handleSubmit() {
     try {
-      let formValue = await validate();
+      const formValue = await validate();
       setModalProps({ confirmLoading: true });
       if (isUpdate.value) {
-        let allFieldsValue = getFieldsValue();
+        const allFieldsValue = getFieldsValue();
         // 编辑页面 如果表单没有父级下拉框 则提交时候 validate方法不返该值 需要手动设置
         if (!formValue.parentId && allFieldsValue.parentId) {
           formValue.parentId = allFieldsValue.parentId;

@@ -99,8 +99,8 @@
 
   // 发送变更行请求
   function doSendUpdateRow(event) {
-    let { $table, row, column } = event;
-    let field = column.property;
+    const { $table, row, column } = event;
+    const field = column.property;
     // 判断单元格值是否被修改
     if ($table.isUpdateByRow(row, field)) {
       // 校验当前行
@@ -108,7 +108,7 @@
         // 校验通过
         if (!errMap) {
           // 【模拟保存】（此处需要替换成真实的请求）
-          let hideLoading = createMessage.loading(`正在保存"${column.title}"`, 0);
+          const hideLoading = createMessage.loading(`正在保存"${column.title}"`, 0);
           setTimeout(() => {
             hideLoading();
             createMessage.success(`"${column.title}"保存成功！`);

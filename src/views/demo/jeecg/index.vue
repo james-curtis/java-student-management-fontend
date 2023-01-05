@@ -24,7 +24,7 @@
   import JeecgPdfView from './JeecgPdfView.vue';
   import JUploadDemo from './JUploadDemo.vue';
   export default defineComponent({
-    name: 'comp-jeecg-basic',
+    name: 'CompJeecgBasic',
     setup() {
       const activeKey = ref('JeecgComponents');
       const currentComponent = computed(() => {

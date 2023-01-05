@@ -23,7 +23,7 @@
     name: 'TokenLogin',
     setup() {
       const route = useRoute();
-      let router = useRouter();
+      const router = useRouter();
       const { createMessage, notification } = useMessage();
       const { t } = useI18n();
       const routeQuery: any = route.query;
@@ -54,11 +54,11 @@
       }
 
       function requestSuccess(res) {
-        let info = routeQuery.info;
+        const info = routeQuery.info;
         if (info) {
-          let query = JSON.parse(info);
-          let taskId = query.taskId;
-          let path = '/task/handle/' + taskId;
+          const query = JSON.parse(info);
+          const taskId = query.taskId;
+          const path = '/task/handle/' + taskId;
           router.replace({ path, query });
           notification.success({
             message: t('sys.login.loginSuccessTitle'),

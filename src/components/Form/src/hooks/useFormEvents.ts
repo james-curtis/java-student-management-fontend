@@ -239,9 +239,9 @@ export function useFormEvents({
       const values = await validate();
       //update-begin---author:zhangdaihao   Date:20140212  for：[bug号]树机构调整------------
       //--updateBy-begin----author:zyf---date:20211206------for:对查询表单提交的数组处理成字符串------
-      for (let key in values) {
+      for (const key in values) {
         if (values[key] instanceof Array) {
-          let valueType = getValueType(getProps, key);
+          const valueType = getValueType(getProps, key);
           if (valueType === 'string') {
             values[key] = values[key].join(',');
           }

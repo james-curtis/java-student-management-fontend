@@ -42,7 +42,7 @@
   //监控扫码状态
   function watchQrcodeToken(qrcodeId) {
     getQrcodeToken({ qrcodeId: qrcodeId }).then((res) => {
-      let token = res.token;
+      const token = res.token;
       if (token == '-2') {
         //二维码过期重新获取
         loadQrCode();

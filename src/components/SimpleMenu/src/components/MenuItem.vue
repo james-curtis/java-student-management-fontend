@@ -110,7 +110,7 @@
         console.log('storePathTitle', path);
         let title = '';
         if (instance!.attrs) {
-          let item: any = instance!.attrs.item;
+          const item: any = instance!.attrs.item;
           if (item) {
             title = item.title;
           }

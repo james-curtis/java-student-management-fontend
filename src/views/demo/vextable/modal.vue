@@ -137,7 +137,7 @@
   import { orderCustomerList, orderTicketList } from './api';
 
   export default defineComponent({
-    name: 'tableModal',
+    name: 'TableModal',
     components: { BasicModal },
     emits: ['success', 'register'],
     setup(props, { emit }) {
@@ -171,7 +171,7 @@
         if (unref(isUpdate)) {
           rowId.value = data.record.id;
           Object.assign(orderMainModel, data.record);
-          let params = { id: orderMainModel.id };
+          const params = { id: orderMainModel.id };
           const customerList = await orderCustomerList(params);
           orderMainModel.jeecgOrderCustomerList = customerList;
           const ticketList = await orderTicketList(params);

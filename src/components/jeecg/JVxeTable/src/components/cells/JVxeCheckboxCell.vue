@@ -54,11 +54,11 @@
         visible: true,
       },
       getValue(value, ctx) {
-        let { context } = ctx!;
-        let { originColumn } = context;
+        const { context } = ctx!;
+        const { originColumn } = context;
         // 处理 customValue
         if (isArray(originColumn.value.customValue)) {
-          let customValue = getCustomValue(originColumn.value);
+          const customValue = getCustomValue(originColumn.value);
           if (isBoolean(value)) {
             return value ? customValue[0] : customValue[1];
           } else {
@@ -69,23 +69,23 @@
         }
       },
       setValue(value, ctx) {
-        let { context } = ctx!;
-        let { originColumn } = context;
+        const { context } = ctx!;
+        const { originColumn } = context;
         // 判断是否设定了customValue（自定义值）
         if (isArray(originColumn.value.customValue)) {
-          let customValue = getCustomValue(originColumn.value);
+          const customValue = getCustomValue(originColumn.value);
           return neverNull(value).toString() === customValue[0].toString();
         } else {
           return !!value;
         }
       },
       createValue(_defaultValue, ctx) {
-        let { context } = ctx!;
-        let {
+        const { context } = ctx!;
+        const {
           column: { params: col },
         } = context;
         if (isArray(col.customValue)) {
-          let customValue = getCustomValue(col);
+          const customValue = getCustomValue(col);
           return col.defaultChecked ? customValue[0] : customValue[1];
         } else {
           return !!col.defaultChecked;
@@ -99,8 +99,8 @@
   }
 
   function getCustomValue(col) {
-    let customTrue = neverNull(col.customValue[0], true);
-    let customFalse = neverNull(col.customValue[1], false);
+    const customTrue = neverNull(col.customValue[0], true);
+    const customFalse = neverNull(col.customValue[1], false);
     return [customTrue, customFalse];
   }
 </script>

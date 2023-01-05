@@ -25,7 +25,7 @@ export function useSysMessage() {
 
   const messageList = ref<any[]>([]);
   const pageNo = ref(1);
-  let pageSize = 10;
+  const pageSize = 10;
 
   const searchParams = reactive({
     fromUser: '',
@@ -35,8 +35,8 @@ export function useSysMessage() {
   });
 
   function getQueryParams() {
-    let { fromUser, rangeDateKey, rangeDate, starFlag } = searchParams;
-    let params = {
+    const { fromUser, rangeDateKey, rangeDate, starFlag } = searchParams;
+    const params = {
       fromUser,
       starFlag,
       rangeDateKey,
@@ -60,7 +60,7 @@ export function useSysMessage() {
     if (loadEndStatus.value === true) {
       return;
     }
-    let params = getQueryParams();
+    const params = getQueryParams();
     const data = await queryMessageList(params);
     console.log('获取结果', data);
     if (!data || data.length <= 0) {
@@ -71,7 +71,7 @@ export function useSysMessage() {
       loadEndStatus.value = true;
     }
     pageNo.value = pageNo.value + 1;
-    let temp: any[] = messageList.value;
+    const temp: any[] = messageList.value;
     temp.push(...data);
     messageList.value = temp;
   }
@@ -177,7 +177,7 @@ export function useMessageHref(emit) {
    */
   async function goPageWithBusType(record) {
     const { busType, busId, msgAbstract } = record;
-    let temp = messageHrefArray.filter((item) => item.value === busType);
+    const temp = messageHrefArray.filter((item) => item.value === busType);
     if (!temp || temp.length == 0) {
       console.error('当前业务类型不识别', busType);
       return;
@@ -185,13 +185,13 @@ export function useMessageHref(emit) {
     let path = temp[0].text;
     path = path.replace('{DETAIL_ID}', busId);
     //固定参数 detailId 用于查询表单数据
-    let query = {
+    const query = {
       detailId: busId,
     };
     // 额外参数处理
     if (msgAbstract) {
       try {
-        let json = JSON.parse(msgAbstract);
+        const json = JSON.parse(msgAbstract);
         Object.keys(json).map((k) => {
           query[k] = json[k];
         });

@@ -17,13 +17,13 @@
 
   export default defineComponent({
     name: 'FullScreenSetting',
-    props: {
-      isMobile: Boolean,
-    },
     components: {
       FullscreenExitOutlined,
       FullscreenOutlined,
       Tooltip,
+    },
+    props: {
+      isMobile: Boolean,
     },
 
     setup(props) {
@@ -31,7 +31,7 @@
       const { t } = useI18n();
       const { toggle, isFullscreen } = useFullscreen(table.wrapRef);
       const getBindProps = computed(() => {
-        let obj = {};
+        const obj = {};
         if (props.isMobile) {
           obj['visible'] = false;
         }

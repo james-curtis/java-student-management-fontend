@@ -156,7 +156,7 @@
       } else {
         //新增子集
         expandedRowKeys.value = [];
-        for (let key of unref(expandedArr)) {
+        for (const key of unref(expandedArr)) {
           await expandTreeNode(key);
         }
       }
@@ -177,10 +177,10 @@
       const res = await getChildListBatch({ parentIds: unref(expandedRowKeys).join(',') });
       if (res.success && res.result.records.length > 0) {
         //已展开的数据批量子节点
-        let records = res.result.records;
+        const records = res.result.records;
         const listMap = new Map();
-        for (let item of records) {
-          let pid = item['pid'];
+        for (const item of records) {
+          const pid = item['pid'];
           if (unref(expandedRowKeys).includes(pid)) {
             let mapList = listMap.get(pid);
             if (mapList == null) {
@@ -190,8 +190,8 @@
             listMap.set(pid, mapList);
           }
         }
-        let childrenMap = listMap;
-        let fn = (list) => {
+        const childrenMap = listMap;
+        const fn = (list) => {
           if (list) {
             list.forEach((data) => {
               if (unref(expandedRowKeys).includes(data.id)) {
@@ -213,7 +213,7 @@
       return result.map((item) => {
         //判断是否标记了带有子节点
         if (item['hasChild'] == '1') {
-          let loadChild = { id: item.id + '_loadChild', name: 'loading...', isLoading: true };
+          const loadChild = { id: item.id + '_loadChild', name: 'loading...', isLoading: true };
           item.children = [loadChild];
         }
         return item;
@@ -228,7 +228,7 @@
     if (expanded) {
       expandedRowKeys.value.push(record.id);
       if (record.children.length > 0 && !!record.children[0].isLoading) {
-        let result = await getChildList({ pid: record.id });
+        const result = await getChildList({ pid: record.id });
         if (result && result.length > 0) {
           record.children = getDataByResult(result);
         } else {
@@ -237,7 +237,7 @@
         }
       }
     } else {
-      let keyIndex = expandedRowKeys.value.indexOf(record.id);
+      const keyIndex = expandedRowKeys.value.indexOf(record.id);
       if (keyIndex >= 0) {
         expandedRowKeys.value.splice(keyIndex, 1);
       }
@@ -247,9 +247,9 @@
    *操作表格后处理树节点展开合并
    * */
   async function expandTreeNode(key) {
-    let record = findTableDataRecord(key);
+    const record = findTableDataRecord(key);
     expandedRowKeys.value.push(key);
-    let result = await getChildList({ pid: key });
+    const result = await getChildList({ pid: key });
     if (result && result.length > 0) {
       record.children = getDataByResult(result);
     } else {

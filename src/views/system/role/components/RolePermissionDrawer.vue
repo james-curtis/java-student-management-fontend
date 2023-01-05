@@ -105,7 +105,7 @@
    * 提交
    */
   async function handleSubmit(exit) {
-    let params = {
+    const params = {
       roleId: unref(roleId),
       permissionIds: unref(getTree().getCheckedKeys()).join(','),
       lastpermissionIds: unref(defaultCheckedKeys).join(','),

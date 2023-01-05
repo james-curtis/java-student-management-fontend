@@ -157,7 +157,7 @@
   }
 
   const exportParams = computed(() => {
-    let paramsForm = {};
+    const paramsForm = {};
     if (checkedKeys.value && checkedKeys.value.length > 0) {
       paramsForm['selections'] = checkedKeys.value.join(',');
     }

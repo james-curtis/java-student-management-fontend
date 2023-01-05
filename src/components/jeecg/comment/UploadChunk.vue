@@ -82,7 +82,7 @@
       const { selectFileList, beforeUpload, handleRemove, getBackground, isImage, getImageSrc, viewImage } = useFileList();
 
       function getUploadFileList() {
-        let list = toRaw(selectFileList.value);
+        const list = toRaw(selectFileList.value);
         console.log(list);
         return list;
       }
@@ -95,7 +95,7 @@
         () => selectFileList.value,
         (arr) => {
           if (arr && arr.length > 0) {
-            let name = arr[0].name;
+            const name = arr[0].name;
             if (name) {
               emit('select', name);
             }

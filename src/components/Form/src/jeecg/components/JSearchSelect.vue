@@ -125,7 +125,7 @@
         const currentLoad = unref(lastLoad);
         options.value = [];
         loading.value = true;
-        let keywordInfo = getKeywordParam(value);
+        const keywordInfo = getKeywordParam(value);
         // 字典code格式：table,text,code
         defHttp
           .get({
@@ -152,12 +152,12 @@
           return;
         }
         //update-end-author:taoyan date:2022-4-24 for: 下拉搜索组件每次选中值会触发value的监听事件，触发此方法，但是实际不需要
-        let { async, value, dict } = props;
+        const { async, value, dict } = props;
         if (async) {
-          if (!selectedAsyncValue || !selectedAsyncValue.key || selectedAsyncValue.key !== value) {
+          if (!selectedAsyncValue.value || !selectedAsyncValue.value.key || selectedAsyncValue.value.key !== value) {
             defHttp.get({ url: `/sys/dict/loadDictItem/${dict}`, params: { key: value } }).then((res) => {
               if (res && res.length > 0) {
-                let obj = {
+                const obj = {
                   key: value,
                   label: res,
                 };
@@ -184,7 +184,7 @@
        * 初始化字典下拉数据
        */
       async function initDictData() {
-        let { dict, async, dictOptions, pageSize } = props;
+        const { dict, async, dictOptions, pageSize } = props;
         if (!async) {
           //如果字典项集合有数据
           if (dictOptions && dictOptions.length > 0) {
@@ -193,9 +193,9 @@
             //根据字典Code, 初始化字典数组
             let dictStr = '';
             if (dict) {
-              let arr = dict.split(',');
+              const arr = dict.split(',');
               if (arr[0].indexOf('where') > 0) {
-                let tbInfo = arr[0].split('where');
+                const tbInfo = arr[0].split('where');
                 dictStr = tbInfo[0].trim() + ',' + arr[1] + ',' + arr[2] + ',' + encodeURIComponent(tbInfo[1]);
               } else {
                 dictStr = dict;
@@ -211,7 +211,7 @@
           } else {
             //异步一开始也加载一点数据
             loading.value = true;
-            let keywordInfo = getKeywordParam('');
+            const keywordInfo = getKeywordParam('');
             defHttp
               .get({
                 url: `/sys/dict/loadDict/${dict}`,
@@ -269,7 +269,7 @@
         } catch (e) {
           console.log('获取下拉项失败', e);
         }
-        let str = input.toLowerCase();
+        const str = input.toLowerCase();
         return value.toLowerCase().indexOf(str) >= 0 || label.toLowerCase().indexOf(str) >= 0;
         //update-end-author:taoyan date:2022-11-8 for: issues/218 所有功能表单的下拉搜索框搜索无效
       }
@@ -293,7 +293,7 @@
       function getKeywordParam(text) {
         // 如果设定了排序信息，需要写入排序信息，在关键词后加 [orderby:create_time,desc]
         if (props.params && props.params.column && props.params.order) {
-          let temp = text || '';
+          const temp = text || '';
           return temp + '[orderby:' + props.params.column + ',' + props.params.order + ']';
         } else {
           return text;

@@ -124,8 +124,8 @@
   async function onDeleteBatch() {
     try {
       //update-begin-author:taoyan date:2022-7-14 for: VUEN-1652【bug】应用状态下不允许删除
-      let arr = toRaw(selectedRows.value);
-      let temp = arr.filter((item) => item.useStatus == '1');
+      const arr = toRaw(selectedRows.value);
+      const temp = arr.filter((item) => item.useStatus == '1');
       if (temp.length > 0) {
         createMessage.warning('选中的模板已被应用禁止删除!');
         return;
@@ -172,7 +172,7 @@
    * 应用
    */
   async function handleUse(record) {
-    let param = { id: record.id, useStatus: '1' };
+    const param = { id: record.id, useStatus: '1' };
     await saveOrUpdate(param, true);
     await reload();
   }
@@ -181,7 +181,7 @@
    * 停用
    */
   async function handleNotUse(record) {
-    let param = { id: record.id, useStatus: '0' };
+    const param = { id: record.id, useStatus: '0' };
     await saveOrUpdate(param, true);
     await reload();
   }

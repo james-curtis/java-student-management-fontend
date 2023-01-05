@@ -160,7 +160,7 @@
   const isUpdate = ref(true);
   const inputRef = ref();
   const inputRef2 = ref();
-  let state = reactive({
+  const state = reactive({
     inputVisible: false,
     inputValue: '',
   });
@@ -242,7 +242,7 @@
 
   //删除路由条件配置项
   function removeTag(item, removedTag) {
-    let tags = item.args.filter((tag) => tag !== removedTag);
+    const tags = item.args.filter((tag) => tag !== removedTag);
     item.args = tags;
   }
 
@@ -370,7 +370,7 @@
 
   //输入框确认
   function handleInputConfirm(item) {
-    let tags = item.args;
+    const tags = item.args;
     const inputValue = state.inputValue;
     if (inputValue && tags.indexOf(inputValue) === -1) {
       item.args = [...tags, state.inputValue];
@@ -402,7 +402,7 @@
       try {
         setDrawerProps({ confirmLoading: true });
         //重新构造表单提交对象,切记不可修改router对象，数组修改为字符串容易造成界面混乱
-        let params = Object.assign({}, router, {
+        const params = Object.assign({}, router, {
           predicates: JSON.stringify(router.predicates),
           filters: JSON.stringify(router.filters),
         });

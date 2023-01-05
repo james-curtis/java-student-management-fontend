@@ -48,7 +48,7 @@
     if (env.value.thirdApp) {
       // 判断是否携带了Token，是就说明登录成功
       if (route.query.oauth2LoginToken) {
-        let token = route.query.oauth2LoginToken;
+        const token = route.query.oauth2LoginToken;
         //执行登录操作
         thirdLogin({ token, thirdType: route.query.thirdType });
       } else if (env.value.wxWork) {

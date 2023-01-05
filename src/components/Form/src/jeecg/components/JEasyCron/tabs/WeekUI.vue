@@ -84,9 +84,9 @@
         disabled: disabledChoice,
       });
       const weekOptions = computed(() => {
-        let options: { label: string; value: number }[] = [];
-        for (let weekKey of Object.keys(WEEK_MAP_CN)) {
-          let weekName: string = WEEK_MAP_CN[weekKey];
+        const options: { label: string; value: number }[] = [];
+        for (const weekKey of Object.keys(WEEK_MAP_CN)) {
+          const weekName: string = WEEK_MAP_CN[weekKey];
           options.push({
             value: Number.parseInt(weekKey),
             label: weekName,

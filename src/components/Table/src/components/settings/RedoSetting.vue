@@ -15,19 +15,19 @@
 
   export default defineComponent({
     name: 'RedoSetting',
-    props: {
-      isMobile: Boolean,
-    },
     components: {
       RedoOutlined,
       Tooltip,
+    },
+    props: {
+      isMobile: Boolean,
     },
     setup(props) {
       const table = useTableContext();
       const { t } = useI18n();
 
       const getBindProps = computed(() => {
-        let obj = {};
+        const obj = {};
         if (props.isMobile) {
           obj['visible'] = false;
         }

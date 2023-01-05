@@ -32,7 +32,7 @@
       const [registerModel, { openModal, closeModal, getVisible }] = useModal();
 
       function open(event) {
-        let { row: $row, column: $column } = event;
+        const { row: $row, column: $column } = event;
         row.value = cloneDeep($row);
         column.value = $column;
         openModal();

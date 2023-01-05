@@ -37,7 +37,7 @@
       //下拉框选项值
       const selectOptions = ref<SelectValue>([]);
       //下拉框选中值
-      let selectValues = reactive<Recordable>({
+      const selectValues = reactive<Recordable>({
         value: [],
       });
       // 是否正在加载回显数据
@@ -79,7 +79,7 @@
        * 监听selectOptions变化
        */
       watch(selectOptions, () => {
-        if (selectOptions) {
+        if (selectOptions.value) {
           emit('select', toRaw(unref(selectOptions)), toRaw(unref(selectValues)));
         }
       });
@@ -98,7 +98,7 @@
        * 将字符串值转化为数组
        */
       function initValue() {
-        let value = props.value ? props.value : [];
+        const value = props.value ? props.value : [];
         if (value && typeof value === 'string') {
           state.value = value.split(',');
           selectValues.value = value.split(',');

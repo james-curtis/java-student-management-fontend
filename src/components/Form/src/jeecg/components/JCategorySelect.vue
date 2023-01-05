@@ -95,7 +95,7 @@
       );
 
       function loadRoot() {
-        let param = {
+        const param = {
           pid: props.pid,
           pcode: !props.pcode ? '0' : props.pcode,
           condition: props.condition,
@@ -103,7 +103,7 @@
         console.info(param);
         loadTreeData(param).then((res) => {
           if (res && res.length > 0) {
-            for (let i of res) {
+            for (const i of res) {
               i.value = i.key;
               if (i.leaf == false) {
                 i.isLeaf = false;
@@ -125,7 +125,7 @@
           }
         } else {
           loadDictItem({ ids: props.value }).then((res) => {
-            let values = props.value.split(',');
+            const values = props.value.split(',');
             treeValue.value = res.map((item, index) => ({
               key: values[index],
               value: values[index],
@@ -147,7 +147,7 @@
       }
 
       function backValue(value, label) {
-        let obj = {};
+        const obj = {};
         if (props.back) {
           obj[props.back] = label;
         }
@@ -155,20 +155,20 @@
       }
 
       function asyncLoadTreeData(treeNode) {
-        let dataRef = treeNode.dataRef;
+        const dataRef = treeNode.dataRef;
         return new Promise<void>((resolve) => {
           if (treeNode.children && treeNode.children.length > 0) {
             resolve();
             return;
           }
-          let pid = dataRef.key;
-          let param = {
+          const pid = dataRef.key;
+          const param = {
             pid: pid,
             condition: props.condition,
           };
           loadTreeData(param).then((res) => {
             if (res) {
-              for (let i of res) {
+              for (const i of res) {
                 i.value = i.key;
                 if (i.leaf == false) {
                   i.isLeaf = false;
@@ -185,7 +185,7 @@
 
       function addChildren(pid, children, treeArray) {
         if (treeArray && treeArray.length > 0) {
-          for (let item of treeArray) {
+          for (const item of treeArray) {
             if (item.key == pid) {
               if (!children || children.length == 0) {
                 item.isLeaf = true;
@@ -205,8 +205,8 @@
           emit('change', '');
           treeValue.value = '';
         } else if (Array.isArray(value)) {
-          let labels = [];
-          let values = value.map((item) => {
+          const labels = [];
+          const values = value.map((item) => {
             labels.push(item.label);
             return item.value;
           });
@@ -223,13 +223,13 @@
       }
 
       function validateProp() {
-        let mycondition = props.condition;
+        const mycondition = props.condition;
         return new Promise((resolve, reject) => {
           if (!mycondition) {
             resolve();
           } else {
             try {
-              let test = JSON.parse(mycondition);
+              const test = JSON.parse(mycondition);
               if (typeof test == 'object' && test) {
                 resolve();
               } else {

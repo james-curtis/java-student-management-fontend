@@ -60,7 +60,7 @@
           if (innerFile.value['url']) {
             return [innerFile.value['url']];
           } else if (innerFile.value['path']) {
-            let paths = innerFile.value['path'].split(',');
+            const paths = innerFile.value['path'].split(',');
             return paths.map((p) => getFileAccessHttpUrl(p));
           }
         }
@@ -69,7 +69,7 @@
 
       // 弹出上传出错详细信息
       function handleClickShowImageError() {
-        let file = innerFile.value || null;
+        const file = innerFile.value || null;
         if (file && file['message']) {
           createErrorModal({
             title: '上传出错',

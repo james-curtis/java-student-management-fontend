@@ -46,7 +46,7 @@
 
       function onSearch(value) {
         // 是否找到了对应的项，找不到则添加这一项
-        let foundIt =
+        const foundIt =
           options.value.findIndex((option) => {
             return option.value.toString() === value.toString();
           }) !== -1;
@@ -63,7 +63,7 @@
 
       // 删除无用的因搜索（用户输入）而创建的项
       function deleteSearchAdd(value = '') {
-        let indexes: any[] = [];
+        const indexes: any[] = [];
         options.value.forEach((option, index) => {
           if (option.searchAdd) {
             if ((option.value ?? '').toString() !== value.toString()) {
@@ -72,7 +72,7 @@
           }
         });
         // 翻转删除数组中的项
-        for (let index of indexes.reverse()) {
+        for (const index of indexes.reverse()) {
           options.value.splice(index, 1);
         }
       }

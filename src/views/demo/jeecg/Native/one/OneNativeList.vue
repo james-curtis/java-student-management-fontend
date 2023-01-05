@@ -43,7 +43,7 @@
         :rowSelection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }"
         @change="handleTableChange"
       >
-        <template slot="htmlSlot" slot-scope="text">
+        <template #htmlSlot="text">
           <div v-html="text"></div>
         </template>
         <template #imgSlot="{ text, record }">
@@ -261,9 +261,9 @@
    * 导出excel
    */
   function handleExportExcel(title) {
-    let paramsForm = getQueryParams();
+    const paramsForm = getQueryParams();
     if (selectedRowKeys.value && selectedRowKeys.value.length > 0) {
-      paramsForm['selections'] = selectedRowKeys.join(',');
+      paramsForm['selections'] = selectedRowKeys.value.join(',');
     }
     handleExportXls(title, Api.exportXls, filterObj(paramsForm));
   }
@@ -281,7 +281,7 @@
    * 获取查询参数
    */
   function getQueryParams() {
-    let params = Object.assign(queryParam.value, iSorter.value, iFilters.value);
+    const params = Object.assign(queryParam.value, iSorter.value, iFilters.value);
     params.field = getQueryField();
     params.pageNo = ipagination.value.current;
     params.pageSize = ipagination.value.pageSize;
@@ -307,7 +307,7 @@
       ipagination.value.current = 1;
     }
     loading.value = true;
-    let params = getQueryParams();
+    const params = getQueryParams();
     defHttp
       .get({ url: Api.list, params }, { isTransformResponse: false })
       .then((res) => {

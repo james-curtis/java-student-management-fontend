@@ -105,7 +105,7 @@
 
       //文件上传
       function handleImport() {
-        let { biz, online } = props;
+        const { biz, online } = props;
         const formData = new FormData();
         if (biz) {
           formData.append('isSingleTableImport', biz);
@@ -122,7 +122,7 @@
         uploading.value = true;
 
         //TODO 请求怎样处理的问题
-        let headers = {
+        const headers = {
           'Content-Type': 'multipart/form-data;boundary = ' + new Date().getTime(),
         };
         defHttp.post({ url: props.url, params: formData, headers }, { isTransformResponse: false }).then((res) => {
@@ -144,7 +144,7 @@
 
       //错误信息提示
       function errorTip(tipMessage, fileUrl) {
-        let href = glob.uploadUrl + fileUrl;
+        const href = glob.uploadUrl + fileUrl;
         createWarningModal({
           title: '导入成功,但是有错误数据!',
           centered: false,

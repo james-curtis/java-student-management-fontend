@@ -65,8 +65,8 @@
        * @param title
        */
       function pdfPreview(title) {
-        let iframe = document.getElementById('pdfPreviewIframe');
-        let json = { title: title, token: getToken() };
+        const iframe = document.getElementById('pdfPreviewIframe');
+        const json = { title: title, token: getToken() };
         iframe.contentWindow.postMessage(json, '*');
       }
 

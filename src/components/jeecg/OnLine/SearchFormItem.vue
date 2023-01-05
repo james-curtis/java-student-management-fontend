@@ -262,14 +262,14 @@
       }
 
       function getSqlByDictCode(item) {
-        let { dictTable, dictCode, dictText } = item;
-        let temp = dictTable.toLowerCase();
-        let arr = temp.split('where');
+        const { dictTable, dictCode, dictText } = item;
+        const temp = dictTable.toLowerCase();
+        const arr = temp.split('where');
         let condition = '';
         if (arr.length > 1) {
           condition = ' where' + arr[1];
         }
-        let sql = 'select ' + dictCode + " as 'value', " + dictText + " as 'text' from " + arr[0] + condition;
+        const sql = 'select ' + dictCode + " as 'value', " + dictText + " as 'text' from " + arr[0] + condition;
         console.log('sql', sql);
         return sql;
       }

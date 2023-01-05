@@ -32,7 +32,7 @@
             if (!isEmpty(values)) {
               let popupValue = '';
               Object.keys(values).forEach((key) => {
-                let currentValue = values[key];
+                const currentValue = values[key];
                 // 当前列直接赋值，其他列通过vModel赋值
                 if (key === originColumn.value.key) {
                   popupValue = currentValue;

@@ -74,7 +74,7 @@
   async function queryPositionInfo() {
     const result = await positionList({ pageSize: 99999 });
     if (result) {
-      let obj = {};
+      const obj = {};
       result.records.forEach((position) => {
         obj[position['code']] = position['name'];
       });

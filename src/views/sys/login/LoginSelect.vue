@@ -73,7 +73,7 @@
     tenantId: number;
   }
   export default defineComponent({
-    name: 'loginSelect',
+    name: 'LoginSelect',
     components: {
       Avatar,
       BasicModal,
@@ -137,7 +137,7 @@
        * 处理部门情况
        */
       function bizDepart(loginResult) {
-        let multi_depart = loginResult.multi_depart;
+        const multi_depart = loginResult.multi_depart;
         //0:无部门 1:一个部门 2:多个部门
         if (multi_depart == 0) {
           notification.warn({
@@ -158,7 +158,7 @@
        * 处理租户情况
        */
       function bizTenantList(loginResult) {
-        let tenantArr = loginResult.tenantList;
+        const tenantArr = loginResult.tenantList;
         if (Array.isArray(tenantArr)) {
           if (tenantArr.length === 0) {
             isMultiTenant.value = false;
@@ -213,7 +213,7 @@
           if (!unref(isMultiDepart)) {
             resolve();
           } else {
-            let params = { orgCode: formState.orgCode, username: unref(username) };
+            const params = { orgCode: formState.orgCode, username: unref(username) };
             defHttp.put({ url: '/sys/selectDepart', params }).then((res) => {
               if (res.userInfo) {
                 userStore.setUserInfo(res.userInfo);

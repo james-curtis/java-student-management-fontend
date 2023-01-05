@@ -48,7 +48,7 @@
       const datetime2 = ref(1);
       const datetime3 = ref(1);
       function handleChange(e) {
-        let temp = new Date().getTime();
+        const temp = new Date().getTime();
         if (e == 'comment') {
           datetime1.value = temp;
         } else if (e == 'file') {
@@ -60,7 +60,7 @@
 
       // VUEN-1978【bug】online关联记录和他表字段存在问题  20 修改完数据，再次打开不切换tab的时候，修改日志没有变化
       function reload() {
-        let temp = new Date().getTime();
+        const temp = new Date().getTime();
         datetime1.value = temp;
         datetime2.value = temp;
         datetime3.value = temp;

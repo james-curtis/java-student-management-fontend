@@ -136,7 +136,7 @@
 
   // cron表达式
   const cronValueInner = computed(() => {
-    let result: string[] = [];
+    const result: string[] = [];
     if (!props.hideSecond) {
       result.push(second.value ? second.value : '*');
     }
@@ -243,7 +243,7 @@
   // Quartz 的规则：
   // 1 = 周日，2 = 周一，3 = 周二，4 = 周三，5 = 周四，6 = 周五，7 = 周六
   function convertWeekToQuartz(week: string) {
-    let convert = (v: string) => {
+    const convert = (v: string) => {
       if (v === '0') {
         return '1';
       }
@@ -253,9 +253,9 @@
       return (Number.parseInt(v) - 1).toString();
     };
     // 匹配示例 1-7 or 1/7
-    let patten1 = /^([0-7])([-/])([0-7])$/;
+    const patten1 = /^([0-7])([-/])([0-7])$/;
     // 匹配示例 1,4,7
-    let patten2 = /^([0-7])(,[0-7])+$/;
+    const patten2 = /^([0-7])(,[0-7])+$/;
     if (/^[0-7]$/.test(week)) {
       return convert(week);
     } else if (patten1.test(week)) {

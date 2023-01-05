@@ -87,7 +87,7 @@
       //获取文件名
       const getFileName = (path) => {
         if (path.lastIndexOf('\\') >= 0) {
-          let reg = new RegExp('\\\\', 'g');
+          const reg = new RegExp('\\\\', 'g');
           path = path.replace(reg, '/');
         }
         return path.substring(path.lastIndexOf('/') + 1);
@@ -101,7 +101,7 @@
       //是否是初始化加载
       const initTag = ref<boolean>(true);
       //文件列表
-      let uploadFileList = ref<any[]>([]);
+      const uploadFileList = ref<any[]>([]);
       //预览图
       const previewImage = ref<string | undefined>('');
       //预览框状态
@@ -140,10 +140,10 @@
           uploadFileList.value = [];
           return;
         }
-        let files = [];
-        let arr = paths.split(',');
+        const files = [];
+        const arr = paths.split(',');
         arr.forEach((value) => {
-          let url = getFileAccessHttpUrl(value);
+          const url = getFileAccessHttpUrl(value);
           files.push({
             uid: getRandom(10),
             name: getFileName(value),
@@ -162,7 +162,7 @@
        * 上传前校验
        */
       function beforeUpload(file) {
-        let fileType = file.type;
+        const fileType = file.type;
         if (fileType.indexOf('image') < 0) {
           createMessage.info('请上传图片');
           return false;
@@ -177,7 +177,7 @@
         if (file.status === 'error') {
           createMessage.error(`${file.name} 上传失败.`);
         }
-        let fileUrls = [];
+        const fileUrls = [];
         //上传完成
         if (file.status != 'uploading') {
           fileList.forEach((file) => {
@@ -211,8 +211,8 @@
       }
 
       function getAvatarView() {
-        if (uploadFileList.length > 0) {
-          let url = uploadFileList[0].url;
+        if (uploadFileList.value.length > 0) {
+          const url = uploadFileList.value[0].url;
           return getFileAccessHttpUrl(url, null);
         }
       }

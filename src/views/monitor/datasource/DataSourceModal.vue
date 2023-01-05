@@ -51,13 +51,13 @@
   const title = computed(() => (!unref(isUpdate) ? '新增数据源' : '编辑数据源'));
 
   async function handleTest() {
-    let keys = ['dbType', 'dbDriver', 'dbUrl', 'dbName', 'dbUsername', 'dbPassword'];
+    const keys = ['dbType', 'dbDriver', 'dbUrl', 'dbName', 'dbUsername', 'dbPassword'];
     // 获取以上字段的值，并清除校验状态
-    let fieldsValues = getFieldsValue(keys);
-    let setFields = {};
+    const fieldsValues = getFieldsValue(keys);
+    const setFields = {};
     keys.forEach((key) => (setFields[key] = { value: fieldsValues[key], errors: null }));
     await validateFields(keys).then((values) => {
-      let loading = createMessage.loading('连接中....', 0);
+      const loading = createMessage.loading('连接中....', 0);
       testConnection(values)
         .then((data) => {
           if (data.success) {
@@ -72,7 +72,7 @@
   //表单提交事件
   async function handleSubmit(v) {
     try {
-      let values = await validate();
+      const values = await validate();
       setModalProps({ confirmLoading: true });
       //提交表单
       await saveOrUpdateDataSource(values, isUpdate.value);

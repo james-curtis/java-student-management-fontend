@@ -186,7 +186,7 @@
         if (!data || !data.records || data.records.length == 0) {
           dataList.value = [];
         } else {
-          let array = data.records;
+          const array = data.records;
           console.log(123, array);
           dataList.value = array;
         }
@@ -196,7 +196,7 @@
       // 回复
       async function replyComment(item, content, fileList) {
         console.log(content, item);
-        let obj = {
+        const obj = {
           fromUserId: userInfo.id,
           toUserId: item.fromUserId,
           commentId: item.id,
@@ -208,7 +208,7 @@
 
       //评论
       async function sendComment(content, fileList) {
-        let obj = {
+        const obj = {
           fromUserId: userInfo.id,
           commentContent: content,
         };
@@ -233,8 +233,8 @@
        */
       const focusStatus = ref(false);
       function showReply(item) {
-        let arr = dataList.value;
-        for (let temp of arr) {
+        const arr = dataList.value;
+        for (const temp of arr) {
           temp.commentStatus = false;
         }
         item.commentStatus = true;

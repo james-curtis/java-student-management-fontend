@@ -43,7 +43,7 @@ export const list = (params) => defHttp.get({ url: Api.list, params });
  * @param params
  */
 export const queryById = (id) => {
-  let params = { id: id };
+  const params = { id: id };
   return defHttp.get({ url: Api.queryById, params }, { isTransformResponse: false });
 };
 
@@ -65,7 +65,7 @@ export const deleteOne = (params) => {
  * @param params
  */
 export const saveOne = (params) => {
-  let url = Api.addText;
+  const url = Api.addText;
   return defHttp.post({ url: url, params }, { isTransformResponse: false });
 };
 
@@ -81,7 +81,7 @@ export const getLogList = (params) => defHttp.get({ url: Api.logList, params }, 
 export const uploadFileUrl = `${baseUploadUrl}/sys/comment/addFile`;
 
 export function useCommentWithFile(props) {
-  let uploadData = {
+  const uploadData = {
     biz: 'comment',
     commentId: '',
   };
@@ -103,7 +103,7 @@ export function useCommentWithFile(props) {
    */
   async function saveComment(obj) {
     const { fromUserId, toUserId, commentId, commentContent } = obj;
-    let commentData = {
+    const commentData = {
       tableName: props.tableName,
       tableDataId: props.dataId,
       fromUserId,
@@ -128,7 +128,7 @@ export function useCommentWithFile(props) {
   }
 
   async function uploadOne(file) {
-    let url = uploadFileUrl;
+    const url = uploadFileUrl;
     const formData = new FormData();
     formData.append('file', file);
     formData.append('tableName', props.tableName);
@@ -156,7 +156,7 @@ export function useCommentWithFile(props) {
   async function uploadFiles(fileList) {
     if (fileList && fileList.length > 0) {
       for (let i = 0; i < fileList.length; i++) {
-        let file = toRaw(fileList[i]);
+        const file = toRaw(fileList[i]);
         await uploadOne(file.originFileObj);
       }
     }
@@ -171,11 +171,11 @@ export function useCommentWithFile(props) {
 export function uploadMu(fileList) {
   const formData = new FormData();
   // let arr = []
-  for (let file of fileList) {
+  for (const file of fileList) {
     formData.append('files[]', file.originFileObj);
   }
   console.log(formData);
-  let url = `${baseUploadUrl}/sys/comment/addFile2`;
+  const url = `${baseUploadUrl}/sys/comment/addFile2`;
   uploadMyFile(url, formData).then((res: any) => {
     console.log('uploadMyFile', res);
   });
@@ -216,13 +216,13 @@ export function useFileList() {
   function getBase64(file, id) {
     return new Promise((resolve, reject) => {
       //声明js的文件流
-      let reader = new FileReader();
+      const reader = new FileReader();
       if (file) {
         //通过文件流将文件转换成Base64字符串
         reader.readAsDataURL(file);
         //转换成功后
         reader.onload = function () {
-          let base = reader.result;
+          const base = reader.result;
           console.log('base', base);
           imageSrcMap[id] = base;
           console.log('imageSrcMap', imageSrcMap);
@@ -235,24 +235,24 @@ export function useFileList() {
   }
   function handleImageSrc(file) {
     if (isImage(file)) {
-      let id = file.uid;
+      const id = file.uid;
       getBase64(file, id);
     }
   }
 
   function downLoad(file) {
-    let url = getFileAccessHttpUrl(file.url);
+    const url = getFileAccessHttpUrl(file.url);
     if (url) {
       window.open(url);
     }
   }
 
   function getFileSize(item) {
-    let size = item.fileSize;
+    const size = item.fileSize;
     if (!size) {
       return '0B';
     }
-    let temp = Math.round(size / 1024);
+    const temp = Math.round(size / 1024);
     return temp + ' KB';
   }
 
@@ -281,14 +281,14 @@ export function useFileList() {
 
   function getImageSrc(file) {
     if (isImage(file)) {
-      let id = file.uid;
+      const id = file.uid;
       if (id) {
         if (imageSrcMap[id]) {
           return imageSrcMap[id];
         }
       } else if (file.url) {
         //数据库中地址
-        let url = getFileAccessHttpUrl(file.url);
+        const url = getFileAccessHttpUrl(file.url);
         return url;
       }
     }
@@ -300,7 +300,7 @@ export function useFileList() {
    * @param item
    */
   function getImageAsBackground(item) {
-    let url = getImageSrc(item);
+    const url = getImageSrc(item);
     if (url) {
       return {
         backgroundImage: "url('" + url + "')",
@@ -315,15 +315,15 @@ export function useFileList() {
    */
   async function viewImage(file) {
     if (isImage(file)) {
-      let text = getImageSrc(file);
+      const text = getImageSrc(file);
       if (text) {
-        let imgList = [text];
+        const imgList = [text];
         createImgPreview({ imageList: imgList });
       }
     } else {
       if (file.url) {
         //数据库中地址
-        let url = getFileAccessHttpUrl(file.url);
+        const url = getFileAccessHttpUrl(file.url);
         await initViewDomain();
         //本地测试需要将文件地址的localhost/127.0.0.1替换成IP, 或是直接修改全局domain
         //url = url.replace('localhost', '192.168.1.100')
@@ -374,7 +374,7 @@ export function useEmojiHtml(globalEmojiIndex) {
       if (endsWith(before, 'alt="') || endsWith(before, 'data-text="')) {
         return match;
       }
-      let emoji = globalEmojiIndex.findEmoji(p2);
+      const emoji = globalEmojiIndex.findEmoji(p2);
       if (!emoji) {
         return match;
       }
@@ -388,7 +388,7 @@ export function useEmojiHtml(globalEmojiIndex) {
   }
 
   function emoji2Html(emoji) {
-    let style = `position: absolute;top: -3px;left: 3px;width: 18px; height: 18px;background-position: ${emoji.getPosition()}`;
+    const style = `position: absolute;top: -3px;left: 3px;width: 18px; height: 18px;background-position: ${emoji.getPosition()}`;
     return `<span style="width: 24px" class="emoji-mart-emoji"><span class="my-emoji-icon emoji-set-apple emoji-type-image" style="${style}"> </span> </span>`;
   }
 

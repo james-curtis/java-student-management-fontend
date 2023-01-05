@@ -41,7 +41,7 @@
   const activeKey = ref('1');
   const moreInfo = ref({});
   const lastUpdateTime = ref({});
-  let textInfo = ref({});
+  const textInfo = ref({});
   const { createMessage } = useMessage();
   const checkedKeys = ref<Array<string | number>>([]);
 
@@ -69,15 +69,15 @@
     getServerInfo(infoType).then((res) => {
       textInfo.value = getTextInfo(infoType);
       moreInfo.value = getMoreInfo(infoType);
-      let info = [];
+      const info = [];
       res.forEach((value, id) => {
         let more = unref(moreInfo)[value.name];
         if (!(more instanceof Array)) {
           more = [''];
         }
         more.forEach((item, idx) => {
-          let param = value.name + item;
-          let val = convert(value.measurements[idx].value, unref(textInfo)[param].valueType);
+          const param = value.name + item;
+          const val = convert(value.measurements[idx].value, unref(textInfo)[param].valueType);
           info.push({ id: param + id, param, text: 'false value', value: val });
         });
       });

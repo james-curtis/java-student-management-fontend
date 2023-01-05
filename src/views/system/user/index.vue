@@ -152,7 +152,7 @@
    * 批量删除事件
    */
   async function batchHandleDelete() {
-    let hasAdmin = unref(selectedRows).filter((item) => item.username == 'admin');
+    const hasAdmin = unref(selectedRows).filter((item) => item.username == 'admin');
     if (unref(hasAdmin).length > 0) {
       createMessage.warning('管理员账号不允许此操作！');
       return;
@@ -195,7 +195,7 @@
    * 批量冻结解冻
    */
   function batchFrozen(status) {
-    let hasAdmin = selectedRows.value.filter((item) => item.username == 'admin');
+    const hasAdmin = selectedRows.value.filter((item) => item.username == 'admin');
     if (unref(hasAdmin).length > 0) {
       createMessage.warning('管理员账号不允许此操作！');
       return;

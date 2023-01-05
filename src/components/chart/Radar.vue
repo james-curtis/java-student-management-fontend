@@ -67,21 +67,21 @@
           Object.assign(option, props.option);
         }
         //图例类型
-        let typeArr = Array.from(new Set(props.chartData.map((item) => item.type)));
+        const typeArr = Array.from(new Set(props.chartData.map((item) => item.type)));
         //雷达数据
-        let indicator = Array.from(
+        const indicator = Array.from(
           new Set(
             props.chartData.map((item) => {
-              let { name, max } = item;
+              const { name, max } = item;
               return { name, max };
             })
           )
         );
 
-        let data = [];
+        const data = [];
         typeArr.forEach((type) => {
-          let obj = { name: type };
-          let chartArr = props.chartData.filter((item) => type === item.type);
+          const obj = { name: type };
+          const chartArr = props.chartData.filter((item) => type === item.type);
           obj['value'] = chartArr.map((item) => item.value);
           //data数据
           data.push(obj);

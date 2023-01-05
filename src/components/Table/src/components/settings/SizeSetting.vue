@@ -33,9 +33,6 @@
 
   export default defineComponent({
     name: 'SizeSetting',
-    props: {
-      isMobile: Boolean,
-    },
     components: {
       ColumnHeightOutlined,
       Tooltip,
@@ -43,13 +40,16 @@
       Menu,
       MenuItem: Menu.Item,
     },
+    props: {
+      isMobile: Boolean,
+    },
     setup(props) {
       const table = useTableContext();
       const { t } = useI18n();
 
       const selectedKeysRef = ref<SizeType[]>([table.getSize()]);
       const getBindProps = computed(() => {
-        let obj = {};
+        const obj = {};
         if (props.isMobile) {
           obj['visible'] = false;
         }

@@ -79,7 +79,7 @@
   async function loadData() {
     try {
       loading.value = true;
-      let { treeList } = await queryRoleTreeList();
+      const { treeList } = await queryRoleTreeList();
       treeData.value = treeList;
       await nextTick();
       toggleExpandAll(true);
@@ -92,7 +92,7 @@
     if (departId.value) {
       try {
         loading.value = true;
-        let keys = await queryDepartPermission({ departId: departId.value });
+        const keys = await queryDepartPermission({ departId: departId.value });
         checkedKeys.value = keys;
         lastCheckedKeys.value = [...keys];
       } finally {
@@ -133,7 +133,7 @@
   // tree选中事件
   function onSelect($selectedKeys, { selectedNodes }) {
     if (selectedNodes[0]?.ruleFlag) {
-      let functionId = $selectedKeys[0];
+      const functionId = $selectedKeys[0];
       dataRuleDrawer.openDrawer(true, { departId, functionId });
     }
     selectedKeys.value = [];

@@ -58,14 +58,14 @@
 
       // 弹窗最终props
       const getProps = computed(() => {
-        let opt = options.value;
-        let modalProps: Partial<ModalProps> = {
+        const opt = options.value;
+        const modalProps: Partial<ModalProps> = {
           width: (opt.width ?? 500) as number,
           title: (opt.title ?? 'prompt') as string,
           visible: unref(visible),
           confirmLoading: unref(loading),
         };
-        let finalProps: Recordable = {
+        const finalProps: Recordable = {
           ...modalProps,
           ...props,
           ...opt,
@@ -122,10 +122,10 @@
         try {
           const { onOk } = options.value;
           // 表单验证
-          let values = await validate();
+          const values = await validate();
           setLoading(true);
           if (typeof onOk === 'function') {
-            let flag = await onOk(values.input);
+            const flag = await onOk(values.input);
             // 只有返回 false 才阻止关闭弹窗
             if (!(flag === false)) {
               close();

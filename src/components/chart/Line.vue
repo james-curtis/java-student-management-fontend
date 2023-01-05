@@ -6,7 +6,7 @@
   import { useECharts } from '/@/hooks/web/useECharts';
 
   export default defineComponent({
-    name: 'line',
+    name: 'Line',
     props: {
       chartData: {
         type: Array,
@@ -65,10 +65,10 @@
         if (props.option) {
           Object.assign(option, props.option);
         }
-        let seriesData = props.chartData.map((item) => {
+        const seriesData = props.chartData.map((item) => {
           return item.value;
         });
-        let xAxisData = props.chartData.map((item) => {
+        const xAxisData = props.chartData.map((item) => {
           return item.name;
         });
         option.series[0].data = seriesData;

@@ -64,10 +64,10 @@ export function useListPage(options: ListPageOptions) {
   // 导出 excel
   async function onExportXls() {
     //update-begin---author:wangshuai ---date:20220411  for：导出新增自定义参数------------
-    let { url, name, params } = options?.exportConfig ?? {};
-    let realUrl = typeof url === 'function' ? url() : url;
+    const { url, name, params } = options?.exportConfig ?? {};
+    const realUrl = typeof url === 'function' ? url() : url;
     if (realUrl) {
-      let title = typeof name === 'function' ? name() : name;
+      const title = typeof name === 'function' ? name() : name;
       //update-begin-author:taoyan date:20220507 for: erp代码生成 子表 导出报错，原因未知-
       let paramsForm = {};
       try {
@@ -80,7 +80,7 @@ export function useListPage(options: ListPageOptions) {
       //update-begin-author:taoyan date:20220507 for: erp代码生成 子表 导出动态设置mainId
       if (params) {
         Object.keys(params).map((k) => {
-          let temp = (params as object)[k];
+          const temp = (params as object)[k];
           if (temp) {
             paramsForm[k] = unref(temp);
           }
@@ -100,9 +100,9 @@ export function useListPage(options: ListPageOptions) {
 
   // 导入 excel
   function onImportXls(file) {
-    let { url, success } = options?.importConfig ?? {};
+    const { url, success } = options?.importConfig ?? {};
     //update-begin-author:taoyan date:20220507 for: erp代码生成 子表 导入地址是动态的
-    let realUrl = typeof url === 'function' ? url() : url;
+    const realUrl = typeof url === 'function' ? url() : url;
     if (realUrl) {
       return handleImportXls(file, realUrl, success || reload);
       //update-end-author:taoyan date:20220507 for: erp代码生成 子表 导入地址是动态的

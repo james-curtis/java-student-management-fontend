@@ -32,7 +32,7 @@
       const asyncOptions = ref<any[] | null>(null);
       // 下拉框 props
       const selectProps = computed(() => {
-        let selProps = {
+        const selProps = {
           ...cellProps.value,
           allowClear: true,
           autofocus: true,
@@ -43,7 +43,7 @@
           onChange: handleChange,
         };
         // 判断select是否允许输入
-        let { allowSearch, allowInput } = originColumn.value;
+        const { allowSearch, allowInput } = originColumn.value;
         if (allowInput === true || allowSearch === true) {
           selProps['showSearch'] = true;
           selProps['onSearch'] = handleSearchSelect;
@@ -55,10 +55,10 @@
         if (asyncOptions.value) {
           return asyncOptions.value;
         }
-        let { linkage } = props.renderOptions;
+        const { linkage } = props.renderOptions;
         if (linkage) {
-          let { getLinkageOptionsSibling, config } = linkage;
-          let res = getLinkageOptionsSibling(row.value, originColumn.value, config, true);
+          const { getLinkageOptionsSibling, config } = linkage;
+          const res = getLinkageOptionsSibling(row.value, originColumn.value, config, true);
           // 当返回Promise时，说明是多级联动
           if (res instanceof Promise) {
             loading.value = true;
@@ -82,11 +82,11 @@
       // --------- created ---------
 
       // 多选、搜索type
-      let multipleTypes = [JVxeTypes.selectMultiple, 'list_multi'];
-      let searchTypes = [JVxeTypes.selectSearch, 'sel_search'];
+      const multipleTypes = [JVxeTypes.selectMultiple, 'list_multi'];
+      const searchTypes = [JVxeTypes.selectSearch, 'sel_search'];
       if (multipleTypes.includes(props.type)) {
         // 处理多选
-        let props = originColumn.value.props || {};
+        const props = originColumn.value.props || {};
         props['mode'] = 'multiple';
         props['maxTagCount'] = 1;
         originColumn.value.props = props;
@@ -98,7 +98,7 @@
       /** 处理 change 事件 */
       function handleChange(value) {
         // 处理下级联动
-        let linkage = props.renderOptions.linkage;
+        const linkage = props.renderOptions.linkage;
         if (linkage) {
           linkage.handleLinkageSelectChange(row.value, originColumn.value, linkage.config, value);
         }
@@ -107,11 +107,11 @@
 
       /** 处理blur失去焦点事件 */
       function handleBlur(value) {
-        let { allowInput, options } = originColumn.value;
+        const { allowInput, options } = originColumn.value;
         if (allowInput === true) {
           // 删除无用的因搜索（用户输入）而创建的项
           if (typeof value === 'string') {
-            let indexes: number[] = [];
+            const indexes: number[] = [];
             options.forEach((option, index) => {
               if (option.value.toLocaleString() === value.toLocaleString()) {
                 delete option.searchAdd;
@@ -120,7 +120,7 @@
               }
             });
             // 翻转删除数组中的项
-            for (let index of indexes.reverse()) {
+            for (const index of indexes.reverse()) {
               options.splice(index, 1);
             }
           }
@@ -130,7 +130,7 @@
 
       /** 用于搜索下拉框中的内容 */
       function handleSelectFilterOption(input, option) {
-        let { allowSearch, allowInput } = originColumn.value;
+        const { allowSearch, allowInput } = originColumn.value;
         if (allowSearch === true || allowInput === true) {
           return option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0;
         }
@@ -139,12 +139,12 @@
 
       /** select 搜索时的事件，用于动态添加options */
       function handleSearchSelect(value) {
-        let { allowSearch, allowInput, options } = originColumn.value;
+        const { allowSearch, allowInput, options } = originColumn.value;
 
         if (allowSearch !== true && allowInput === true) {
           // 是否找到了对应的项，找不到则添加这一项
           let flag = false;
-          for (let option of options) {
+          for (const option of options) {
             if (option.value.toLocaleString() === value.toLocaleString()) {
               flag = true;
               break;
@@ -186,14 +186,14 @@
       translate: {
         enabled: true,
         async handler(value, ctx) {
-          let { props, context } = ctx!;
-          let { row, originColumn } = context;
+          const { props, context } = ctx!;
+          const { row, originColumn } = context;
           let options;
-          let linkage = props?.renderOptions.linkage;
+          const linkage = props?.renderOptions.linkage;
           // 判断是否是多级联动，如果是就通过接口异步翻译
           if (linkage) {
-            let { getLinkageOptionsSibling, config } = linkage;
-            let linkageOptions = getLinkageOptionsSibling(row.value, originColumn.value, config, true);
+            const { getLinkageOptionsSibling, config } = linkage;
+            const linkageOptions = getLinkageOptionsSibling(row.value, originColumn.value, config, true);
             options = isPromise(linkageOptions) ? await linkageOptions : linkageOptions;
           } else if (isPromise(originColumn.value.optionsPromise)) {
             options = await originColumn.value.optionsPromise;
@@ -211,8 +211,8 @@
         }
       },
       setValue(value, ctx) {
-        let { context } = ctx!;
-        let { originColumn } = context;
+        const { context } = ctx!;
+        const { originColumn } = context;
         // 判断是否是多选
         if ((originColumn.value.props || {})['mode'] === 'multiple') {
           originColumn.value.props['maxTagCount'] = 1;

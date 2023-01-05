@@ -72,10 +72,10 @@ export const useRedo = (_router?: Router) => {
  * @param name
  */
 function isDynamicRoute(params, name) {
-  let arr = Object.keys(params);
+  const arr = Object.keys(params);
   let flag = false;
   for (let i = 0; i < arr.length; i++) {
-    let key = '@' + arr[i];
+    const key = '@' + arr[i];
     if ((name as string).indexOf(key) > 0) {
       flag = true;
       break;

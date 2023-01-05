@@ -60,7 +60,7 @@
       const userDepart = await getUserDepartList({ userId: data.record.id });
       if (userDepart && userDepart.length > 0) {
         data.record.selecteddeparts = userDepart;
-        let selectDepartKeys = Array.from(userDepart, ({ key }) => key);
+        const selectDepartKeys = Array.from(userDepart, ({ key }) => key);
         data.record.selecteddeparts = selectDepartKeys.join(',');
         departOptions.value = userDepart.map((item) => {
           return { label: item.title, value: item.key };
@@ -119,10 +119,10 @@
   //提交事件
   async function handleSubmit() {
     try {
-      let values = await validate();
+      const values = await validate();
       setDrawerProps({ confirmLoading: true });
       values.userIdentity === 1 && (values.departIds = '');
-      let isUpdateVal = unref(isUpdate);
+      const isUpdateVal = unref(isUpdate);
       //提交表单
       await saveOrUpdateUser(values, isUpdateVal);
       //关闭弹窗

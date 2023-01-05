@@ -24,7 +24,7 @@
         if (props.icon && !isEmpty(props.icon)) {
           return props.icon;
         }
-        let iconTheme = props.theme ? `-${props.theme}` : '';
+        const iconTheme = props.theme ? `-${props.theme}` : '';
         return `ant-design:${props.type}${iconTheme}`;
       });
 

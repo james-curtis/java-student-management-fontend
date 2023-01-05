@@ -152,7 +152,7 @@
       // 加载行编辑的数据
       loadData() {
         // 封装查询条件
-        let formData = {
+        const formData = {
           pageNo: this.pagination.current,
           pageSize: this.pagination.pageSize,
         };
@@ -193,7 +193,7 @@
 
       // 树被选择触发的事件
       handleTreeSelect(selectedKeys) {
-        let key = selectedKeys[0];
+        const key = selectedKeys[0];
         if (typeof key === 'string') {
           // 控制树展开为当前选择的列
           this.treeExpandedKeys = selectedKeys;

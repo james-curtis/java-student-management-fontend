@@ -61,7 +61,7 @@
   }
 
   function saveDataRuleForRole() {
-    let params = {
+    const params = {
       permissionId: functionId.value,
       roleId: roleId.value,
       dataRuleIds: dataRuleChecked.value.join(','),

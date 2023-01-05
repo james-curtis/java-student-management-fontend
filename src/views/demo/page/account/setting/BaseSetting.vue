@@ -83,7 +83,7 @@
        * */
       async function handleSubmit() {
         try {
-          let values = await validate();
+          const values = await validate();
           values.avatar = userStore.getUserInfo.avatar;
           console.log('values', values);
           //提交表单

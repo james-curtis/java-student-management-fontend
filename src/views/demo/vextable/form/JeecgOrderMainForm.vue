@@ -64,7 +64,7 @@
       const queryByIdUrl = '/test/jeecgOrderMain/queryById';
       async function initFormData() {
         console.log('props.formData', props.formData);
-        let params = { id: props.formData.dataId };
+        const params = { id: props.formData.dataId };
         const data = await defHttp.get({ url: queryByIdUrl, params });
         console.log('data', data);
         formData = { ...data };
@@ -78,8 +78,8 @@
       }
 
       async function submitForm() {
-        let data = getFieldsValue();
-        let params = Object.assign({}, formData, data);
+        const data = getFieldsValue();
+        const params = Object.assign({}, formData, data);
         console.log('表单数据', params);
         await saveOrUpdate(params, true);
       }
@@ -97,7 +97,7 @@
 
       async function loadOrderTicketData(mainId) {
         const queryByIdUrl = '/test/jeecgOrderMain/queryOrderTicketListByMainId';
-        let params = { id: mainId };
+        const params = { id: mainId };
         table2.dataSource = [];
         const data = await defHttp.get({ url: queryByIdUrl, params });
         if (data && data.length > 0) {
@@ -107,9 +107,9 @@
 
       //新增权限处理方法
       function filterSubTableColnmns(columns, pre) {
-        let authList = props.formData.permissionList;
+        const authList = props.formData.permissionList;
         //注意：如果子表配置显示反向 这里不处理其逻辑  即隐藏无法在流程表单中实现，请使用全局表单权限实现
-        let temp = columns.filter((item) => {
+        const temp = columns.filter((item) => {
           let oneAuth = authList.find((auth) => {
             return auth.action === pre + item.key;
           });

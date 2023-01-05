@@ -30,8 +30,8 @@
 
   function loadDate() {
     getActuatorList().then((res) => {
-      let filterData = [];
-      for (let d of res.traces) {
+      const filterData = [];
+      for (const d of res.traces) {
         if (d.request.method !== 'OPTIONS' && d.request.uri.indexOf('httptrace') === -1) {
           filterData.push(d);
         }

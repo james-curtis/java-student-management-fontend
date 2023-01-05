@@ -200,7 +200,7 @@ export const formSchema: FormSchema[] = [
           required: false,
           validator: (_, value) => {
             return new Promise((resolve, reject) => {
-              let params = {
+              const params = {
                 tableName: 'sys_permission',
                 fieldName: 'perms',
                 fieldVal: value,

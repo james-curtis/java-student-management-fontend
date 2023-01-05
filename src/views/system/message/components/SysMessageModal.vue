@@ -169,7 +169,7 @@
       });
 
       function loadData() {
-        let params = {
+        const params = {
           fromUser: searchParams.fromUser,
           rangeDateKey: searchParams.rangeDateKey,
           rangeDate: searchParams.rangeDate,
@@ -205,7 +205,7 @@
         { key: 'zdy', text: '自定义', active: false },
       ]);
       function handleClickDateTag(item) {
-        for (let a of dateTags) {
+        for (const a of dateTags) {
           if (a.key != item.key) {
             a.active = false;
           }
@@ -227,7 +227,7 @@
         }
       }
       const showRangeDate = computed(() => {
-        let temp = dateTags.filter((i) => i.active == true);
+        const temp = dateTags.filter((i) => i.active == true);
         if (temp && temp.length > 0) {
           if (temp[0].text == '自定义') {
             return true;
@@ -252,12 +252,12 @@
         if (!fromUser && !rangeDateKey) {
           return '';
         }
-        let arr = [];
+        const arr = [];
         if (fromUser) {
           arr.push(realname);
         }
         if (rangeDateKey) {
-          let rangDates = dateTags.filter((item) => item.key == rangeDateKey);
+          const rangDates = dateTags.filter((item) => item.key == rangeDateKey);
           if (rangDates && rangDates.length > 0) {
             arr.push(rangDates[0].text);
           }
@@ -289,7 +289,7 @@
         searchParams.realname = '';
         searchParams.rangeDateKey = '';
         searchParams.rangeDate = [];
-        for (let a of dateTags) {
+        for (const a of dateTags) {
           a.active = false;
         }
       }

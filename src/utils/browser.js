@@ -13,15 +13,15 @@ export function isEdge() {
 }
 
 export function getIEVersion() {
-  let userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
-  let isIE = isIE();
-  let isIE11 = isIE11();
-  let isEdge = isEdge();
+  const userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+  const isIE = isIE();
+  const isIE11 = isIE11();
+  const isEdge = isEdge();
 
   if (isIE) {
-    let reIE = new RegExp('MSIE (\\d+\\.\\d+);');
+    const reIE = new RegExp('MSIE (\\d+\\.\\d+);');
     reIE.test(userAgent);
-    let fIEVersion = parseFloat(RegExp['$1']);
+    const fIEVersion = parseFloat(RegExp['$1']);
     if (fIEVersion === 7 || fIEVersion === 8 || fIEVersion === 9 || fIEVersion === 10) {
       return fIEVersion;
     } else {

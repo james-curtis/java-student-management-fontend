@@ -65,12 +65,12 @@
 
   // 开始同步第三方App
   function doSync(type, direction) {
-    let urls = backEndUrl[type];
+    const urls = backEndUrl[type];
     if (!(urls && urls[props.bizType])) {
       console.warn('配置出错');
       return;
     }
-    let url = urls[props.bizType] + direction;
+    const url = urls[props.bizType] + direction;
     let selectedRowKeys = props.selectedRowKeys;
     let content = '确定要开始同步全部数据吗？可能花费较长时间！';
 
@@ -90,7 +90,7 @@
             okText: '同步中…',
             cancelButtonProps: { disabled: true },
           });
-          let params = { ids: selectedRowKeys.join(',') };
+          const params = { ids: selectedRowKeys.join(',') };
           return defHttp
             .get({ url, params }, { isTransformResponse: false })
             .then((res) => {
@@ -101,7 +101,7 @@
                   title: res.message,
                   content: () => {
                     let nodes;
-                    let successInfo = [`成功信息如下：`, renderTextarea(h, res.result.successInfo.map((v, i) => `${i + 1}. ${v}`).join('\n'))];
+                    const successInfo = [`成功信息如下：`, renderTextarea(h, res.result.successInfo.map((v, i) => `${i + 1}. ${v}`).join('\n'))];
                     if (res.success) {
                       nodes = [...successInfo, h('br'), `无失败信息！`];
                     } else {

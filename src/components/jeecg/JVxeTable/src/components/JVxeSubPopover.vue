@@ -64,7 +64,7 @@
           return;
         }
 
-        let {
+        const {
           row: $row,
           column: $column,
           $table,
@@ -77,7 +77,7 @@
         className = isString(className) ? className : className.toString();
 
         // 获取 td 父级
-        let td = getParentNodeByTagName(target, 'td');
+        const td = getParentNodeByTagName(target, 'td');
         // 点击的是拖拽排序列，不做处理
         if (td && td.querySelector('.j-vxe-drag-box')) {
           return;
@@ -94,11 +94,11 @@
         if (className.includes('vxe-radio--icon') || className.includes('vxe-cell--radio')) {
           return;
         }
-        let parentElem = $table.getParentElem();
-        let tr = getParentNodeByTagName(target, 'tr');
+        const parentElem = $table.getParentElem();
+        const tr = getParentNodeByTagName(target, 'tr');
         if (parentElem && tr) {
-          let clientWidth = parentElem.clientWidth;
-          let clientHeight = tr.clientHeight;
+          const clientWidth = parentElem.clientWidth;
+          const clientHeight = tr.clientHeight;
           divRef.value!.style.width = clientWidth + 'px';
           divRef.value!.style.height = clientHeight + 'px';
           overlayStyle.width = Number.parseInt(`${clientWidth - clientWidth * 0.04}`) + 'px';
@@ -109,7 +109,7 @@
           if (h) {
             h = h - 140;
           }
-          let toolbar = divRef.value!.nextElementSibling;
+          const toolbar = divRef.value!.nextElementSibling;
           domAlign(divRef.value, toolbar, {
             points: ['tl', 'tl'],
             offset: [0, h],
@@ -124,7 +124,7 @@
             });
           });
         } else {
-          let num = ++level;
+          const num = ++level;
           console.warn('【JVxeSubPopover】table or tr 获取失败，正在进行第 ' + num + '次重试', {
             event,
             table: parentElem,

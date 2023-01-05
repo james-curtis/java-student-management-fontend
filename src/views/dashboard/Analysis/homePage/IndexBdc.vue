@@ -112,7 +112,7 @@
   }
 
   function getPercentColor(value) {
-    let p = +value;
+    const p = +value;
     if (p >= 90 && p < 100) {
       return 'rgb(244, 240, 89)';
     } else if (p >= 100) {

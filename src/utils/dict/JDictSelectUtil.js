@@ -19,7 +19,7 @@ export async function initDictOptions(dictCode, isTransformResponse = true) {
   }
   //优先从缓存中读取字典配置
   if (getDictItemsByCode(dictCode)) {
-    let res = {};
+    const res = {};
     res.result = getDictItemsByCode(dictCode);
     res.success = true;
     if (isTransformResponse) {
@@ -41,7 +41,7 @@ export async function initDictOptions(dictCode, isTransformResponse = true) {
 export function filterDictText(dictOptions, text) {
   // --update-begin----author:sunjianlei---date:20200323------for: 字典翻译 text 允许逗号分隔 ---
   if (text != null && Array.isArray(dictOptions)) {
-    let result = [];
+    const result = [];
     // 允许多个逗号分隔，允许传数组对象
     let splitText;
     if (Array.isArray(text)) {
@@ -49,9 +49,9 @@ export function filterDictText(dictOptions, text) {
     } else {
       splitText = text.toString().trim().split(',');
     }
-    for (let txt of splitText) {
+    for (const txt of splitText) {
       let dictText = txt;
-      for (let dictItem of dictOptions) {
+      for (const dictItem of dictOptions) {
         if (txt.toString() === dictItem.value.toString()) {
           dictText = dictItem.text || dictItem.title || dictItem.label;
           break;
@@ -75,7 +75,7 @@ export function filterMultiDictText(dictOptions, text) {
   //js “!text” 认为0为空，所以做提前处理
   if (text === 0 || text === '0') {
     if (dictOptions) {
-      for (let dictItem of dictOptions) {
+      for (const dictItem of dictOptions) {
         if (text == dictItem.value) {
           return dictItem.text;
         }
@@ -88,7 +88,7 @@ export function filterMultiDictText(dictOptions, text) {
   }
   let re = '';
   text = text.toString();
-  let arr = text.split(',');
+  const arr = text.split(',');
   dictOptions.forEach(function (option) {
     if (option) {
       for (let i = 0; i < arr.length; i++) {
@@ -119,7 +119,7 @@ export function filterDictTextByCache(dictCode, key) {
   }
   //优先从缓存中读取字典配置
   if (getDictItemsByCode(dictCode)) {
-    let item = getDictItemsByCode(dictCode).filter((t) => t['value'] == key);
+    const item = getDictItemsByCode(dictCode).filter((t) => t['value'] == key);
     if (item && item.length > 0) {
       return item[0]['text'];
     }
@@ -130,7 +130,7 @@ export function filterDictTextByCache(dictCode, key) {
 export async function getDictItems(dictCode, params) {
   //优先从缓存中读取字典配置
   if (getDictItemsByCode(dictCode)) {
-    let desformDictItems = getDictItemsByCode(dictCode).map((item) => ({
+    const desformDictItems = getDictItemsByCode(dictCode).map((item) => ({
       ...item,
       label: item.text,
     }));
@@ -141,7 +141,7 @@ export async function getDictItems(dictCode, params) {
   return await ajaxGetDictItems(dictCode, params)
     .then(({ success, result }) => {
       if (success) {
-        let res = result.map((item) => ({ ...item, label: item.text }));
+        const res = result.map((item) => ({ ...item, label: item.text }));
         console.log('------- 从DB中获取到了字典-------dictCode : ', dictCode, res);
         return Promise.resolve(res);
       } else {

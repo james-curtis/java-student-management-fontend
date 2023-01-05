@@ -27,7 +27,7 @@
       const innerDateValue = ref<any>(null);
       const isDatetime = computed(() => props.type === JVxeTypes.datetime);
       const dateFormat = computed(() => {
-        let format = originColumn.value.format;
+        const format = originColumn.value.format;
         return format ? format : isDatetime.value ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD';
       });
       const openPicker = ref(true);

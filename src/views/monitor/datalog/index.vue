@@ -39,7 +39,7 @@
   const [registerTable, { reload }, { rowSelection, selectedRowKeys, selectedRows }] = tableContext;
 
   function handleCompare() {
-    let obj = selectedRows.value;
+    const obj = selectedRows.value;
     console.info('sfsfsf', obj);
     if (!obj || obj.length != 2) {
       createMessage.warning('请选择两条数据!');

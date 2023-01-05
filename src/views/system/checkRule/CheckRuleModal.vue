@@ -53,10 +53,10 @@
   });
 
   const activeKey = ref('1');
-  let arr1: any[] = [];
-  let dataSource1 = ref(arr1);
-  let arr2: any[] = [];
-  let dataSource2 = ref(arr2);
+  const arr1: any[] = [];
+  const dataSource1 = ref(arr1);
+  const arr2: any[] = [];
+  const dataSource2 = ref(arr2);
 
   //表单赋值
   const [registerModal, { setModalProps, closeModal }] = useModalInner(async (data) => {
@@ -73,9 +73,9 @@
         ...data.record,
       });
 
-      let ruleJson = data.record.ruleJson;
+      const ruleJson = data.record.ruleJson;
       if (ruleJson) {
-        let ruleList = JSON.parse(ruleJson);
+        const ruleList = JSON.parse(ruleJson);
         // 筛选出全局规则和局部规则
         let global: any[] = [],
           design: any[] = [],
@@ -133,10 +133,10 @@
           globalValues = tableData2;
         }
         // 整合两个子表的数据
-        let firstGlobal: any[] = [],
+        const firstGlobal: any[] = [],
           afterGlobal: any[] = [];
         for (let i = 0; i < globalValues.length; i++) {
-          let v: any = globalValues[i];
+          const v: any = globalValues[i];
           v.digits = '*';
           if (v.priority === '1') {
             firstGlobal.push(v);
@@ -144,11 +144,11 @@
             afterGlobal.push(v);
           }
         }
-        let concatValues = firstGlobal.concat(designValues).concat(afterGlobal);
-        let subValues = concatValues.map((i) => pick(i, 'digits', 'pattern', 'message'));
+        const concatValues = firstGlobal.concat(designValues).concat(afterGlobal);
+        const subValues = concatValues.map((i) => pick(i, 'digits', 'pattern', 'message'));
         // 生成 formData，用于传入后台
-        let ruleJson = JSON.stringify(subValues);
-        let formData = Object.assign({}, mainData, { ruleJson });
+        const ruleJson = JSON.stringify(subValues);
+        const formData = Object.assign({}, mainData, { ruleJson });
         saveOrUpdateFormData(formData);
       })
       .catch(() => {

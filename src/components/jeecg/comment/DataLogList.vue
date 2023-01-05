@@ -70,7 +70,7 @@
           dataList.value = [];
           lastIndex.value = -1;
         } else {
-          let arr = res.result;
+          const arr = res.result;
           lastIndex.value = arr.length - 1;
           console.log('log-list', arr);
           dataList.value = arr;

@@ -27,9 +27,9 @@ export default {
     defaultSortFn: (sortInfo: SorterResult) => {
       //update-begin-author:taoyan date:2022-10-21 for: VUEN-2199【表单设计器】多字段排序
       if (sortInfo instanceof Array) {
-        let sortInfoArray: any[] = [];
-        for (let item of sortInfo) {
-          let info = getSort(item);
+        const sortInfoArray: any[] = [];
+        for (const item of sortInfo) {
+          const info = getSort(item);
           if (info) {
             sortInfoArray.push(info);
           }
@@ -38,7 +38,7 @@ export default {
           sortInfoString: JSON.stringify(sortInfoArray),
         };
       } else {
-        let info = getSort(sortInfo);
+        const info = getSort(sortInfo);
         return info || {};
       }
       //update-end-author:taoyan date:2022-10-21 for: VUEN-2199【表单设计器】多字段排序
@@ -76,7 +76,7 @@ export default {
 function getSort(item) {
   const { field, order } = item;
   if (field && order) {
-    let sortType = 'ascend' == order ? 'asc' : 'desc';
+    const sortType = 'ascend' == order ? 'asc' : 'desc';
     return {
       // 排序字段
       column: field,

@@ -127,7 +127,7 @@
   /** 模拟从后台查询数据 */
   function requestMockData(parent) {
     return new Promise((resolve) => {
-      let data = mockData.filter((i) => i.parent === parent);
+      const data = mockData.filter((i) => i.parent === parent);
       setTimeout(() => resolve(data), 500);
     });
   }

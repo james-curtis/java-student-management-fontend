@@ -58,7 +58,7 @@
 
     // 无论新增还是编辑，都可以设置表单值
     if (typeof data.record === 'object') {
-      let values = { ...data.record };
+      const values = { ...data.record };
       setFieldsValue(values);
       onUrlChange(values.url);
     }

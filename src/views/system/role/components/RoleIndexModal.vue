@@ -25,7 +25,7 @@
     await resetFields();
     setModalProps({ confirmLoading: false });
     setFieldsValue({ roleCode: data.roleCode });
-    let res = await queryIndexByCode({ roleCode: data.roleCode });
+    const res = await queryIndexByCode({ roleCode: data.roleCode });
     isUpdate.value = !!res.result?.id;
     if (unref(isUpdate)) {
       //表单赋值
@@ -38,7 +38,7 @@
   //表单提交事件
   async function handleSubmit(v) {
     try {
-      let values = await validate();
+      const values = await validate();
       setModalProps({ confirmLoading: true });
       //提交表单
       await saveOrUpdateRoleIndex(values, isUpdate.value);

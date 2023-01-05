@@ -357,7 +357,7 @@
     let httpurl = '';
     let method = '';
     //时间格式化
-    let model = formState;
+    const model = formState;
     if (!model.id) {
       httpurl += url.add;
       method = 'post';
@@ -366,10 +366,10 @@
       method = 'put';
     }
     //循环数据如果是数组
-    for (let data in formState) {
+    for (const data in formState) {
       //如果该数据是数组并且是字符串类型
       if (formState[data] instanceof Array) {
-        let valueType = getValueType(formRef.value.getProps, data);
+        const valueType = getValueType(formRef.value.getProps, data);
         //如果是字符串类型的需要变成以逗号分割的字符串
         if (valueType === 'string') {
           formState[data] = formState[data].join(',');

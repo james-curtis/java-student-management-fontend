@@ -71,7 +71,7 @@
     if (!unref(dataRuleChecked) || unref(dataRuleChecked).length == 0) {
       createMessage.warning('请注意，现未勾选任何数据权限!');
     }
-    let params = {
+    const params = {
       permissionId: unref(functionId),
       roleId: unref(roleId),
       dataRuleIds: unref(dataRuleChecked).join(','),

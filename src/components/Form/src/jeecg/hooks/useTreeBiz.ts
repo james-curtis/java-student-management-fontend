@@ -71,7 +71,7 @@ export function useTreeBiz(treeRef, getList, props) {
     if (props.checkable == false) {
       checkedKeys.value = props.checkStrictly ? keys.checked : keys;
       const { selectedNodes } = info;
-      let rows = <any[]>[];
+      const rows = <any[]>[];
       selectedNodes.forEach((item) => {
         rows.push(item);
       });
@@ -89,8 +89,8 @@ export function useTreeBiz(treeRef, getList, props) {
         if (info.checked) {
           //update-begin-author:taoyan date:20220408 for: 单选模式下，设定rowKey，无法选中数据-
           checkedKeys.value = [info.node.eventKey];
-          let rowKey = props.rowKey;
-          let temp = info.checkedNodes.find((n) => n[rowKey] === info.node.eventKey);
+          const rowKey = props.rowKey;
+          const temp = info.checkedNodes.find((n) => n[rowKey] === info.node.eventKey);
           selectRows.value = [temp];
           //update-end-author:taoyan date:20220408 for: 单选模式下，设定rowKey，无法选中数据-
         } else {
@@ -101,7 +101,7 @@ export function useTreeBiz(treeRef, getList, props) {
       }
       checkedKeys.value = props.checkStrictly ? keys.checked : keys;
       const { checkedNodes } = info;
-      let rows = <any[]>[];
+      const rows = <any[]>[];
       checkedNodes.forEach((item) => {
         rows.push(item);
       });
@@ -127,7 +127,7 @@ export function useTreeBiz(treeRef, getList, props) {
    * 加载树数据
    */
   async function onLoadData(treeNode, ids) {
-    let params = {};
+    const params = {};
     let startPid = '';
     if (treeNode) {
       startPid = treeNode.eventKey;
@@ -140,7 +140,7 @@ export function useTreeBiz(treeRef, getList, props) {
       params['ids'] = ids;
     }
     let record = await getList(params);
-    let optionData = record;
+    const optionData = record;
     if (!props.serverTreeData) {
       //前端处理数据为tree结构
       record = listToTree(record, props, startPid);
@@ -187,7 +187,7 @@ export function useTreeBiz(treeRef, getList, props) {
    */
   function checkHasChild(pid, treeArray) {
     if (treeArray && treeArray.length > 0) {
-      for (let item of treeArray) {
+      for (const item of treeArray) {
         if (item.key == pid) {
           if (!item.child) {
             item.isLeaf = true;

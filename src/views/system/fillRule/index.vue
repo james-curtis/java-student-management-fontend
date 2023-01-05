@@ -107,7 +107,7 @@
    * 功能测试
    */
   function testRule(record) {
-    let params = { ruleCode: record.ruleCode };
+    const params = { ruleCode: record.ruleCode };
     handleTest(params).then((res) => {
       if (res.success) {
         createSuccessModal({

@@ -133,7 +133,7 @@
         if (unref(isUpdate)) {
           Object.assign(orderMainModel, data.record);
           //加载子表数据
-          let params = { id: orderMainModel.id };
+          const params = { id: orderMainModel.id };
           requestSubTableData(orderCustomerList, params, table1);
           requestSubTableData(orderTicketList, params, table2);
         }
@@ -143,7 +143,7 @@
       const getTitle = computed(() => (!unref(isUpdate) ? '新增' : '编辑'));
 
       function classifyIntoFormData(allValues) {
-        let orderMain = Object.assign(orderMainModel, allValues.formValue);
+        const orderMain = Object.assign(orderMainModel, allValues.formValue);
         return {
           ...orderMain, // 展开
           jeecgOrderCustomerList: allValues.tablesValue[0].tableData,

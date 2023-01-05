@@ -51,7 +51,7 @@
        * 将字符串值转化为数组
        */
       function initValue() {
-        let value = props.value ? props.value : [];
+        const value = props.value ? props.value : [];
         if (value && typeof value === 'string' && value != 'null' && value != 'undefined') {
           state.value = value.split(',');
         }

@@ -81,7 +81,7 @@
     console.log('切换的key:', key);
   }
   function loadData(x, y, max, min, before = '', after = '月') {
-    let data = [];
+    const data = [];
     for (let i = 0; i < 12; i += 1) {
       data.push({
         [x]: `${before}${i + 1}${after}`,

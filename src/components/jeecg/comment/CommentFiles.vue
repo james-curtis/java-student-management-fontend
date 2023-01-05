@@ -112,7 +112,7 @@
         if (!data || !data.records || data.records.length == 0) {
           dataList.value = [];
         } else {
-          let array = data.records;
+          const array = data.records;
           console.log(123, array);
           dataList.value = array;
         }
@@ -135,7 +135,7 @@
         selectFileList.value = [];
       }
       async function queding() {
-        let obj = {
+        const obj = {
           fromUserId: userInfo.id,
           commentContent: '上传了附件',
         };

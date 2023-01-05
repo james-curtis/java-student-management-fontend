@@ -99,7 +99,7 @@
     let maxValue = null,
       minValue = null;
     dataSource.forEach((item) => {
-      let value = Number.parseInt(item[field]);
+      const value = Number.parseInt(item[field]);
       // max
       if (maxValue == null) {
         maxValue = value;
@@ -144,9 +144,9 @@
   function loadData() {
     getRedisInfo()
       .then((res) => {
-        let time = dayjs().format('hh:mm:ss');
-        let [{ dbSize: currentSize }, memoryInfo] = res;
-        let currentMemory = memoryInfo.used_memory / 1000;
+        const time = dayjs().format('hh:mm:ss');
+        const [{ dbSize: currentSize }, memoryInfo] = res;
+        const currentMemory = memoryInfo.used_memory / 1000;
         // push 数据
         key.xAxis.data.push(time);
         key.series[0].data.push(currentSize);

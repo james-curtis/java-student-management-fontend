@@ -101,9 +101,9 @@
    * 加载图片集合
    */
   function getImgList() {
-    var count = 0;
-    for (var i = 0; i < unref(treeData).length; i++) {
-      for (var j = 0; j < unref(treeData)[i].children.length; j++) {
+    let count = 0;
+    for (let i = 0; i < unref(treeData).length; i++) {
+      for (let j = 0; j < unref(treeData)[i].children.length; j++) {
         imgList.value.push({
           key: unref(treeData)[i].children[j].key,
           pkey: unref(treeData)[i].key,
@@ -119,7 +119,7 @@
    * 节点选中事件
    */
   function onSelect(selectedKeys, info) {
-    for (var i = 0; i < unref(imgList).length; i++) {
+    for (let i = 0; i < unref(imgList).length; i++) {
       if (unref(imgList)[i].key === selectedKeys[0]) {
         sort.value = unref(imgList)[i].sort;
         setValue(unref(imgList)[i]);

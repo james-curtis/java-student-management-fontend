@@ -138,7 +138,7 @@
         autoExpandParentNode();
       } else {
         if (selectedKeys.value.length === 0) {
-          let item = treeData.value[0];
+          const item = treeData.value[0];
           if (item) {
             // 默认选中第一个
             setSelectedKey(item.id, item);
@@ -167,8 +167,8 @@
         treeNode.dataRef.children = result;
         if (expandedKeys.value.length > 0) {
           // 判断获取的子级是否有当前展开的项
-          let subKeys: any[] = [];
-          for (let key of expandedKeys.value) {
+          const subKeys: any[] = [];
+          for (const key of expandedKeys.value) {
             if (result.findIndex((item) => item.id === key) !== -1) {
               subKeys.push(key);
             }
@@ -188,7 +188,7 @@
 
   // 自动展开父节点，只展开一级
   function autoExpandParentNode() {
-    let item = treeData.value[0];
+    const item = treeData.value[0];
     if (item) {
       if (!item.isLeaf) {
         expandedKeys.value = [item.key];
@@ -241,7 +241,7 @@
       try {
         loading.value = true;
         treeData.value = [];
-        let result = await searchByKeywords({ keyWord: value });
+        const result = await searchByKeywords({ keyWord: value });
         if (Array.isArray(result)) {
           treeData.value = result;
         }

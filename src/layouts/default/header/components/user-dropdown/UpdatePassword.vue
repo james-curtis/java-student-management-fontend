@@ -56,7 +56,7 @@
       const values = await validate();
       setModalProps({ confirmLoading: true });
       //提交表单
-      let params = Object.assign({ username: unref(username) }, values);
+      const params = Object.assign({ username: unref(username) }, values);
       defHttp.put({ url: '/sys/user/updatePassword', params }, { isTransformResponse: false }).then((res) => {
         if (res.success) {
           $message.createMessage.success(res.message);

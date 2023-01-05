@@ -94,10 +94,10 @@
             total: 0,
             showTotal: (total, range) => {
               // 此处为 jsx 语法
-              let text = h('span', `${range[0]}-${range[1]} 共 ${total} 条`);
+              const text = h('span', `${range[0]}-${range[1]} 共 ${total} 条`);
               // 判断子表是否显示，如果显示就渲染展开收起按钮
               if (this.subTabs.show) {
-                let expand = h('span', {}, [
+                const expand = h('span', {}, [
                   h(
                     Button,
                     {
@@ -182,7 +182,7 @@
     },
     computed: {
       tableHeight() {
-        let { show, expand } = this.subTabs;
+        const { show, expand } = this.subTabs;
         return show ? (expand ? 350 : 482) : 482;
       },
     },
@@ -193,7 +193,7 @@
       // 加载table1【主表】的数据
       loadTable1Data() {
         // 封装查询条件
-        let formData = {
+        const formData = {
           pageNo: this.table1.pagination.current,
           pageSize: this.table1.pagination.pageSize,
         };
@@ -234,8 +234,8 @@
       },
       // 查询子表数据
       loadTable2Data() {
-        let table2 = this.table2;
-        let formData = {
+        const table2 = this.table2;
+        const formData = {
           parentId: table2.currentRowId,
           pageNo: this.table2.pagination.current,
           pageSize: this.table2.pagination.pageSize,

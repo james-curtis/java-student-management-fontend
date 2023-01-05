@@ -36,7 +36,7 @@
   provide('prefixCls', prefixCls);
 
   // 当前选中的部门信息
-  let departData = ref({});
+  const departData = ref({});
 
   // 左侧树选择后触发
   function onTreeSelect(data) {

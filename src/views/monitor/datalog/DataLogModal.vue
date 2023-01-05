@@ -57,12 +57,12 @@
   const confirmLoading = ref(false);
   const isUpdate = ref(true);
   const dataVersionList = ref([]);
-  let dataLog = reactive({});
+  const dataLog = reactive({});
   //表单赋值
   const [registerModal, { setModalProps, closeModal }] = useModalInner(async (data) => {
     isUpdate.value = !!data?.isUpdate;
     if (unref(isUpdate)) {
-      let checkedRows = data.selectedRows;
+      const checkedRows = data.selectedRows;
       dataTable.value = checkedRows[0].dataTable;
       dataId.value = checkedRows[0].dataId;
       dataId1.value = checkedRows[0].id;
@@ -82,7 +82,7 @@
   }
 
   function handleSubmit() {
-    let result = { dataId1: dataId1.value, dataId2: dataId2.value };
+    const result = { dataId1: dataId1.value, dataId2: dataId2.value };
     openModal(true, {
       result,
       isUpdate: true,

@@ -54,7 +54,7 @@
   //表单提交事件
   async function handleSubmit(v) {
     try {
-      let values = await validate();
+      const values = await validate();
       setModalProps({ confirmLoading: true });
       //提交表单
       await saveOrUpdateDemo(values, isUpdate.value);

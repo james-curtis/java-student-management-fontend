@@ -6,7 +6,7 @@
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
 
   export default defineComponent({
-    name: 'tableDrawer',
+    name: 'TableDrawer',
     components: { BasicDrawer },
     emits: ['success', 'register'],
     setup(_, { emit }) {

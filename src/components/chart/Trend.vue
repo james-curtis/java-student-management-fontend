@@ -42,7 +42,7 @@
     },
     setup(props) {
       const trend = computed(() => {
-        let type = props.type === null ? props.value >= props.target : props.type;
+        const type = props.type === null ? props.value >= props.target : props.type;
         return type ? 'up' : 'down';
       });
       const rate = computed(() =>

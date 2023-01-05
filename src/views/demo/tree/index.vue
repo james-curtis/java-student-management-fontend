@@ -44,7 +44,7 @@
   import { isArray } from '/@/utils/is';
 
   export default defineComponent({
-    name: 'system-testtree',
+    name: 'SystemTesttree',
     components: { BasicTree, PageWrapper, Card, Row, Col, Spin },
     setup() {
       const asyncTreeRef = ref<Nullable<TreeActionType>>(null);

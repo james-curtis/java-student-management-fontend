@@ -121,7 +121,7 @@
   // tree选中事件
   function onSelect($selectedKeys, { selectedNodes }) {
     if (selectedNodes[0]?.ruleFlag) {
-      let functionId = $selectedKeys[0];
+      const functionId = $selectedKeys[0];
       dataRuleDrawer.openDrawer(true, { roleId, departId, functionId });
     }
     selectedKeys.value = [];
@@ -139,7 +139,7 @@
   async function onSubmit(exit) {
     try {
       loading.value = true;
-      let params = {
+      const params = {
         roleId: roleId.value,
         permissionIds: checkedKeys.value.join(','),
         lastpermissionIds: lastCheckedKeys.value.join(','),

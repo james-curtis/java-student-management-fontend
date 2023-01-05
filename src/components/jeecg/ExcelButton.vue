@@ -47,9 +47,9 @@
   const $message = useMessage();
   // 导出 excel
   function onExportXls() {
-    let { url, name } = props.config?.export ?? {};
+    const { url, name } = props.config?.export ?? {};
     if (url) {
-      let title = typeof name === 'function' ? name() : name;
+      const title = typeof name === 'function' ? name() : name;
       return handleExportXls(title as string, url);
     } else {
       $message.createMessage.warn('没有传递 export.url 参数');
@@ -59,7 +59,7 @@
 
   // 导入 excel
   function onImportXls(file) {
-    let { url, success } = props.config?.import ?? {};
+    const { url, success } = props.config?.import ?? {};
     if (url) {
       return handleImportXls(file, url, success);
     } else {
@@ -70,13 +70,13 @@
 
   // 导入按钮权限
   function hasImportAuth() {
-    let auth = props.config?.import?.auth;
+    const auth = props.config?.import?.auth;
     return auth && auth.length > 0 ? hasPermission(auth) : true;
   }
 
   // 导出按钮权限
   function hasExportAuth() {
-    let auth = props.config?.export?.auth;
+    const auth = props.config?.export?.auth;
     return auth && auth.length > 0 ? hasPermission(auth) : true;
   }
 </script>

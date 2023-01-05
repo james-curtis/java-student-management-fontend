@@ -66,7 +66,7 @@
    * 查看
    */
   function handleDetail(record) {
-    let anntId = record.anntId;
+    const anntId = record.anntId;
     editCementSend({ anntId: anntId }).then((res) => {
       reload();
       syncNotic({ anntId: anntId });
@@ -102,16 +102,16 @@
     initHrefModal();
   });
   function initHrefModal() {
-    let params = appStore.getMessageHrefParams;
+    const params = appStore.getMessageHrefParams;
     if (params) {
-      let anntId = params.id;
+      const anntId = params.id;
       if (anntId) {
         editCementSend({ anntId: anntId }).then(() => {
           reload();
           syncNotic({ anntId: anntId });
         });
       }
-      let detailId = params.detailId;
+      const detailId = params.detailId;
       if (detailId) {
         getOne(detailId).then((data) => {
           console.log('getOne', data);

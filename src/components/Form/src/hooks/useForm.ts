@@ -93,7 +93,7 @@ export function useForm(props?: Props): UseFormReturnType {
     // TODO promisify
     getFieldsValue: <T>() => {
       //update-begin-author:taoyan date:2022-7-5 for: VUEN-1341【流程】编码方式 流程节点编辑表单时，填写数据报错 包括用户组件、部门组件、省市区
-      let values = unref(formRef)?.getFieldsValue() as T;
+      const values = unref(formRef)?.getFieldsValue() as T;
       if (values) {
         Object.keys(values).map((key) => {
           if (values[key] instanceof Array) {
@@ -128,11 +128,11 @@ export function useForm(props?: Props): UseFormReturnType {
      */
     validate: async (nameList?: NamePath[]): Promise<Recordable> => {
       const form = await getForm();
-      let getProps = props || form.getProps;
-      let values = form.validate(nameList).then((values) => {
-        for (let key in values) {
+      const getProps = props || form.getProps;
+      const values = form.validate(nameList).then((values) => {
+        for (const key in values) {
           if (values[key] instanceof Array) {
-            let valueType = getValueType(getProps, key);
+            const valueType = getValueType(getProps, key);
             if (valueType === 'string') {
               values[key] = values[key].join(',');
             }

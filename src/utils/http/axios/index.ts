@@ -164,7 +164,7 @@ const transform: AxiosTransform = {
 
       // ========================================================================================
       // update-begin--author:sunjianlei---date:20220624--for: 添加低代码应用ID
-      let routeParams = router.currentRoute.value.params;
+      const routeParams = router.currentRoute.value.params;
       if (routeParams.appId) {
         config.headers[ConfigEnum.X_LOW_APP_ID] = routeParams.appId;
         // lowApp自定义筛选条件

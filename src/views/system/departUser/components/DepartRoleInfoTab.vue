@@ -145,7 +145,7 @@
       createMessage.warning('请先选择一个部门');
     } else {
       setLoading(true);
-      let ids = unref(idList).join(',');
+      const ids = unref(idList).join(',');
       try {
         await deleteBatchDepartRole({ ids }, confirm);
         return reload();

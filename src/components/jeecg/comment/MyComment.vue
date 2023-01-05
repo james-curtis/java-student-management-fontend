@@ -109,7 +109,7 @@
       const myComment = ref<string>('');
       function sendComment() {
         console.log(myComment.value);
-        let content = myComment.value;
+        const content = myComment.value;
         if (!content && content !== '0') {
           disabledButton.value = true;
         } else {
@@ -126,7 +126,7 @@
       }
       const disabledButton = ref(false);
       watch(myComment, () => {
-        let content = myComment.value;
+        const content = myComment.value;
         if (!content && content !== '0') {
           disabledButton.value = true;
         } else {
@@ -164,8 +164,8 @@
         if (options && options.length > 0) {
           const { label, value } = options[0];
           if (label && value) {
-            let str = `${label}[${value}]`;
-            let temp = myComment.value;
+            const str = `${label}[${value}]`;
+            const temp = myComment.value;
             if (!temp) {
               myComment.value = '@' + str;
             } else {
@@ -201,7 +201,7 @@
 
       const visibleEmoji = ref(false);
       function showEmoji(e) {
-        let temp = myComment.value || '';
+        const temp = myComment.value || '';
         let str = e.colons;
         if (str.indexOf('::') > 0) {
           str = str.substring(0, str.indexOf(':') + 1);
@@ -237,7 +237,7 @@
       const { getHtml } = useEmojiHtml(emojiIndex);
 
       const commentHtml = computed(() => {
-        let temp = myComment.value;
+        const temp = myComment.value;
         if (!temp) {
           return '请输入你的评论，可以@成员';
         }

@@ -20,7 +20,7 @@ export async function registerThirdComp(app: App) {
   //---------------------------------------------------------------------
   // 注册全局聊天表情包
   app.component('Picker', Picker);
-  let myEmojiIndex = new EmojiIndex(data, {
+  const myEmojiIndex = new EmojiIndex(data, {
     function() {
       return true;
     },

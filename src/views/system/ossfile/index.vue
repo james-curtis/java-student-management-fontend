@@ -84,7 +84,7 @@
       if (filePath.endsWith('.pdf') || filePath.endsWith('.doc') || filePath.endsWith('.docx')) {
         filePath = filePath + '&officePreviewType=pdf';
       }
-      let url = `${glob.viewUrl}?url=` + filePath;
+      const url = `${glob.viewUrl}?url=` + filePath;
       window.open(url, '_blank');
     }
   }
@@ -100,7 +100,7 @@
    * 上传前事件
    */
   function beforeUpload(file) {
-    var fileType = file.type;
+    const fileType = file.type;
     if (fileType === 'image') {
       if (fileType.indexOf('image') < 0) {
         createMessage.warning('请上传图片');

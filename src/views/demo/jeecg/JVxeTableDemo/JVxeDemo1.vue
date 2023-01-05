@@ -227,17 +227,17 @@
       loading.value = true;
     }
 
-    let randomDatetime = () => {
-      let time = random(1000, 9999999999999);
+    const randomDatetime = () => {
+      const time = random(1000, 9999999999999);
       return dayjs(new Date(time)).format('YYYY-MM-DD HH:mm:ss');
     };
 
-    let limit = (current - 1) * pageSize;
+    const limit = (current - 1) * pageSize;
 
-    let options = ['string', 'int', 'double', 'boolean'];
+    const options = ['string', 'int', 'double', 'boolean'];
 
-    let begin = Date.now();
-    let values: any[] = [];
+    const begin = Date.now();
+    const values: any[] = [];
     for (let i = 0; i < pageSize; i++) {
       values.push({
         id: buildUUID(),
@@ -248,8 +248,8 @@
         select: options[random(0, 3)],
         select_dict: random(1, 2).toString(),
         select_multiple: (() => {
-          let length = random(1, 4);
-          let arr = [];
+          const length = random(1, 4);
+          const arr = [];
           for (let j = 0; j < length; j++) {
             pushIfNotExist(arr, options[random(0, 3)]);
           }
@@ -262,8 +262,8 @@
     }
 
     dataSource.value = values;
-    let end = Date.now();
-    let diff = end - begin;
+    const end = Date.now();
+    const diff = end - begin;
 
     if (isLoading && diff < pageSize) {
       setTimeout(() => (loading.value = false), pageSize - diff);
@@ -355,7 +355,7 @@
 
   function doDelete(deleteRows) {
     return new Promise((resolve) => {
-      let rowId = deleteRows.map((row) => row.id);
+      const rowId = deleteRows.map((row) => row.id);
       console.log('删除 rowId: ', rowId);
       setTimeout(() => resolve(true), 1500);
     });
@@ -366,7 +366,7 @@
     const hideLoading = createMessage.loading('删除中…', 0);
     try {
       // 1. 向后台传递 event.deleteRows 以删除
-      let flag = await doDelete(event.deleteRows);
+      const flag = await doDelete(event.deleteRows);
       if (flag) {
         // 注：如果启用了表格的 loading 状态，则必须先停止再删除，否则会导致无法从表格上删除数据
         // 2. 调用 event.confirmRemove 方法确认删除成功

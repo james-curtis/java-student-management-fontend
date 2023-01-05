@@ -19,7 +19,7 @@
   import { BasicForm, useForm } from '/@/components/Form/index';
   import { checkRuleInput } from '/@/views/system/checkRule/check.rule.data';
   import { ref } from 'vue';
-  let realTestValue = ref('');
+  const realTestValue = ref('');
   const okButtonProps = {
     style: { display: 'none' },
   };

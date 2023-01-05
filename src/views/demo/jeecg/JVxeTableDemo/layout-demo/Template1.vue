@@ -177,7 +177,7 @@
       // 加载table1【主表】的数据
       loadTable1Data() {
         // 封装查询条件
-        let formData = {
+        const formData = {
           pageNo: this.table1.pagination.current,
           pageSize: this.table1.pagination.pageSize,
         };
@@ -219,7 +219,7 @@
       // 加载table2【子表】的数据，根据主表的id进行查询
       loadTable2Data() {
         // 如果主表没有选择，则不查询
-        let selectedRows = this.table1.selectedRows;
+        const selectedRows = this.table1.selectedRows;
         if (!selectedRows || selectedRows.length === 0) {
           this.table2.pagination.total = 0;
           this.table2.dataSource = [];
@@ -228,7 +228,7 @@
         } else if (this.table1.lastRow == null) {
           this.table1.lastRow = selectedRows[selectedRows.length - 1];
         }
-        let formData = {
+        const formData = {
           parentId: this.table1.lastRow.id,
           pageNo: this.table2.pagination.current,
           pageSize: this.table2.pagination.pageSize,
@@ -266,7 +266,7 @@
       // 加载table3【孙表】的数据，根据子表的id进行查询
       loadTable3Data() {
         // 如果主表没有选择，则不查询
-        let selectedRows = this.table2.selectedRows;
+        const selectedRows = this.table2.selectedRows;
         if (!selectedRows || selectedRows.length === 0) {
           this.table3.pagination.total = 0;
           this.table3.dataSource = [];
@@ -275,7 +275,7 @@
         } else if (this.table2.lastRow == null) {
           this.table2.lastRow = selectedRows[selectedRows.length - 1];
         }
-        let formData = {
+        const formData = {
           parentId: this.table2.lastRow.id,
           pageNo: this.table3.pagination.current,
           pageSize: this.table3.pagination.pageSize,
@@ -305,9 +305,9 @@
 
       /** 公共方法：处理表格选中变化事件 */
       handleTableSelectRowChange(table, event) {
-        let { row, action, selectedRows, $table } = event;
+        const { row, action, selectedRows, $table } = event;
         // 获取最后一个选中的
-        let lastSelected = selectedRows[selectedRows.length - 1];
+        const lastSelected = selectedRows[selectedRows.length - 1];
         if (action === 'selected') {
           table.lastRow = row;
         } else if (action === 'selected-all') {

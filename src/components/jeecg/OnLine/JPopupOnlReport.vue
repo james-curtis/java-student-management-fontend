@@ -153,7 +153,7 @@
        */
       watchEffect(() => {
         if (props.sorter) {
-          let arr = props.sorter.split('=');
+          const arr = props.sorter.split('=');
           if (arr.length === 2 && ['asc', 'desc'].includes(arr[1].toLowerCase())) {
             iSorter.value = { column: arr[0], order: arr[1].toLowerCase() };
             // 排序字段受控
