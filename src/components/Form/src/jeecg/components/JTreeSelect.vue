@@ -47,6 +47,10 @@
     multiple: propTypes.bool.def(false),
     loadTriggleChange: propTypes.bool.def(false),
     reload: propTypes.number.def(1),
+    //update-begin-author:taoyan date:2022-11-8 for: issues/4173 Online JTreeSelect控件changeOptions方法未生效
+    url: propTypes.string.def(''),
+    params: propTypes.object.def({}),
+    //update-end-author:taoyan date:2022-11-8 for: issues/4173 Online JTreeSelect控件changeOptions方法未生效
   });
   const attrs = useAttrs();
   const emit = defineEmits(['change', 'update:value']);
@@ -102,16 +106,21 @@
         treeValue.value = null;
       }
     } else {
-      let params = { key: props.value };
-      let result = await defHttp.get({ url: `${Api.view}${props.dict}`, params }, { isTransformResponse: false });
-      if (result.success) {
-        let values = props.value.split(',');
-        treeValue.value = result.result.map((item, index) => ({
-          key: values[index],
-          value: values[index],
-          label: item,
-        }));
-        onLoadTriggleChange(result.result[0]);
+      //update-begin-author:taoyan date:2022-11-8 for: issues/4173 Online JTreeSelect控件changeOptions方法未生效
+      if (props.url) {
+        getItemFromTreeData();
+      } else {
+        const params = { key: props.value };
+        const result = await defHttp.get({ url: `${Api.view}${props.dict}`, params }, { isTransformResponse: false });
+        if (result.success) {
+          const values = props.value.split(',');
+          treeValue.value = result.result.map((item, index) => ({
+            key: values[index],
+            value: values[index],
+            label: item,
+          }));
+          onLoadTriggleChange(result.result[0]);
+        }
       }
     }
   }
@@ -127,7 +136,7 @@
    * 初始化数据
    */
   function initDictInfo() {
-    let arr = props.dict?.split(',');
+    const arr = props.dict?.split(',');
     tableName.value = arr[0];
     text.value = arr[1];
     code.value = arr[2];
@@ -137,7 +146,7 @@
    * 加载下拉树形数据
    */
   async function loadRoot() {
-    let params = {
+    const params = {
       pid: props.pidValue,
       pidField: props.pidField,
       hasChildField: props.hasChildField,
@@ -147,9 +156,9 @@
       text: unref(text),
       code: unref(code),
     };
-    let res = await defHttp.get({ url: Api.url, params }, { isTransformResponse: false });
+    const res = await defHttp.get({ url: Api.url, params }, { isTransformResponse: false });
     if (res.success && res.result) {
-      for (let i of res.result) {
+      for (const i of res.result) {
         i.value = i.key;
         i.isLeaf = !!i.leaf;
       }
@@ -166,8 +175,11 @@
     if (treeNode.dataRef.children) {
       return Promise.resolve();
     }
-    let pid = treeNode.dataRef.key;
-    let params = {
+    if (props.url) {
+      return Promise.resolve();
+    }
+    const pid = treeNode.dataRef.key;
+    const params = {
       pid: pid,
       pidField: props.pidField,
       hasChildField: props.hasChildField,
@@ -177,9 +189,9 @@
       text: unref(text),
       code: unref(code),
     };
-    let res = await defHttp.get({ url: Api.url, params }, { isTransformResponse: false });
+    const res = await defHttp.get({ url: Api.url, params }, { isTransformResponse: false });
     if (res.success) {
-      for (let i of res.result) {
+      for (const i of res.result) {
         i.value = i.key;
         i.isLeaf = !!i.leaf;
       }
@@ -195,7 +207,7 @@
    */
   function addChildren(pid, children, treeArray) {
     if (treeArray && treeArray.length > 0) {
-      for (let item of treeArray) {
+      for (const item of treeArray) {
         if (item.key == pid) {
           if (!children || children.length == 0) {
             item.isLeaf = true;
@@ -207,6 +219,7 @@
           addChildren(pid, children, item.children);
         }
       }
+      //update-end-author:taoyan date:2022-11-8 for: issues/4173 Online JTreeSelect控件changeOptions方法未生效
     }
   }
 
@@ -240,13 +253,13 @@
    * 校验条件配置是否有误
    */
   function validateProp() {
-    let mycondition = props.condition;
+    const mycondition = props.condition;
     return new Promise((resolve, reject) => {
       if (!mycondition) {
         resolve();
       } else {
         try {
-          let test = JSON.parse(mycondition);
+          const test = JSON.parse(mycondition);
           if (typeof test == 'object' && test) {
             resolve();
           } else {
@@ -260,6 +273,70 @@
       }
     });
   }
+
+  //update-begin-author:taoyan date:2022-11-8 for: issues/4173 Online JTreeSelect控件changeOptions方法未生效
+  watch(
+    () => props.url,
+    async (val) => {
+      if (val) {
+        await loadRootByUrl();
+      }
+    }
+  );
+
+  /**
+   * 根据自定义的请求地址加载数据
+   */
+  async function loadRootByUrl() {
+    const url = props.url;
+    const params = props.params;
+    const res = await defHttp.get({ url, params }, { isTransformResponse: false });
+    if (res.success && res.result) {
+      for (const i of res.result) {
+        i.key = i.value;
+        i.isLeaf = !!i.leaf;
+      }
+      treeData.value = [...res.result];
+    } else {
+      console.log('数根节点查询结果异常', res);
+    }
+  }
+
+  /**
+   * 根据已有的树数据 翻译选项
+   */
+  function getItemFromTreeData() {
+    const data = treeData.value;
+    const arr = [];
+    findChildrenNode(data, arr);
+    if (arr.length > 0) {
+      treeValue.value = arr;
+      onLoadTriggleChange(arr[0]);
+    }
+  }
+
+  /**
+   * 递归找子节点
+   * @param data
+   * @param arr
+   */
+  function findChildrenNode(data, arr) {
+    const val = props.value;
+    if (data && data.length) {
+      for (const item of data) {
+        if (val === item.value) {
+          arr.push({
+            key: item.key,
+            value: item.value,
+            label: item.label || item.title,
+          });
+        } else {
+          findChildrenNode(item.children, arr);
+        }
+      }
+    }
+  }
+  //update-end-author:taoyan date:2022-11-8 for: issues/4173 Online JTreeSelect控件changeOptions方法未生效
 
   // onCreated
   validateProp().then(() => {

@@ -33,6 +33,9 @@
     <template #dargVerify="{ model, field }">
       <BasicDragVerify v-model:value="model[field]" />
     </template>
+    <template #superQuery="{ model, field }">
+      <super-query :config="superQueryConfig" @search="(value) => handleSuperQuery(value, model, field)" />
+    </template>
   </BasicForm>
 </template>
 <script lang="ts">
@@ -46,6 +49,7 @@
   import { BasicDragVerify } from '/@/components/Verify';
 
   export default defineComponent({
+    name: 'JeecgComponents',
     components: {
       BasicForm,
       ApiSelect,
@@ -57,7 +61,6 @@
       JEllipsis,
       BasicDragVerify,
     },
-    name: 'JeecgComponents',
     setup() {
       const { isDisabledAuth } = usePermission();
       const check = ref(null);
@@ -75,6 +78,21 @@
         keyword.value = value;
       }
 
+      const superQueryConfig = {
+        name: { title: '名称', view: 'text', type: 'string', order: 1 },
+        birthday: { title: '生日', view: 'date', type: 'string', order: 2 },
+        age: { title: '年龄', view: 'number', type: 'number', order: 4 },
+        sex: { title: '性别', view: 'list', type: 'string', dictCode: 'sex', order: 5 },
+        bpmStatus: { title: '流程状态', view: 'list_multi', type: 'string', dictCode: 'bpm_status', order: 6 },
+      };
+      function handleSuperQuery(value, model, field) {
+        if (value) {
+          const str = decodeURI(value.superQueryParams);
+          console.log(str);
+          model[field] = str;
+        }
+      }
+
       return {
         schemas,
         formElRef,
@@ -83,6 +101,7 @@
         submitButtonOptions,
         onSearch: useDebounceFn(onSearch, 300),
         searchParams,
+        superQueryConfig,
         handleReset: () => {
           keyword.value = '';
         },

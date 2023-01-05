@@ -39,7 +39,7 @@
     "@ant-design/colors": "^6.0.0",
     "@ant-design/icons-vue": "^6.1.0",
     "@iconify/iconify": "^2.2.1",
-    "@jeecg/online": "3.4.3-GA",
+    "@jeecg/online": "3.4.4-RC",
     "@logicflow/core": "^1.1.13",
     "@logicflow/extension": "^1.1.13",
     "@vue/runtime-core": "^3.2.33",
